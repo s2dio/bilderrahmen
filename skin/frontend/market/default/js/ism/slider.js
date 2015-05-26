@@ -24,6 +24,7 @@
                 startIndx: 0,
                 effect: 'fade',
                 cl: {
+                    conteiner :      $('.b-ism-slider-list', this.el),
                     item :           $('.b-ism-slider-item', this.el),
                     pagination :     $('.b-ism-slider-pagination-item', this.el),
                     leftControl :    $('.b-ism-slider-control-left', this.el),
@@ -37,11 +38,16 @@
             if (self.settings.pagination){
                 self.settings.cl.pagination.bind('click', $.proxy(self.paginationClickHandler, self)).parent().show();
             }
+
+            $(window).bind('load', $.proxy(self.resize , self));
+            $(window).bind('resize', $.proxy(self.resize , self));
+
             if (self.settings.controls){
                 self.settings.cl.rightControl.show().bind('click', $.proxy(self.nextSlide, self));
                 self.settings.cl.leftControl.show().bind('click', $.proxy(self.prevSlide, self));
             }
             this.getSlide(self.settings.startIndx);
+
             if (self.settings.autoSlide){
                 self.timer = setInterval($.proxy(self.nextSlide, self), self.settings.frequency);
                 self.el.bind('mouseover', function(){
@@ -109,6 +115,10 @@
                 current = this.slength - 1;
             }
             this.getSlide(current);
+        },
+
+        resize : function(){
+            this.settings.cl.conteiner.height(  this.settings.cl.item.height() );
         }
     };
 })(jQuery);

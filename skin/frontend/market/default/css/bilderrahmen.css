@@ -1,1 +1,18 @@
- /*//theme*/
+ /*theme*/
+ body {
+     font-family: Arial;
+     margin: 0px;
+     padding: 0px;
+     font-size: 12px;
+     line-height: 16px;
+     color: #000;
+     background:  url("../images/bg.jpg") repeat-x 0px 0px;
+ }
+
+ .main-container{
+     background-color: #FFF;
+ }
+
+ .main-container, .footer-container{
+
+ }

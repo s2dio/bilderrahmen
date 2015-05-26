@@ -800,8 +800,6 @@ html {
 }
 
 body {
-  background: #FFFFFF;
-  color: #000000;
   line-height: 1;
 }
 
@@ -3064,7 +3062,6 @@ body {
   min-width: 320px;
   min-height: 100%;
   margin: 0 auto;
-  background: #FFFFFF;
 }
 
 .wrapper:after {
