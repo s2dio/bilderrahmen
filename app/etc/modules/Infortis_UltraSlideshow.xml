@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category	Infortis
+ * @package		Infortis_UltraSlideshow
+ * @author		Infortis
+ */
+ -->
+<config>
+    <modules>
+        <Infortis_UltraSlideshow>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Infortis_UltraSlideshow>
+    </modules>
+</config> 

@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<div>
+	<div style="margin-top:10px">
+		<div style="width:320px">
+			<?php if ($this->getShowGenderSelect() || $this->getShowDobSelect()): ?>
+				<table>
+					<?php if ($this->getShowGenderSelect()): ?>
+						<tr style="height:23px">
+							<td style="width:130px">
+								<span style="padding:0px; color: #666666; width:100px"><?php echo $this->__('gender') ?></span>&nbsp;<span class="required">*</span>
+							</td>
+							<td>
+								<?php echo $this->getGenderSelectHtml() ?>
+							</td>
+						</tr>
+					<?php endif; ?>
+					<?php if ($this->getShowDobSelect()): ?>
+						<tr style="height:23px">
+							<td style="width:130px">
+								<span style="padding:0px; color: #666666; width:100px"><?php echo $this->__('date_of_birth') ?></span>&nbsp;<span class="required">*</span>
+							</td>
+							<td>
+								<?php echo $this->getDobSelectHtml() ?>
+							</td>
+						</tr>
+					<?php endif; ?>
+					<?php if ($this->getShowPhoneInputField()): ?>
+						<tr style="height:23px">
+							<td style="width:130px">
+								<span style="color: #666666;"><?php echo $this->__('billpay_phone') ?></span>&nbsp;<span class="required">*</span>
+							</td>
+							<td>
+								<?php echo $this->getPhoneInputHtml() ?>
+							</td>
+						</tr>
+					<?php endif;?>
+				</table>
+			<?php endif; ?>
+			</div>
+			<div style="margin-top:10px;">
+				<div style="margin-top:10px;">
+					<?php echo $this->getBankAccountHtml() ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="margin-top:20px">
+		<input id="<?php echo $this->getMethodCode() ?>_tcaccepted" name="payment[<?php echo $this->getMethodCode() ?>_tcaccepted]" type="checkbox" class="radio required-entry" />
+		&nbsp;&nbsp;<label for="<?php echo $this->getMethodCode() ?>_tcaccepted">
+			<?php echo $this->__('billpay_rate_please_confirm1') ?>
+			<a href='javascript:void(0)' onclick='showBillpayRateTermsPopup("<?php echo $this->getTermsUrl()?>")'>
+			<?php echo $this->__('billpay_rate_please_confirm2') ?>
+			</a>
+			<?php echo $this->__('billpay_rate_please_confirm3') ?>
+			<a href='javascript:void(0)' onclick='showBillpayRatePrivacyPopup("<?php echo $this->getPrivacyUrl()?>")' >
+			<?php echo $this->__('billpay_rate_please_confirm4') ?>
+			</a>
+			<?php echo $this->__('billpay_rate_please_confirm5') ?>
+		</label>
+	</div>
+</div>
+
+<script type="text/javascript">
+if (typeof(billpaySetStepInfo) == "function") {
+	billpaySetStepInfo(3, '<?php echo $this->__("billpay_rate_step_text3")?>');
+}
+</script>

@@ -1,0 +1,278 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * @var Billpay_Block_FormContent $this
+ */
+?>
+<style type="text/css">
+    .bpy-border {
+        border: 1px solid #c0c0c0;
+        padding: 10px;
+    }
+    #firecheckout-form .bpy-border,
+    #onestepcheckout-form .bpy-border {
+        border: 0;
+        padding: 0;
+    }
+    .form-list .bpy-input-row {
+        min-height: 23px;
+        width: 100%;
+    }
+    #firecheckout-form .bpy-input-row,
+    #onestepcheckout-form .bpy-input-row {
+        margin-bottom: 4px;
+    }
+    .bpy-input-row label {
+        width: 130px;
+        display: inline-block;
+    }
+    #b2b .bpy-input-row label {
+        width: 180px;
+    }
+    .bpy-terms-box {
+        margin-top: 15px;
+    }
+    .bpy-terms-box input {
+        float: left;
+        margin: 5px;
+    }
+    .bpy-terms-box .bpy-terms-box-text {
+        float: none;
+        padding: 5px 0;
+        overflow: hidden;
+        font-weight:normal;
+        line-height:10px;
+        font-size:11px
+    }
+    #firecheckout-form .bpy-terms-box .bpy-terms-box-text {
+        display: inline;
+    }
+    .bpy-terms-box .bpy-terms-box-text label {
+        font-weight: normal;
+    }
+    .bpy-terms-box-text > label * {
+        color: #666;
+    }
+    #onestepcheckout-form .input-box table {
+        width: 95%;
+    }
+</style>
+
+<li>
+    <?php echo $this->getTestModeInfoBoxHtml() ?>
+</li>
+
+<li class="bpy-border">
+
+    <?php
+    if ($this->getShowGenderSelect()
+        || $this->getShowDobSelect()
+        || $this->getShowBankAccount()
+        || $this->getFeeChargeEnabled()):
+    ?>
+
+        <?php if($this->getB2BEnabled()): ?>
+
+            <?php if ($this->getAllowedCustomerGroup() == 'both'): ?>
+                <label>
+                    <input type="radio"
+                           name="payment[<?php echo $this->getMethodCode() ?>_customer_group]" value="b2c"
+                           onchange="changeCustomerGroupValidator(0)"
+                           <?php echo $this->getSelectedCustomerGroup() == true ? '' : 'checked="checked"'; ?>/>
+                    <?php echo $this->__('billpay_private_customer')?>
+                    <?php if ($this->getFeeCharged()): ?>
+                        <span style="font-weight: normal;">
+                            <?php
+                            echo $this->__('billpay_title_fee_text1');
+                            echo $this->getChargedFee();
+                            ?>
+                        </span>
+                    <?php endif; ?>
+                </label>
+                <br />
+                <label>
+                    <input type="radio" id="<?php echo $this->getMethodCode() ?>_customer_group_b2b"
+                           name="payment[<?php echo $this->getMethodCode() ?>_customer_group]" value="b2b"
+                           onchange="changeCustomerGroupValidator(1)"
+                           <?php echo $this->getSelectedCustomerGroup() == true ? 'checked="checked"' : ''; ?>/>
+                    <?php echo $this->__('billpay_business_customer')?>
+                    <?php if($this->getFeeChargedB2B()): ?>
+                        <span style="font-weight: normal;">
+                            <?php
+                            echo $this->__('billpay_title_fee_text1');
+                            echo $this->getChargedFeeB2B();
+                            ?>
+                        </span>
+                    <?php endif; ?>
+                </label>
+                <br/>
+            <?php endif; ?>
+
+            <div id="b2b" style="display: <?php echo $this->getSelectedCustomerGroup()==true ? 'block' : 'none'; ?>">
+
+                <div class="bpy-input-row input-box">
+                    <label for="<?php echo $this->getMethodCode() ?>_company_name">
+                        <?php echo $this->__('billpay_company_name')?>
+                        <span class="required">*</span>
+                    </label>
+                    <input class="input-text required-entry" type="text"
+                           id="<?php echo $this->getMethodCode() ?>_company_name"
+                           name="payment[<?php echo $this->getMethodCode() ?>_company_name]"
+                           value="<?php echo $this->getSelectedCompanyName()?>" />
+                </div>
+
+                <div class="bpy-input-row input-box">
+                    <label for="billpay-legal-form-select">
+                        <?php echo $this->__('billpay_legal_form'); ?>
+                        <span class="required">*</span>
+                    </label>
+                    <?php echo $this->getLegalFormSelectHtml(); ?>
+                </div>
+
+                <?php if ($this->getShowGenderSelect()): ?>
+                    <div class="bpy-input-row input-box">
+                        <label for="billpay-salutation-select">
+                            <?php echo $this->__('billpay_salutation')?>
+                            <span class="required">*</span>
+                        </label>
+                        <?php echo $this->getSalutationSelectHtml() ?>
+                    </div>
+                <?php endif;?>
+
+                <div class="bpy-input-row input-box">
+                    <label for="<?php echo $this->getMethodCode() ?>_register_number">
+                        <?php echo $this->__('billpay_register_number')?>
+                    </label>
+                    <input class="input-text" type="text"
+                           id="<?php echo $this->getMethodCode() ?>_register_number"
+                           name="payment[<?php echo $this->getMethodCode() ?>_register_number]"
+                           value="<?php echo $this->getRegisterNumber()?>" />
+                </div>
+
+                <div class="bpy-input-row input-box">
+                    <label for="<?php echo $this->getMethodCode() ?>_tax_number">
+                        <?php echo $this->__('billpay_tax_number')?>
+                    </label>
+                    <input class="input-text" type="text"
+                           id="<?php echo $this->getMethodCode() ?>_tax_number"
+                           name="payment[<?php echo $this->getMethodCode() ?>_tax_number]"
+                           value="<?php echo $this->getTaxNumber()?>" />
+                </div>
+
+                <div class="bpy-input-row input-box">
+                    <label for="<?php echo $this->getMethodCode() ?>_holder_name">
+                        <?php echo $this->__('billpay_holder_name')?>
+                    </label>
+                    <input class="input-text" type="text"
+                           id="<?php echo $this->getMethodCode() ?>_holder_name"
+                           name="payment[<?php echo $this->getMethodCode() ?>_holder_name]"
+                           value="<?php echo $this->getHolderName()?>" />
+                </div>
+
+                <span style="font-size:11px; font-style:italic">
+                    <?php echo $this->__('billpay_contact_person')?>:
+                    <?php echo $this->getContactPerson()?>
+                </span>
+            </div>
+        <?php endif; ?>
+
+        <?php
+        $visible = 'block';
+        if ($this->getB2BEnabled()
+            && (($this->getAllowedCustomerGroup()=='both'
+                 && $this->getSelectedCustomerGroup() == true)
+                || $this->getAllowedCustomerGroup() == 'b2b')
+        ) {
+            $visible = 'none';
+        }
+        ?>
+
+        <div id="b2c" style="display: <?php echo $visible; ?>">
+
+            <?php if ($this->getShowGenderSelect()
+                      && ($this->getB2BEnabled() == false
+                          || $this->getMethodCode() != 'billpay_rec'
+                          || $this->getAllowedCustomerGroup() != 'b2b')): ?>
+                <div class="bpy-input-row input-box">
+                    <label>
+                        <?php echo $this->__('gender'); ?>
+                        <span class="required">*</span>
+                    </label>
+                    <?php echo $this->getGenderSelectHtml() ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->getShowDobSelect()): ?>
+                <div class="bpy-input-row input-box">
+                    <label>
+                        <?php echo $this->__('date_of_birth') ?>
+                        <span class="required">*</span>
+                    </label>
+                    <?php echo $this->getDobSelectHtml() ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->getShowBankAccount()): ?>
+                <?php if ($this->getShowGenderSelect() || $this->getShowDobSelect()):?>
+                    <br/>
+                <?php endif; ?>
+                <div>
+                    <?php echo $this->__('billpay_enter_account_data') ?>
+                </div>
+                <div style="margin-top:10px;">
+                    <?php echo $this->getBankAccountHtml() ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <?php if($this->getShowFeeChargeInfoText()): ?>
+            <div style="margin-top:20px">
+                <label style="font-weight:normal">
+                    <?php if ($this->getFeeChargeInfoValue()): ?>
+                        <?php echo $this->__('billpay_fee_charged_info1'); ?>
+                        <?php echo $this->getFeeChargeInfoValue(); ?>
+                        <?php echo $this->__('billpay_fee_charged_info2'); ?>
+                    <?php else: ?>
+                        <?php echo $this->__('billpay_fee_charged_info3'); ?>
+                    <?php endif; ?>
+                </label>
+            </div>
+        <?php endif; ?>
+    <?php
+    endif;
+    ?>
+    <div class="bpy-terms-box">
+        <input id="<?php echo $this->getMethodCode() ?>_tcaccepted"
+               name="payment[<?php echo $this->getMethodCode() ?>_tcaccepted]"
+               type="checkbox" class="radio required-entry"/>
+        <div class="bpy-terms-box-text">
+            <label for="<?php echo $this->getMethodCode() ?>_tcaccepted">
+                <?php echo $this->getAcceptTermsHtml() ?>
+            </label>
+            <?php echo $this->getAdditionalSepaInformationHtml() ?>
+        </div>
+    </div>
+    <div style="margin-top:7px; margin-bottom:3px">
+        <img src="<?php echo $this->getSkinUrl('images/billpay/LogoSmall_0.png')?>" title="Billpay logo" alt="Billpay logo">
+    </div>
+    <div style="height:1px" >
+        <?php echo $this->getFraudDetectionHtml() ?>
+    </div>
+</li>

@@ -1,0 +1,148 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php	
+	$theme = $this->helper('ultimo');
+	$c = $theme->getDesignCfgSection();
+	
+	$headerCss = array();
+	if ($c['header']['inner_bg_color'] && $c['header']['inner_bg_color'] != 'transparent')
+		$headerCss[] = 'show-bg';
+	else
+		if ($c['nav']['stretched'])
+			$headerCss[] = 'stretched';
+?>
+<div class="header-container">
+
+    <div class="header container<?php if($headerCss) echo " " . implode(" ", $headerCss); ?>">
+    <div class="grid-full">
+    
+    	<div class="header-top clearer">
+            <?php if ($tmp = $this->getChildHtml('block_header_top_help')): ?>
+            	<div class="header-top-help-wrapper item item-left"><?php echo $tmp; ?></div>
+            <?php endif; ?>
+            <?php if ($tmp = $this->getChildHtml('block_header_links_upper')): ?>
+            	<div class="header-top-links-wrapper item item-right"><?php echo $tmp; ?></div>
+            <?php endif; ?>
+            <!--<div class="item item-left hide-below-960">
+            	<p class="welcome-msg"><?php echo $this->getWelcome(); ?> <?php echo $this->getAdditionalHtml(); ?></p>
+			</div>-->
+            <?php echo $this->getChildHtml('currency') ?>
+            <?php echo $this->getChildHtml('store_language') ?>
+        </div>
+        <?php echo $this->getChildHtml('topContainer'); ?>
+        
+		<div class="header-main v v3">
+        	<div class="logo-wrapper v-item">
+			<?php if ($this->getIsHomePage()):?>
+                <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+            <?php else:?>
+                <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php endif?>
+            </div>
+            
+            <div class="header-top-search-wrapper v-item">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_top_phone')->toHtml(); ?>
+                <?php echo $this->getChildHtml('topSearch') ?>
+                <?php /*?><a class="advanced-search-link" href="<?php echo Mage::getURL(''); ?>catalogsearch/advanced/"><?php print $this->__('Advanced Search'); ?></a><?php */?>
+            </div>
+            
+            <div class="user-menu v-item clearer">
+                <div id="mini-cart">
+                    <?php echo $this->getChildHtml('cart_sidebar') ?>
+                </div>
+                <div class="after-mini-cart"></div>
+                
+                <div class="top-links show-separators">
+                	<?php
+					//Additional custom top links
+					if ($tmp = $this->getChildHtml('block_header_top_links2'))
+						echo $tmp;
+						
+					//Default Magento top links (page.xml)
+					if ($theme->getCfg('magento_blocks/top_links'))
+						echo $this->getChildHtml('topLinks');
+					
+					//Custom top links - override default Magento top links
+                    if ($tmp = $this->getChildHtml('block_header_top_links'))
+						echo $tmp;
+					?>
+                </div> <!-- end: top-links -->
+
+            </div> <!-- end: user-menu -->
+        </div> <!-- end: v -->
+
+	</div> <!-- end: grid unit -->
+    </div> <!-- end: header -->
+    <!-- start: phonebox -->
+    <?php echo $this->getChildHtml('topMenu') ?>
+    <div id="phonebox">
+        <div class="content">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('phonebox')->toHtml();?>
+            </div>
+        <div class="image-phonebox"></div>
+    </div>
+    <div id="likebox">
+        <div class="content">
+            <?php echo $this->getLayout()->createBlock('fbfanbox/fbfanbox')->setTemplate('fbfanbox/fbfanbox.phtml')->toHtml();?>
+            </div>
+        <div class="image-likebox"></div>
+    </div>
+    <script type="text/javascript">
+        jQuery(window).load(function(){
+            jQuery('#phonebox').show();
+            jQuery('#likebox').show();
+            var width = jQuery('#phonebox .content').width();
+            width += 34;
+            jQuery('#phonebox').css('left','-'+width+'px');
+            
+            var widthL = jQuery('#likebox .content').width();
+            widthL += 34;
+            jQuery('#likebox').css('right','-'+widthL+'px');
+            
+            jQuery('#likebox .image-likebox').hover(function(){
+                jQuery('#likebox').animate({'margin-right':widthL+'px'},500);
+            });
+             jQuery('#likebox').mouseleave(function(){
+               jQuery('#likebox').animate({
+                            'margin':'0px'},100); 
+             });
+            
+            
+            jQuery('#phonebox .image-phonebox').hover(function(){
+                jQuery('#phonebox').animate({'margin-left':width+'px'},500);
+            });
+             jQuery('#phonebox').mouseleave(function(){
+               jQuery('#phonebox').animate({
+                            'margin':'0px'},100); 
+             });
+        });
+    </script>
+    <!-- end: phonebox -->
+</div> <!-- end: header-container -->

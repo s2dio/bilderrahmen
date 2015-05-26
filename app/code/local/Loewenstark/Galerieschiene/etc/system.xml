@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <galerieschiene translate="label">
+            <label>Galerieschiene</label>
+            <sort_order>200</sort_order>
+        </galerieschiene>
+    </tabs> 
+    <sections>
+        <home translate="label">
+            <label>Home</label>
+            <tab>galerieschiene</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <products translate="label">
+                    <label><![CDATA[Konfigurator - Produkte]]></label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <product_gleiter translate="label">
+                            <label><![CDATA[Produkt Id - mit Gleiter]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_gleiter>
+                        <product_oese translate="label">
+                            <label><![CDATA[Produkt Id - mit Öse ]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_oese>
+                    </fields>
+                </products>
+            </groups>
+        </home>
+    </sections>
+</config>

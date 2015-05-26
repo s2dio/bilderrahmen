@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <recallform_recall_recall>
+        <block type="recallform/recall" name="recallform" output="toHtml" template="recallform/recall.phtml" />
+    </recallform_recall_recall>
+</layout>

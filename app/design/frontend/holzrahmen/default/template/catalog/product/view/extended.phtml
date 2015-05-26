@@ -1,0 +1,17 @@
+<?php
+$_product = $this->getProduct();
+?>
+<?php if($_product->getDeliveryTime()):?>
+<div class="extended-info">
+    <table>
+        <colgroup>
+            <col width="25%"/>
+            <col/>
+        </colgroup>
+        <tr>
+            <td><?php echo $this->__('Lieferzeit')?></td>
+            <td><?php echo $_product->getDeliveryTime();?></td>
+        <tr>
+    </table>
+</div>
+<?php endif; ?>

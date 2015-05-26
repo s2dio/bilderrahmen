@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This file is part of the FIREGENTO project.
+ *
+ * FireGento_Debug is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * @author    FireGento Team <team@firegento.com>
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
+ * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
+ */
+ -->
+<config>
+    <modules>
+        <FireGento_Debug>
+            <version>1.3.0</version>
+        </FireGento_Debug>
+    </modules>
+    <global>
+        <blocks>
+            <firegento>
+                <class>FireGento_Debug_Block</class>
+            </firegento>
+        </blocks>
+        <helpers>
+            <firegento>
+                <class>FireGento_Debug_Helper</class>
+            </firegento>
+        </helpers>
+        <models>
+            <firegento>
+                <class>FireGento_Debug_Model</class>
+            </firegento>
+        </models>
+    </global>
+    <admin>
+        <routers>
+            <firegento>
+                <use>admin</use>
+                <args>
+                    <module>FireGento_Debug</module>
+                    <frontName>firegento</frontName>
+                </args>
+            </firegento>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <mage_adminhtml>
+                    <files>
+                        <firegento>FireGento_Debug.csv</firegento>
+                    </files>
+                </mage_adminhtml>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <firegento>
+                            <children>
+                                <check_rewrites>
+                                    <title>Check Rewrites</title>
+                                </check_rewrites>
+                                <check_events>
+                                    <title>Check Events</title>
+                                </check_events>
+                                <check_system>
+                                    <title>System Check</title>
+                                </check_system>
+                                <phpinfo>
+                                    <title>phpinfo()</title>
+                                </phpinfo>
+                            </children>
+                        </firegento>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <firegento>
+                                            <title>FIREGENTO</title>
+                                        </firegento>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <firegento>
+                    <file>firegento_debug.xml</file>
+                </firegento>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <firegento>
+            <log>
+                <log_file>firegento.log</log_file>
+                <force_log>1</force_log>
+                <firelogger>0</firelogger>
+            </log>
+        </firegento>
+    </default>
+</config>

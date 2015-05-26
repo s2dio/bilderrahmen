@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php if(count($this->getDues()) == 0):?>
+	<?php echo $this->__("billpay_order_cancelled")?>
+<?php else:?>
+	<?php echo $this->htmlEscape($this->__('billpay_rat_info_text1_pdf')) ?>
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rat_info_text2')) ?> 
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rat_info_text3')) ?> *.
+	{{pdf_row_separator}}
+	---
+	{{pdf_row_separator}}
+	<?php foreach ($this->getDues() as $d):?>
+		<?php echo $d['pos']?>. <?php echo $this->htmlEscape($this->__('billpay_rat_one_rate'))?>: <?php echo $d['value']?> (<?php echo $this->htmlEscape($this->__('billpay_rat_due_text'))?> <?php echo $d['date']?>)
+		{{pdf_row_separator}}
+	<?php endforeach;?>
+	{{pdf_row_separator}}
+	---
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_cart_value'))?> = <?php echo strip_tags($this->getCalculationBaseAmount()) ?>
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rate_calculation_interest_add'))?> <?php echo strip_tags($this->getFormula()) ?> = <?php echo $this->getSurcharge() ?>
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_cart_specific_costs'))?> = <?php echo strip_tags($this->getCalculationResidualAmount()) ?>
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rate_transaction_fee'))?> = <?php echo strip_tags($this->getTransactionFee()) ?>
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rate_calculation_partial_price'))?> = <?php echo strip_tags($this->getTotalPaymentAmount()) ?>
+	{{pdf_row_separator}}
+	---
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rate_calculation_anual_rate')) ?> = <?php echo $this->getAnualPercentageRate() ?>%
+	{{pdf_row_separator}}
+	---
+	{{pdf_row_separator}}
+	* <?php echo $this->htmlEscape($this->__('billpay_rat_info_sample_text1')) ?>
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rat_info_sample_text2')) ?> 
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rat_info_sample_text3')) ?> 
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rat_info_sample_text4')) ?> 
+	{{pdf_row_separator}}
+	<?php echo $this->htmlEscape($this->__('billpay_rat_info_sample_text5')) ?> 
+<?php endif; ?>

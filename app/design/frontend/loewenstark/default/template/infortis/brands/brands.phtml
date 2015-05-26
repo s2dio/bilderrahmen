@@ -1,0 +1,50 @@
+<?php
+/**
+ *
+ */
+?>
+
+<?php $helper = Mage::helper('brands'); ?>
+
+<?php if($helper->getCfgGeneral('product_view_enabled')): ?>
+	<?php $_product = $this->getCurrentProductObject();?>
+	<?php $manufAttrId = $helper->getCfgGeneral('attr_id'); ?>
+	<?php if ($_product->getData($manufAttrId)): //If manufacturer/brand attribute exists ?>
+
+		<?php
+		$manufImageExt = trim($helper->getCfgGeneral('image_extension'));
+		$manufLinkSearch = $helper->getCfgGeneral('link_search_enabled'); //If true, brand logo is link to Quick Search results
+		$manufPageBasePath = trim($helper->getCfgGeneral('page_base_path')); //Base path of each brand's page
+		$attr = $_product->getResource()->getAttribute($manufAttrId); //Attr. object
+		$manufValue = trim($attr->getFrontend()->getValue($_product)); //Attr. value
+		$manufValueCode = str_replace(" ", "_", strtolower($manufValue)); //Attr. value (simplified)
+		$manufLabel = $attr->getStoreLabel(); //Attr. label
+		//$manufLabelCode = str_replace(" ", "-", strtolower($manufLabel)); //Attr. label (simplified)
+		$manufImageUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'infortis/attributes/' . $manufAttrId . '/' . $manufValueCode . '.' . $manufImageExt;
+
+		if ($manufLinkSearch)
+			$manufPageUrl = Mage::getUrl() . 'catalogsearch/result/?q=' . $manufValue;
+		elseif ($manufPageBasePath != '')
+		{
+			//If $manufPageBasePath is '/', then '/' has to be omitted
+			//Change brand name to lowercase, and replace spaces with hyphens
+			$basePath = ($manufPageBasePath == '/') ? '' : $manufPageBasePath . '/';
+			$manufPageUrl = Mage::getUrl() . $basePath . str_replace(" ", "-", strtolower($manufValue));
+			
+			//Append category URL suffix if needed and if it exists
+			if ($helper->getCfgGeneral('append_category_suffix'))
+				$manufPageUrl .= Mage::getStoreConfig('catalog/seo/category_url_suffix');
+		}
+		else
+			$manufPageUrl = '';
+		?>
+		<div class="box-brand">
+			<?php if ($manufPageUrl != ''): ?>
+				<a href="<?php echo $manufPageUrl;?>" title="<?php echo str_replace("%s", $manufValue, $this->__('Click to see more products from %s')); ?>"><img src="<?php echo $manufImageUrl;?>" alt="<?php echo $manufValue; ?>" /></a>
+			<?php else: ?>
+				<img src="<?php echo $manufImageUrl;?>" title="<?php echo $manufLabel .': '. $manufValue; ?>" alt="<?php echo $manufValue; ?>" />
+			<?php endif; ?>
+		</div>
+
+	<?php endif; ?>
+<?php endif; ?>

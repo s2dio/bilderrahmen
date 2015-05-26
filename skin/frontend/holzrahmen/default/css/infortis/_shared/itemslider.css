@@ -1,0 +1,84 @@
+/**
+ * Itemslider
+ */
+
+
+
+/* Necessary styles
+-------------------------------------------------------------- */
+.itemslider {margin: 0; padding: 0;}
+.itemslider .slides > li {display: none; -webkit-backface-visibility: hidden;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.itemslider .slides img {max-width: 100%; display: block;}
+.pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.itemslider .slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
+html[xmlns] .itemslider .slides {display: block;}
+* html .itemslider .slides {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js .itemslider .slides > li:first-child {display: block;}
+
+
+/* Items slider styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Style: default
+-------------------------------------------------------------- */
+.itemslider { margin:0 auto; position:relative; zoom:1; }
+.itemslider .slides { zoom:1; }
+.itemslider .slides > li { position:relative; }
+.itemslider .slides img { margin:0 auto; /* To center image which has "display:block" */ }
+
+/* Style: horizontal
+-------------------------------------------------------------- */
+.itemslider-horizontal { margin:0 auto 20px; }
+.itemslider-horizontal .slides > li { padding-left:10px; padding-right:10px; }
+
+/* Style: vertical
+-------------------------------------------------------------- */
+.itemslider-vertical { padding-top:20px; }
+
+
+/* Items slider mode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Quantized number of visible items
+-------------------------------------------------------------- */
+
+/* Default size slider */
+.itemslider-q { max-width:940px; } /* Default width: space for max 5 items */
+
+	/* Narrow slider - override default width */
+	.narrow-slider .itemslider-q { max-width:564px; } /* Space for max 3 items */
+
+/* Width of the slider depends on the number of items */
+.itemslider-q.count-1 { max-width:188px; } /*1*/
+.itemslider-q.count-2 { max-width:376px; } /*2*/
+.itemslider-q.count-3 { max-width:564px; } /*3*/
+.itemslider-q.count-4 { max-width:752px; } /*4*/
+
+/* Narrow slider - override width if 4 items */
+.narrow-slider .itemslider-q.count-4 { max-width:564px; } /*3*/
+
+/* Narrow slider - full definition */
+/*.narrow-slider .itemslider-q { max-width:564px; }
+.narrow-slider .itemslider-q.count-1 { max-width:188px; }
+.narrow-slider .itemslider-q.count-2 { max-width:376px; }*/
+
+
+/* Items slider: direction navigation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.itemslider .direction-nav { height:0; text-align:center; }
+
+
+/* Items slider: utility classes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.itemslider.hide-direction-nav .direction-nav { display:none; }
+.itemslider.hide-control-nav .control-nav { display:none; }

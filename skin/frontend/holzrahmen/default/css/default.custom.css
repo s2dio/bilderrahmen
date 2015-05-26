@@ -1,0 +1,29 @@
+/**
+ * File for custom CSS. You can use it to override the default styling of the theme.
+ *
+ * 1. Copy the file "default.custom.css" and rename it to "custom.css".
+ *    Otherwise this file will not be loded by Magento.
+ * 2. Enable it in the admin panel.
+ * 3. Uncomment slected classes or add your own CSS to override the default styling of the theme.
+ *
+ * Please refer to the user guide for more details.
+ *
+ */
+
+/* Product
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Product labels
+-------------------------------------------------------------- */
+
+/*
+.sticker.new {
+	background-color:#888;
+	color:#fff;
+}
+.sticker.sale {
+	background-color:#333;
+	color:#fff;
+}
+*/

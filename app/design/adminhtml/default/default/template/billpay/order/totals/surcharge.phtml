@@ -1,0 +1,112 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $_source  = $this->getSource() ?>
+<?php $this->setPriceDataObject($_source) ?>
+
+<tr>
+    <td class="entry-edit-head" style="border-top:1px solid #D7C699; background-color:#6F8992; text-align:left; color:white; font-size:1em">
+        <h4>
+	        <?php echo $this->__('billpay_rat_title')?>
+        </h4>
+    </td>
+    <td class="emph" style="border-top:1px solid #D7C699; background-color:#6F8992">
+    </td>
+</tr>
+<tr>
+    <td class="label" style="border-top:1px solid #D7C699; padding-top:10px">
+        <strong>
+        	<?php if($this->getBig()):?>
+        		<big>
+        	<?php endif;?>
+        <?php echo Mage::helper('sales')->__('billpay_rate_calculation_interest_add') ?> 
+        	<?php if($this->getBig()):?>
+        		</big>
+        	<?php endif;?>
+        </strong>
+    </td>
+    <td class="emph" style="border-top:1px solid #D7C699; padding-top:10px">
+    	<?php if($this->getBig()):?>
+        	<big>
+        <?php endif;?>
+        <strong>
+			<?php echo $this->displayPrices(0, $this->getSurcharge()); ?>
+		</strong>
+    	<?php if($this->getBig()):?>
+        	</big>
+        <?php endif;?>
+    </td>
+</tr>
+<tr>
+    <td class="label">
+        <strong>
+        	<?php if($this->getBig()):?>
+        		<big>
+        	<?php endif;?>
+        <?php echo Mage::helper('sales')->__('billpay_rate_transaction_fee') ?>
+        <br >
+        (<?php echo Mage::helper('sales')->__('billpay_rate_included_tax')?>: <?php echo $this->displayPrices(0, $this->getFeeTaxAmount()) ?>)
+        	<?php if($this->getBig()):?>
+        		</big>
+        	<?php endif;?>
+        </strong>
+    </td>
+    <td class="emph">
+    	<?php if($this->getBig()):?>
+        	<big>
+        <?php endif;?>
+        <strong>
+			<?php echo $this->displayPrices(0, $this->getTransactionFee()); ?>
+		</strong>
+    	<?php if($this->getBig()):?>
+        	</big>
+        <?php endif;?>
+    </td>
+</tr>
+<tr>
+    <td class="label">
+        <strong>
+        	<?php if($this->getBig()):?>
+        		<big>
+        	<?php endif;?>
+        <?php echo Mage::helper('sales')->__('billpay_rate_calculation_partial_price') ?>
+        	<?php if($this->getBig()):?>
+        		</big>
+        	<?php endif;?>
+        </strong>
+    </td>
+    <td class="emph">
+    	<?php if($this->getBig()):?>
+        	<big>
+        <?php endif;?>
+        <strong>
+			<?php echo $this->displayPrices(0, $this->getTotalPaymentAmount()); ?>
+		</strong>
+    	<?php if($this->getBig()):?>
+        	</big>
+        <?php endif;?>
+    </td>
+</tr>

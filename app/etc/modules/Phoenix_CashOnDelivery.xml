@@ -1,0 +1,11 @@
+<config>
+   <modules>
+      <Phoenix_CashOnDelivery>
+         <active>false</active>
+         <codePool>community</codePool>
+         <depends>
+            <Mage_Payment/>
+         </depends>
+      </Phoenix_CashOnDelivery>
+   </modules>
+</config>

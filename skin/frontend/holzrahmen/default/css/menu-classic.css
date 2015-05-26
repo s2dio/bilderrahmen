@@ -1,0 +1,53 @@
+/**
+ * Classic drop-down menu
+ */
+ 
+/* Dropdown submenu position is relative to this element.
+   It is displayed under the active tab. */
+#nav li { position:relative; }
+
+/* 2nd Level+
+-------------------------------------------------------------- */
+#nav ul {
+	position:absolute; 
+	top:49px;
+	left:-10000px;
+	background-color:#fff;
+	width:16em;
+	padding:20px 0;
+	border:0;
+}
+#nav div ul { position:static; width:auto; border:none; }
+#nav ul li { float:none; display:block; }
+#nav ul li.parent { background:url(../images/img/bullet.png) 93% center no-repeat; }
+#nav ul li a { float:none; padding:2px 25px; }
+
+/* 3rd Level+
+-------------------------------------------------------------- */
+#nav ul ul { top:0; }
+
+/* Show submenu
+-------------------------------------------------------------- */
+/* First submenu */
+#nav li ul {
+	opacity:0;
+	transition:			opacity 300ms ease-in-out 150ms;
+	-moz-transition:	opacity 300ms ease-in-out 150ms;
+	-webkit-transition:	opacity 300ms ease-in-out 150ms;
+	-o-transition:		opacity 300ms ease-in-out 150ms;
+}
+/* Lower submenus */
+#nav li ul ul {
+	transition:			opacity 150ms ease-in-out 0s;
+	-moz-transition:	opacity 150ms ease-in-out 0s;
+	-webkit-transition:	opacity 150ms ease-in-out 0s;
+	-o-transition:		opacity 150ms ease-in-out 0s;
+}
+
+/* Submenus when visible */
+#nav li ul.shown-sub {
+	left:0;
+	z-index:2000 !important;
+	opacity:1;
+}
+#nav li .shown-sub ul.shown-sub { left:80px; }

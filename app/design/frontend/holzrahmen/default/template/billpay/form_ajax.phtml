@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<style type="text/css">
+    .bpy-border {
+        border: 1px solid #c0c0c0;
+    }
+</style>
+<script type="text/javascript">
+	
+	function billpayLoadingComplete(transport) {
+		if (transport && transport.responseText) {
+			try {
+				response = eval('(' + transport.responseText + ')');
+			}
+			catch (e) {
+				response = {};
+			}
+		}
+
+		$('billpay-ajax-container-loading').hide();
+                    
+		if (response.update_section) {
+			$('billpay-ajax-container').update(response.update_section.html);
+		}
+	};
+	
+	function billpayLoadingError() {
+		location.href = "<?php echo $this->getUrl('checkout/cart', array("_secure" => true)) ?>";
+	};
+	
+	function billpayPaymentSelected() {
+		$('billpay-ajax-container').update('');
+		$('billpay-ajax-container-loading').show();
+		
+		var request = new Ajax.Request(
+			"<?php echo $this->getUrl('billpay/checkout/form', array("_secure" => true)) ?>",
+			{
+				method:'post',
+				onSuccess: billpayLoadingComplete,
+				onFailure: billpayLoadingError
+			}
+		);
+	};
+	
+	var billpayRadio = $("p_method_billpay_rec");
+	if (billpayRadio && !billpayRadio.isBillpayBinded) {
+		billpayRadio.onclick = billpayRadio.onclick.wrap(
+			function(origMethod) {
+				origMethod();
+				
+				billpayPaymentSelected();
+			});
+		
+		billpayRadio.isBillpayBinded = true;
+	}
+
+</script>
+
+<ul id="payment_form_billpay_rec" style="display: none">
+    <li>
+        <!-- Loading panel -->
+        <span id="billpay-ajax-container-loading" style="display:none; margin-top:10px; margin-left:25px; color:#9C9C9C; ">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" />&nbsp;
+            <?php echo $this->__('loading_text'); ?>
+        </span>
+
+        <div id="billpay-ajax-container">
+            <?php if($this->isPaymentSelected()): ?>
+                <script type="text/javascript">
+                    billpayPaymentSelected();
+                </script>
+            <?php endif; ?>
+        </div>
+    </li>
+</ul>

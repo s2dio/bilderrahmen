@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <infortis translate="label">
+            <label>Infortis Extensions</label>
+            <sort_order>151</sort_order>
+        </infortis>
+    </tabs>
+    <sections>
+        <brands translate="label">
+			<label>Brands</label>
+			<tab>infortis</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>300</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+            <groups>
+				<general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <product_view_enabled translate="label">
+							<label>Show Brand on Product Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</product_view_enabled>
+						<attr_id translate="label">
+                            <label>Brand Attribute Code</label>
+							<comment>
+								<![CDATA[Text string with no spaces. Search for that code in Catalog -> Attributes -> Manage Attributes]]>
+							</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </attr_id>
+						<image_extension translate="label">
+                            <label>Brand Image File Extension</label>
+							<comment>Without the leading dot.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </image_extension>
+						<link_search_enabled translate="label">
+							<label>Brand Logo is a Link to Search Results</label>
+							<comment>
+								<![CDATA[E.g. Microsoft logo can be a link to <strong>/catalogsearch/result/?q=microsoft</strong> page in your store.]]>
+							</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</link_search_enabled>
+						<page_base_path translate="label">
+                            <label>Base Path to Brand's Pages</label>
+							<comment>
+								<![CDATA[This path can be used only when <strong>Brand Logo is a Link to Search Results</strong> option is disabled. Path will be appended with the brand's name to create a link to the brand's page.<br/>
+								- Path is relative to the store root.<br/>
+								- No leading or trailing slashes.<br/>
+								- Enter "/" (single slash, without brackets), if no base path is needed.<br/>
+								- Leave empty if you don't need a link for brand logo.<br/>
+								- For more details please refer to the user guide.]]>
+							</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<link_search_enabled>0</link_search_enabled>
+							</depends>
+                        </page_base_path>
+						<append_category_suffix translate="label">
+							<label>Append Category URL Suffix</label>
+							<comment>
+								<![CDATA[If <strong>Category URL Suffix</strong> exists (in System > Configuration > Catalog), it can be appended at the end of the URL of the brand's page. For example: www.example.com/brands/apple<strong style="color:red">.html</strong> (assuming that <strong style="color:red">.html</strong> was set as <strong>Category URL Suffix</strong>).]]>
+							</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<link_search_enabled>0</link_search_enabled>
+							</depends>
+						</append_category_suffix>
+					</fields>
+				</general>
+            </groups>
+        </brands>
+    </sections>
+</config> 

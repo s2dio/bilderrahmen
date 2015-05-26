@@ -1,0 +1,338 @@
+<?php
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+$gleiterProducts = $this->getProducts('gleiter');
+$oeseProducts = $this->getProducts('oese');
+?> 
+<script type="text/javascript">
+    var spConfig = [];
+    var optionsPrice = [];
+    optionsPrice['gleiter'] = [];
+    optionsPrice['oese'] = [];
+    var currentPrices = [];
+</script>
+<div class="configurator-wrapper">
+
+    <div class="configurator corner-round">
+
+    </div>
+    <div class="configurator-fields">
+        <div class="start corner-round field">
+            <div class="title"><?php echo $this->__('Produktkonfigurator') ?></div>
+            <div class="sub-title"><?php echo $this->__('Jetzte selbst zusammenstellen') ?></div>
+        </div>
+        <div class="gleiter corner-round field" id="gleiter">
+            <div class="title"><?php echo $this->__('Bilderschiene mit Gleiter') ?></div>
+            <div class="sub-title"><?php echo $this->__('Individuell Konfigurieren') ?></div>
+            <div class="right-arrow"></div>
+        </div>
+        <div class="oese corner-round field" id="oese">
+            <div class="title"><?php echo $this->__('Bilderschiene mit Öse') ?></div>
+            <div class="sub-title"><?php echo $this->__('Individuell Konfigurieren') ?></div>
+            <div class="right-arrow"></div>
+        </div>
+    </div>
+
+    <div class="configurator-inputs gleiter-conf corner-round">
+        <div class="configurator-overlay"></div><div class="overlay-text corner-round"><?php echo $this->__('Produkte werden dem Warenkorb hinzugefügt...') ?></div>
+        <?php $i = 1; ?>
+        <?php if (count($gleiterProducts)): ?>
+            <?php foreach ($gleiterProducts as $key => $_product): ?>
+                <?php if ($i % 3 == 1): ?><ul><?php endif; ?>
+                    <?php if (($i % 3 == 0) || ($i == count($gleiterProducts))): ?><li class="last"><?php else: ?><li><?php endif; ?>
+                        <div class="field product-<?php echo $_product->getId(); ?>" type="gleiter" id="product-<?php echo $_product->getId(); ?>">
+                            <div class="title"><?php echo $i ?>. <b><?php echo $_product->getName(); ?></b></div>
+                            <div class="image-tooltip info" image="<?php echo (string) Mage::helper('catalog/image')->init($_product, 'image')->resize(150); ?>"></div>
+                            <table>
+                                <?php echo $this->helper('configurator')->getProductOptionsHtml($_product, 'gleiter') ?>
+                            <?php if ($_product->getTypeId() != "configurable"): ?>
+                                <script type="text/javascript"> optionsPrice['gleiter'][<?php echo $_product->getId(); ?>] = new Product.OptionsPrice(<?php echo $this->helper('configurator')->getJsonConfig($_product) ?>);</script>
+                            <?php endif; ?>
+                            <?php if ($i > 1): ?>
+                                <tr class="configurator-option">
+                                    <td>
+                                    <label><?php echo $this->__('Menge') ?></label>
+                                    <td>
+                                    
+                                        <div class="input-box">
+                                            <input name="qty" class="input-text qty" type="gleiter" onClick="this.select();" value="0" productId="product-<?php echo $_product->getId(); ?>"/> <?php echo $this->__('Stück') ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>   
+                            </table>
+                        </div>
+                    </li><?php if ($i % 3 == 0): ?></ul><?php endif; ?>   
+                <?php $i++; ?>
+            <?php endforeach; ?>
+            <div class="field field-cart">
+                <div class="price-box"><?php echo $this->__('Gesamtpreis') ?>: <div class="price">0,00 €</div></div>
+                <div class="cart-bag"></div>
+                <button class="button add-to-cart" type="gleiter"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                <span class="tax-details"><?php echo $this->__('Incl. %s Tax, incl. <a href="%s">Shipping Cost</a>', "19%", Mage::helper('germansetup')->getShippingCostUrl()) ?></span>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="configurator-inputs oese-conf corner-round">
+        <div class="configurator-overlay"></div><div class="overlay-text corner-round"><?php echo $this->__('Produkte werden dem Warenkorb hinzugefügt...') ?></div>
+
+        <?php $i = 1; ?>
+        <?php if (count($oeseProducts)): ?>
+            <?php foreach ($oeseProducts as $key => $_product): ?>
+                <?php if ($i % 3 == 1): ?><ul><?php endif; ?>
+                <?php if (($i % 3 == 0) || ($i == count($oeseProducts))): ?><li class="last"><?php else: ?><li><?php endif; ?>
+                        <div class="field product-<?php echo $_product->getId(); ?>" type="oese" id="product-<?php echo $_product->getId(); ?>">
+                            <div class="title"><?php echo $i ?>. <b><?php echo $_product->getName(); ?></b></div>
+                            <div class="image-tooltip info" image="<?php echo (string) Mage::helper('catalog/image')->init($_product, 'image')->resize(150); ?>"></div>
+                            <table>
+                                <?php echo $this->helper('configurator')->getProductOptionsHtml($_product, 'oese') ?>
+                                <?php if ($_product->getTypeId() != "configurable"): ?>
+                                    <script type="text/javascript"> optionsPrice['oese'][<?php echo $_product->getId(); ?>] = new Product.OptionsPrice(<?php echo $this->helper('configurator')->getJsonConfig($_product) ?>);</script>
+                                <?php endif; ?>
+                                <?php if ($i > 1): ?>
+                                    <tr>
+                                        <td><?php echo $this->__('Menge') ?></td>
+                                        <td>
+                                            <div class="input-box">
+                                                <input name="qty" class="input-text qty" type="oese" onClick="this.select();" value="0" productId="product-<?php echo $_product->getId(); ?>"/> <?php echo $this->__('Stück') ?>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                <?php endif; ?>
+                            </table>
+                        </div>
+                    </li><?php if ($i % 3 == 0): ?></ul><?php endif; ?>   
+                <?php $i++; ?>
+            <?php endforeach; ?>
+            <div class="field field-cart">
+                <div class="price-box"><?php echo $this->__('Gesamtpreis') ?>: <div class="price">0,00 €</div></div>
+                <div class="cart-bag"></div>
+                <button class="button add-to-cart" type="oese"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                <span class="tax-details"><?php echo $this->__('Incl. %s Tax, incl. <a href="%s">Shipping Cost</a>', "19%", Mage::helper('germansetup')->getShippingCostUrl()) ?></span>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    /*jQuery(document).ready(function($){
+     $('#gleiter').click(function(){
+     setLocation('<?php $this->getGleiterUrl(); ?>') 
+     });
+     $('#oese').click(function(){
+     setLocation('<?php $this->getOeseUrl(); ?>') 
+     });
+     
+     });*/
+    jQuery(document).ajaxStart(function() {
+        jQuery('.configurator-overlay').show();
+        jQuery('.overlay-text').show();
+    });
+    jQuery(document).ready(function($) {
+        $('body').append('<div class="tooltip corner-round"></div>');
+        $('.configurator-inputs .field .info').mouseenter(function() {
+            var image = $(this).attr('image');
+            $('.tooltip').html('<img src="' + image + '" alt="Image"/>');
+            var top = $(this).offset().top - $('.tooltip').height() + 5;
+            var left = $(this).offset().left + 25;
+            if (left + $('.tooltip').width() > $('.main').width()) {
+                //  left = $(this).offset().left-$('.tooltip').width()+5;
+            }
+            $('.tooltip').css('left', left + 'px').css('top', top + 'px');
+            $('.tooltip').show();
+        });
+        $('.configurator-inputs .field .info').mouseleave(function() {
+            $('.tooltip').hide();
+        });
+        $('.configurator-inputs .field').each(function() {
+            if ($(this).find('.table-select').length <= 0)
+                $(this).find('table.table-qty').css('margin-top', '25px');
+        });
+        $('.configurator-inputs .field input.qty').keyup(function() {
+            reloadPrice($(this));
+        });
+        $('.configurator-inputs .field select').change(function() {
+            reloadPrice($(this));
+        });
+
+        if ($('.gleiter-conf  div.field').length > 1) {
+            reloadPrice($('.gleiter-conf  div.field').first().find('.title'));
+        }
+
+        if ($('.oese-conf  div.field').length > 1) {
+            reloadPrice($('.oese-conf  div.field').first().find('.title'));
+        }
+
+        $('.add-to-cart').click(function() {
+            jQuery('.configurator-overlay').show();
+            jQuery('.overlay-text').show();
+            var type = $(this).attr('type');
+            var fullPrice = 0;
+            //Check if first element is checked
+            var firstRequiredEl = $('.' + type + '-conf  div.field').first().find('select');
+            var error = 0;
+            firstRequiredEl.each(function() {
+                $(this).css('border', '1px solid #999');
+                $('.configurator-message').remove();
+                if ($(this).find('option:selected').val() == '') {
+                    $(this).css('border', '1px solid red');
+                    $(this).after('<div class="configurator-message"><?php echo $this->__('Pflichtfeld') ?></div>');
+                    jQuery('.configurator-overlay').hide();
+                    jQuery('.overlay-text').hide();
+                    error++;
+                }
+            });
+            if (error > 0)
+                return false;
+            if (currentPrices[type] == null)
+                return false;
+            $.each(currentPrices[type].toArray(), function(key, value) {
+                fullPrice += value;
+            });
+            if (fullPrice <= 0)
+                return false;
+            var ajaxTrue = true;
+            $.each(currentPrices[type].toArray(), function(key, value) {
+                var string = '';
+                
+                if (typeof value != 'undefined' && value > 0) {
+                    if ($('.configurator-inputs .product-' + key).find('select').length) {
+                        string = 'product/' + key + '/?';
+                        $('.configurator-inputs .product-' + key).find('select').each(function() {
+                            var superAttrName = $(this).attr('name');
+                            var attrId = $(this).find('option:selected').attr('value');
+                            string += superAttrName + '=' + attrId + '&';
+                        });
+                        var qty = 0;
+                        if (!$('.' + type + '-conf #product-' + key).find('.qty').length) {
+                            qty = 1;
+                        } else {
+                            qty = $('.' + type + '-conf #product-' + key).find('.qty').val();
+                        }
+                        string += 'qty=' + qty;
+                    } else {
+                        var qty = $('.' + type + '-conf #product-' + key).find('.qty').val();
+                        string = 'product/' + key + '/qty/' + qty + '/?';
+                    }
+                    var url = '<?php echo Mage::getUrl('checkout/cart/add'); ?>' + string + '&form_key=<?php echo Mage::getSingleton('core/session')->getFormKey() ?>';
+                    $.ajax({
+                        url: url,
+                        async: false,
+                        error: function() {
+                            ajaxTrue = false;
+                            jQuery('.configurator-overlay').hide();
+                            jQuery('.overlay-text').hide();
+                            alert('Error occurred');
+                        }
+                    });
+
+
+                }
+            });
+            $('.configurator-overlay').remove();
+            $('.overlay-text').remove();
+            if (ajaxTrue)
+                setLocation('<?php echo Mage::getUrl('checkout/cart/index'); ?>');
+            return false;
+        });
+        function reloadPrice(el) {
+            var id = null;
+            var type = null;
+            if (!el.attr('productId')) {
+                id = el.closest('.field').attr('id');
+                type = el.closest('.field').attr('type');
+            } else {
+                id = el.attr('productId');
+                type = el.attr('type');
+            }
+            var productId = id.split('-');
+            productId = productId[1];
+            
+            if (optionsPrice[type][productId]) {
+                var price = optionsPrice[type][productId];
+                var qty = 0;
+                if (!$('.' + type + '-conf #product-' + productId).find('.qty').length) {
+                    qty = 1;
+                } else {
+                    qty = $('.' + type + '-conf #product-' + productId).find('.qty').val();
+                }
+                if (qty < 0)
+                    qty = 0;
+                if (!$.isNumeric(qty))
+                    return;
+                // special preise für einzelne selects 
+                if (currentPrices[type] == null)
+                    currentPrices[type] = [];
+                if (el.find('option:selected') && el.find('option:selected').val() == '') {
+                    currentPrices[type][productId] = 0;
+                } else {
+                    var selectEl = $('.' + type + '-conf select[productId=product-' + productId + ']');
+                    if (selectEl.length > 0 && selectEl.find('option:selected').val() == '') {
+                        currentPrices[type][productId] = 0;
+                    } else {
+                        var endPrice = price.priceInclTax;
+                        if (price.optionPrices.config && price.optionPrices.config.price > 0) {
+                            endPrice += price.optionPrices.config.price;
+                        }else if(el.find('option:selected').attr('price')>0){
+                            console.log(el.find('option:selected').attr('price'));
+                            endPrice +=  parseInt(el.find('option:selected').attr('price'));
+                        }
+                        
+                        var newPrice = qty * endPrice;
+
+                        currentPrices[type][productId] = newPrice;
+                    }
+                }
+                var fullPrice = 0;
+                currentPrices[type].each(function(value) {
+                    fullPrice += value;
+                });
+                $('.' + type + '-conf .field-cart .price').html(price.formatPrice(fullPrice));
+            }
+        }
+        function normalCss(el) {
+            el.css({
+                'cursor': 'default',
+                'box-shadow': 'none'
+            });
+            el.find('.green-arrow').removeClass('green-arrow').addClass('right-arrow');
+            $('.configurator .title-main-hover').removeClass('title-main-hover').addClass('title-main');
+        }
+        function highlightCss(el) {
+            el.css({
+                'box-shadow': 'inset 0 0 10px #8e171d',
+                'background-color': '#fff',
+                'cursor': 'pointer'
+            });
+
+            $('.configurator .title-main').removeClass('title-main').addClass('title-main-hover');
+            el.find('.right-arrow').removeClass('right-arrow').addClass('green-arrow');
+        }
+        $('.configurator-wrapper .gleiter,.configurator-wrapper .oese').click(function() {
+            normalCss($('.configurator-wrapper .gleiter,.configurator-wrapper .oese'));
+            highlightCss($(this));
+            var type = $(this).attr('id');
+            if ($('.' + type + '-conf').is(':visible')) {
+                $('.configurator-inputs').hide();
+                normalCss($('.configurator-wrapper .gleiter,.configurator-wrapper .oese'));
+                return false;
+            }
+            $('.configurator-inputs').hide();
+
+            $('.' + type + '-conf').find('field').each(function() {
+                reloadPrice($(this));
+            });
+
+            if (type == 'gleiter')
+                $('.gleiter-conf').show();
+            else if (type == 'oese')
+                $('.oese-conf').show();
+            return false;
+        });
+    });
+
+</script>

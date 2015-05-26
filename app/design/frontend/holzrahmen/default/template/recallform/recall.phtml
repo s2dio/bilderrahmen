@@ -1,0 +1,60 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+?>
+<form method="POST" action="#" class="recallfrom">
+    <div class="title"><?php echo $this->__('Rückrufbitte erstellen')?></div>
+    <table>
+        <tr>
+            <td><?php echo $this->__('Vorname')?>:</td>
+            <td><input type="text" name="recall[firstname]"/></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Nachname')?>:</td>
+            <td><input type="text" name="recall[lastname]"/></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('E-Mail')?>:</td>
+            <td><input type="text" name="recall[email]"/></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Datum')?>: (dd-mm-yyyy)</td>
+            <td><input type="text" name="recall[date]"/></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Uhrzeit')?>: (hh:mm)</td>
+            <td><input type="text" name="recall[time]"/></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Kommentar')?>:</td>
+            <td><textarea rows="10" cols="35" name="recall[comment]"></textarea></td>
+        </tr>
+    </table>
+    <button class="button send_recall">
+        <span>
+            <span>
+                <?php echo $this->__('Rückrufbitte senden')?>
+            </span>
+        </span>
+    </button>
+</form>
+<script type="text/javascript">
+ jQuery('.send_recall').click(function(){
+     var formData = jQuery('.recallfrom').serialize();
+     jQuery.ajax({
+         url:'<?php ?>recallform/recall/sendrecall',
+         type:"POST",
+         data: formData,
+         success: function(data){
+             var data = jQuery.parseJSON(data);
+             jQuery.fancybox.close();
+         }
+     })
+     return false;
+ })   
+ </script>

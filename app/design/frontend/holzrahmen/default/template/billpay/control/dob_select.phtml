@@ -1,0 +1,120 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<table style="padding:0px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<select class="required-entry" id="<?php echo $this->getMethodCode() ?>_day" name="payment[<?php echo $this->getMethodCode() ?>_day]" style="width:55px;margin-right:5px;" >
+				<option value=""><?php echo $this->__('billpay_date_pattern_day') ?></option>
+				<?php for($i=1; $i<=31; ++$i): ?>
+					<?php  $s =  $i < 10 ? "0" . $i : $i ?>
+					<option value="<?php  echo $s ?>" <?php if($this->getSelectedDay() == $s):?>selected="selected"<?php endif;?>><?php  echo $i ?></option>
+				<?php endfor; ?>
+			</select>
+		</td>
+		<td>
+			<select class="required-entry" id="<?php echo $this->getMethodCode() ?>_month" name="payment[<?php echo $this->getMethodCode() ?>_month]" style="width:55px;margin-right:5px;" >
+				<option value=""><?php echo $this->__('billpay_date_pattern_month') ?></option>
+				<?php  for($i=1; $i<=12; ++$i): ?>
+					<?php  $s =  $i < 10 ? "0" . $i : $i ?>
+					<option value="<?php  echo $s ?>" <?php if($this->getSelectedMonth() == $s):?>selected="selected"<?php endif;?>><?php  echo $s ?></option>
+				<?php  endfor; ?>
+			</select>
+		</td>
+		<td>
+			<select class="required-entry" id="<?php echo $this->getMethodCode() ?>_year" name="payment[<?php echo $this->getMethodCode() ?>_year]" style="width:55px" >
+				<option value=""><?php echo $this->__('billpay_date_pattern_year') ?></option>
+				<?php  for($i=$this->getMaxYear(); $i>=$this->getMinYear(); --$i): ?>
+					<option value="<?php  echo $i ?>" <?php if($this->getSelectedYear() == $i):?>selected="selected"<?php endif;?>><?php  echo $i ?></option>
+				<?php  endfor; ?>
+			</select>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+function getAge(DOB) {
+    var today = new Date();
+    var birthDate = DOB;
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+Event.observe('<?php echo $this->getMethodCode() ?>_day','click',<?php echo $this->getMethodCode() ?>_respondToClick);
+Event.observe('<?php echo $this->getMethodCode() ?>_month','click',<?php echo $this->getMethodCode() ?>_respondToClick);
+Event.observe('<?php echo $this->getMethodCode() ?>_year','click',<?php echo $this->getMethodCode() ?>_respondToClick);
+
+function <?php echo $this->getMethodCode() ?>_respondToClick(event) {
+	var day = document.getElementById("<?php echo $this->getMethodCode() ?>_day");
+	var month = document.getElementById("<?php echo $this->getMethodCode() ?>_month");
+	var year = document.getElementById("<?php echo $this->getMethodCode() ?>_year");
+	var max_year = <?php echo $this->getMaxYear()+1;?>;
+	var day_val = parseInt(day.value);
+	var month_val = parseInt(parseFloat(month.value));
+	var year_val = <?php echo $this->getMaxYear()+1;?>;
+	var tmp = 0;
+
+	if(!isNaN(day_val) && !isNaN(month_val) && !isNaN(year_val))
+	{
+		var string_date = year_val+" "+month.value+" "+day.value;
+		var DOB = new Date(string_date);
+		if (getAge(DOB) < 18)
+		{
+		   for(var i = 0; i < year.childNodes.length; i++){
+			   if (year.childNodes[i].value == max_year)
+			   {
+				   tmp_node = year.childNodes[i];
+				   year.removeChild(year.childNodes[i]);
+
+			   }
+			}
+		}
+		else
+		{
+		   var flag_for_cheking_if_node_exists = 0;
+		   for(var i = 0; i < year.childNodes.length; i++){
+			   if (year.childNodes[i].value == <?php echo $this->getMaxYear()+1;?>)
+			   {
+				   flag_for_cheking_if_node_exists = 1;
+				   tmp = i+2;
+
+			   }
+			}
+			if (flag_for_cheking_if_node_exists == 0)
+			{
+			    var newOption = document.createElement("option");
+				var Content = document.createTextNode(max_year);
+				newOption.setAttribute('value', max_year);
+				newOption.appendChild(Content);
+				year.insertBefore(newOption,year.childNodes[2]);
+			}
+		 }
+
+	}
+
+}
+
+</script>

@@ -1,0 +1,224 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<style type="text/css">
+    .bpy-terms-box {
+        margin-top: 15px;
+    }
+    .bpy-terms-box input {
+        float: left;
+        margin: 5px;
+    }
+    .bpy-terms-box .bpy-terms-box-text {
+        float: none;
+        padding: 5px 0;
+        overflow: hidden;
+        font-weight:normal;
+        line-height:11px;
+        font-size:11px;
+        color: #666;
+    }
+    .bpy-terms-box .bpy-terms-box-text {
+        display: block;
+    }
+    .bpy-terms-box .bpy-terms-box-text label {
+        font-weight: normal;
+    }
+    .bpy-terms-box-text > label * {
+        color: #666;
+    }
+</style>
+<ul id="payment_form_<?php echo $this->getMethodCode() ?>" style="display: none">
+	<li>
+		<div style="margin-top:5px">
+			<?php echo $this->getTestModeInfoBoxHtml() ?>
+		</div>
+
+		<?php if($this->getAllowedCustomerGroup()=='both'): ?>
+			<?php 
+				$this->setFeeChargeEnabled($this->isFeeChargeEnabled());
+				$this->setFeeChargeB2BEnabled($this->isFeeChargeB2BEnabled());
+				$this->setFeeCharged($this->isFeeCharged());
+				$this->setFeeChargedB2B($this->isFeeChargedB2B());
+				$this->setChargedFee($this->getChargedFee());
+				$this->setChargedFeeB2B($this->getChargedFeeB2B());
+			?>
+			
+			<div style="margin-bottom: 10px">	
+				<input type="radio" id="<?php echo $this->getMethodCode() ?>_customer_group_b2c" name="payment[<?php echo $this->getMethodCode() ?>_customer_group]" value="b2c"
+				<?php echo $this->isLightCheckout()==true ? '' : 'onchange="changeCustomerGroupValidator(0)"'; ?> <?php echo $this->getSelectedCustomerGroup()==true ? '' : 'checked="checked"'; ?>>&nbsp;&nbsp;<label for="<?php echo $this->getMethodCode() ?>_customer_group_b2c"><?php echo $this->__('billpay_private_customer')?></label><?php if($this->getChargedFee()): ?><?php echo $this->__('billpay_title_fee_text1') ?><?php echo $this->getChargedFee() ?><?php endif; ?>
+				<br />
+				<input type="radio" id="<?php echo $this->getMethodCode() ?>_customer_group_b2b" name="payment[<?php echo $this->getMethodCode() ?>_customer_group]" value="b2b"
+				<?php echo $this->isLightCheckout()==true ? '' : 'onchange="changeCustomerGroupValidator(0)"'; ?>  <?php echo $this->getSelectedCustomerGroup()==true ? 'checked="checked"' : ''; ?>>&nbsp;&nbsp;<label for="<?php echo $this->getMethodCode() ?>_customer_group_b2b"><?php echo $this->__('billpay_business_customer')?></label><?php if($this->getFeeChargedB2B()): ?><?php echo $this->__('billpay_title_fee_text1') ?><?php echo $this->getChargedFeeB2B() ?><?php endif; ?>
+				
+				<!-- Start workaround to refresh the calculation when b2b and b2c is activated -->
+				<input id="<?php echo $this->getMethodCode() ?>_customer_group_hidden_control" name="payment[<?php echo $this->getMethodCode() ?>_customer_group]" value="b2b" type="hidden">
+				<script type="text/javascript">
+                    bpyQuery(function($) {
+                        if ($("#billpay_rec_customer_group_b2c").is(":checked")){
+                            $('#billpay_rec_customer_group_hidden_control').val( 'b2c' );
+                        }
+                        if ($("#billpay_rec_customer_group_b2b").is(":checked")){
+                            $('#billpay_rec_customer_group_hidden_control').val( 'b2b' );
+                        }
+                        // on click
+                        $("#billpay_rec_customer_group_b2c").click(function(e) {
+                            $('#billpay_rec_customer_group_hidden_control').val( 'b2c' );
+                            $('#p_method_billpay_rec').trigger( 'click' );
+                        });
+
+                        $("#billpay_rec_customer_group_b2b").click(function(e) {
+                            $('#billpay_rec_customer_group_hidden_control').val( 'b2b' );
+                            $('#p_method_billpay_rec').trigger( 'click' );
+                        });
+                    });
+				</script>
+				<!-- End workaround to refresh the calculation when b2b and b2c is activated -->
+			</div>
+			
+		<?php endif;?>
+
+        <div class="bpy-terms-box">
+            <input id="<?php echo $this->getMethodCode() ?>_tcaccepted"
+                   name="payment[<?php echo $this->getMethodCode() ?>_tcaccepted]"
+                   type="checkbox" class="radio required-entry"/>
+            <div class="bpy-terms-box-text">
+                <label for="<?php echo $this->getMethodCode() ?>_tcaccepted">
+                    <?php echo $this->getAcceptTermsHtml() ?>
+                </label>
+                <?php echo $this->getAdditionalSepaInformationHtml() ?>
+            </div>
+        </div>
+		
+		<div style="margin-top:7px; margin-bottom:3px">
+			<a href="http://www.billpay.de" target="_blank">
+				<img src="<?php echo $this->getSkinUrl('images/billpay/LogoSmall_0.png')?>" title="Billpay logo" alt="Billpay logo">
+			</a>
+		</div>
+		
+		<div <?php if($this->getB2BEnabled() && $this->getAllowedCustomerGroup()=='both'): ?>
+						id="b2c" style="margin-top:10px; display: <?php echo $this->getSelectedCustomerGroup()==true ? 'none' : 'block'; ?>;" 
+						<?php elseif($this->getB2BEnabled() && $this->getAllowedCustomerGroup()=='b2b'): ?>
+						style="margin-top:10px; display: none;"
+						<?php endif; ?>>
+			<div style="margin-top:10px; margin-bottom:10px">
+                <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+                <?php if ($this->showOneStepCheckoutGenderSelect($_gender)): ?>
+                    <div style="margin-bottom:5px">
+                        <div style="padding:0px; color: #666666; width:100px"><?php echo $this->__('gender') ?></div>
+                        <?php echo $this->getGenderSelectHtml() ?>
+                    </div>
+                <?php endif;?>
+
+                <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+                <?php if ($this->showOneStepCheckoutDobSelect($_dob)): ?>
+                    <div style="padding:0px; color: #666666; width:100px"><?php echo $this->__('date_of_birth') ?></div>
+                    <?php echo $this->getDobSelectHtml() ?>
+                <?php endif;?>
+
+                <?php if ($this->showBankAccount()): ?>
+                    <div style="margin-top:15px">
+                        <?php echo $this->getBankAccountHtml() ?>
+                    </div>
+                <?php endif; ?>
+			</div>
+		</div>
+		
+		<?php if($this->getB2BEnabled()): ?> 
+			<div id="b2b" style="margin-top:10px; display: <?php echo $this->getSelectedCustomerGroup()==true ? 'block' : 'none'; ?>">
+				<table>
+					<?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+					<?php if ($this->showOneStepCheckoutGenderSelect($_gender)): ?>
+						<tr style="height: 23px;">
+							<td>
+								<span style="color:rgb(102,102,102)"><?php echo $this->__('billpay_salutation')?>:&nbsp;</span>&nbsp;<span class="required">*</span>
+							</td>
+							<td>
+								<?php echo $this->getSalutationSelectHtml() ?>
+							</td>
+						</tr>
+					<?php endif;?>
+					<tr style="height: 23px; width: 130px;">
+						<td>
+							<span style="color:rgb(102,102,102)"><?php echo $this->__('billpay_company_name')?>:</span>&nbsp;<span class="required">*</span>
+						</td>
+						<td>
+							<input class="input-text required-entry" id="<?php echo $this->getMethodCode() ?>_company_name" name="payment[<?php echo $this->getMethodCode() ?>_company_name]" type="text" style="width:100px" value="<?php echo $this->getOneStepCheckoutSelectedCompanyName() ?>" />
+						</td>
+					</tr>	
+					<tr style="height: 23px;">
+						<td>
+							<span style="color:rgb(102,102,102)"><?php echo $this->__('billpay_legal_form')?>:</span>&nbsp;<span class="required">*</span>
+						</td>
+						<td>
+							<?php echo $this->getLegalFormSelectHtml("width: 107px;") ?>
+						</td>
+					</tr>
+					<tr style="height: 23px;">
+						<td>
+							<span style="color:rgb(102,102,102)"><?php echo $this->__('billpay_register_number')?>:</span>
+						</td>
+						<td>
+							<input class="input-text" id="<?php echo $this->getMethodCode() ?>_register_number" name="payment[<?php echo $this->getMethodCode() ?>_register_number]" type="text" style="width:100px" value="<?php echo $this->getRegisterNumber()?>" />
+						</td>
+					</tr>
+					<tr style="height: 23px;">
+						<td>
+							<span style="color:rgb(102,102,102)"><?php echo $this->__('billpay_tax_number')?>:</span>
+						</td>
+						<td>
+							<input class="input-text" id="<?php echo $this->getMethodCode() ?>_tax_number" name="payment[<?php echo $this->getMethodCode() ?>_tax_number]" type="text" style="width:100px" value="<?php echo $this->getTaxNumber()?>" />
+						</td>
+					</tr>
+					<tr style="height: 23px;">
+						<td>
+							<span style="color:rgb(102,102,102)"><?php echo $this->__('billpay_holder_name')?>:</span>
+						</td>
+						<td>
+							<input class="input-text" id="<?php echo $this->getMethodCode() ?>_holder_name" name="payment[<?php echo $this->getMethodCode() ?>_holder_name]" type="text" style="width:100px" value="<?php echo $this->getHolderName()?>" />
+						</td>
+					</tr>
+					<tr style="height: 23px;">
+						<td colspan="2" style="padding-top:3px">
+							<span style="font-size:11px; font-style:italic"><?php echo $this->__('billpay_contact_person')?>: &nbsp;&nbsp;&nbsp;<?php echo $this->getOneStepCheckoutContactPerson()?></span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		<?php endif;?>    
+		
+		<?php echo $this->getFraudDetectionHtml() ?>
+	</li>
+</ul>
+
+<?php if ($this->isLightCheckout()):?>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#gcheckout-payment-methods').find('input[type=radio]').on('click', function() {
+            if(this.checked){
+                if (typeof getTotalsUrl != 'undefined'){ // get getTotalsUrl only existed in Light Checkout version 1; If higher version and undefined do not do it
+                    $('#gcheckout-onepage-form').attr('action', getTotalsUrl).submit();
+                }
+            }
+        });
+    });
+</script>
+<?php endif; ?>

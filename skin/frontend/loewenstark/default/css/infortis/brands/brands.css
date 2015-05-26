@@ -1,0 +1,21 @@
+
+/* Brands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* On product page
+-------------------------------------------------------------- */
+.box-brand a {
+	margin:0 auto;
+	display:block;
+}
+.box-brand img {
+	margin:0 auto;
+	display:block;
+	
+	transition:			opacity 300ms ease-in-out;
+	-moz-transition:	opacity 300ms ease-in-out;
+	-webkit-transition:	opacity 300ms ease-in-out;
+	-o-transition:		opacity 300ms ease-in-out;
+}
+.box-brand img:hover { opacity:0.75; filter:alpha(opacity=75); }

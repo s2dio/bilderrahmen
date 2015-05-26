@@ -1,0 +1,197 @@
+<?php
+/**
+ * Additional scripts
+ */
+?>
+
+<?php
+	//Get grid configuration array
+	$gc = $this->helper('ultimo')->getCfgGroup('category_grid');
+?>
+<script type="text/javascript">
+
+	<?php //Products grid: set equal height for grid items ?>
+	<?php if ($gc['equal_height']): ?>
+	function setGridItemsEqualHeight($)
+	{
+		var SPACING = 20;
+		if ($(window).width() >= 480)
+		{
+			$('.category-products-grid').removeClass("auto-height");
+			
+			var gridItemMaxHeight = 0;
+			$('.category-products-grid > .item').each(function() {
+				$(this).css("height", "auto");
+				
+				////////////////////////////////////////////////////////////////
+				<?php if ($gc['display_addtocart'] == 2 || $gc['display_addtolinks'] == 2): ?>
+					var actionsHeight = $(this).find('.actions').height();
+					$(this).css("padding-bottom", (actionsHeight + SPACING) + "px"); //Set new padding
+				<?php endif; ?>
+				////////////////////////////////////////////////////////////////
+				
+				gridItemMaxHeight = Math.max(gridItemMaxHeight, $(this).height());
+			});
+			
+			//Apply max height
+			$('.category-products-grid > .item').css("height", gridItemMaxHeight + "px");
+		}
+		else
+		{
+			$('.category-products-grid').addClass("auto-height");
+			$('.category-products-grid > .item').css("height", "auto");
+			$('.category-products-grid > .item').css("padding-bottom", "20px");
+		}
+	}
+	<?php endif; ?>
+	
+
+
+	jQuery(function($) {
+
+		<?php //Mini-cart drop-down ?>
+		$("#mini-cart").hover(function() {
+			$(this).addClass('hover');
+			$("#mini-cart .block-content").stop(true, true).delay(300).fadeIn(500, "easeOutCubic");
+		}, function() {
+			$("#mini-cart .block-content").stop(true, true).delay(300).fadeOut(500, "easeInCubic");
+		});
+		
+		<?php //Drop-down button animation: on click and on hover ?>
+		$(".dropdown-button").mouseenter(function() {
+			$(this).click();
+		});
+		$(".dropdown-button").click(function() {
+			$(this).addClass('hover');
+			$(this).find("ul").stop(true, true).delay(300).fadeIn(500, "easeOutCubic");
+		}).mouseleave(function() {
+			$(this).find("ul").stop(true, true).delay(300).fadeOut(500, "easeInCubic");
+		});
+		
+		<?php //Mobile menu ?>
+		$('#mobnav-trigger').toggle(function() {
+			$('#nav').addClass('show');
+			$(this).addClass('active');
+		}, function() {
+			$('#nav').removeClass('show');
+			$(this).removeClass('active');
+		});
+		
+		<?php //Products grid: item on hover ?>
+		<?php if ($gc['hover_effect']): ?>
+		
+			var startHeight;
+			var bpad;
+			$('.category-products-grid > .item').hover(function() {
+
+				startHeight = $(this).height();
+				$(this).css("height", "auto"); //Release height
+				$(this).find(".display-onhover").fadeIn(400, "easeInCubic"); //Show elements visible on hover
+				var h2 = $(this).height();
+				
+				<?php //Compare start height with on-hover height, calculate the difference ?>
+				////////////////////////////////////////////////////////////////
+				var addtocartHeight = 0;
+				var addtolinksHeight = 0;
+				
+				<?php if ($gc['display_addtocart'] == 1): //if displayed on hover ?>
+					addtocartHeight = $(this).find('.btn-cart').height();
+				<?php endif; ?>
+				
+				<?php if ($gc['display_addtolinks'] == 1): //if displayed on hover (but when is NOT on image) ?>
+					var addtolinksEl = $(this).find('.add-to-links');
+					if (addtolinksEl.hasClass("addto-onimage") == false)
+						addtolinksHeight = addtolinksEl.height();
+				<?php endif; ?>
+				
+				<?php if ($gc['equal_height']
+					&& ($gc['display_addtocart'] == 1 || $gc['display_addtolinks'] == 1)):
+				?>
+					var h3 = h2 + addtocartHeight + addtolinksHeight;
+					var diff = 0;
+					if (h3 < startHeight)
+					{
+						$(this).height(startHeight);
+					}
+					else
+					{
+						$(this).height(h3); <?php //Apply height explicitly ?>
+						diff = h3 - startHeight;
+					}
+				<?php else: ?>
+					var diff = 0;
+					if (h2 < startHeight)
+					{
+						$(this).height(startHeight);
+					}
+					else
+					{
+						$(this).height(h2);
+						diff = h2 - startHeight;
+					}
+				<?php endif; ?>
+				////////////////////////////////////////////////////////////////
+
+				$(this).css("margin-bottom", "-" + diff + "px"); <?php //Apply difference as nagative margin ?>
+				
+			}, function() {
+				
+				//Clean up
+				$(this).find(".display-onhover").hide();
+				$(this).css("margin-bottom", "");
+
+				<?php //Return the default height. If "Egual Height" disabled, unset item's height. ?>
+				<?php if ($gc['equal_height']): ?>
+					$(this).height(startHeight);
+				<?php else: ?>
+					$(this).css("height", "");
+				<?php endif; ?>
+				
+			});
+		
+		<?php else: ?>
+		
+			<?php //Display elements visible on hover ?>
+			$('.category-products-grid > .item').hover(function() {
+				$(this).find(".display-onhover").fadeIn(400, "easeInCubic");
+			}, function() {
+				$(this).find(".display-onhover").hide();
+			});
+		
+		<?php endif; ?>
+		
+		
+		/* On resize */
+		var t;
+		$(window).resize(function() {
+			clearTimeout(t);
+			t = setTimeout(function() {
+
+				<?php //Products grid: equal height of items ?>
+				<?php if ($gc['equal_height']): ?>
+					setGridItemsEqualHeight($);
+				<?php endif; ?>
+				
+				<?php //Itemsliders rollback ?>
+				$('.itemslider').each(function(index){
+					var s = $(this).data('flexslider');
+					if (s != null) s.flexAnimate(0);
+				});
+				
+			}, 100);
+		});
+
+	}); /* end: jQuery(){...} */
+	
+	
+	
+	jQuery(window).load(function(){
+
+		<?php //Products grid: equal height of items ?>
+		<?php if ($gc['equal_height']): ?>
+			setGridItemsEqualHeight(jQuery);
+		<?php endif; ?>
+
+	}); /* end: jQuery(window).load(){...} */
+	
+</script>

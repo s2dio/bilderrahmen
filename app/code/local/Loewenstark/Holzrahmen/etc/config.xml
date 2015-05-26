@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Loewenstark_Holzrahmen>
+            <version>0.0.1</version>
+        </Loewenstark_Holzrahmen>
+    </modules>
+    <global>
+        <models>
+            <holzrahmen>
+                <class>Loewenstark_Holzrahmen_Model</class>
+            </holzrahmen>
+        </models>
+        <blocks>
+            <holzrahmen>
+                <class>Loewenstark_Holzrahmen_Block</class>
+            </holzrahmen>
+        </blocks>
+    </global>
+        <frontend>
+        <routers>
+            <holzrahmen>
+                <use>standard</use>
+                <args>
+                    <module>Loewenstark_Holzrahmen</module>
+                    <frontName>holzrahmen</frontName>
+                </args>
+            </holzrahmen>
+        </routers>   
+    </frontend>
+
+</config>

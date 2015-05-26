@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php if ($this->getHasError()):?>
+	<div style="color:red">
+		<?php echo $this->getError()?>
+	</div>
+<?php else:?>
+	<div style="font-size:11px; font-family:Arial; text-align: center">
+		<h1><?php echo $this->__('billpay_rate_info_overview')?></h1>
+		<table style="margin:auto; width:150px;">
+			<thead>
+				<tr>
+					<th><?php echo $this->__('billpay_month')?></th>
+					<th><?php echo $this->__('billpay_date')?></th>
+					<th><?php echo $this->__('billpay_amount')?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $number = 0; ?>
+				<?php foreach ($this->getDues() as $date => $data):?>
+					<tr>
+						<td style="text-align: right;padding-right:20px"><?php echo ++$number ?></td>
+						<td style="text-align: center; width:150px"><?php echo $this->formatDate($date)?></td>
+						<td style="text-align: center"><?php echo $this->format($data['amount']/100, true) ?></td>
+					</tr>
+				<?php endforeach;?>
+			</tbody>
+		</table>
+		<br />
+		<div style="width:210px; margin:auto">
+			<?php echo $this->__('billpay_rate_debit_info')?>
+		</div>
+		<br />
+		<div style="margin:auto; width:200px">
+			<img src="https://www.billpay.de/sites/default/files/LogoSmall.png" alt="Billpay logo" title="Billpay logo" />
+		</div>
+	</div>
+<?php endif;?>

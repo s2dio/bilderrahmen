@@ -1,0 +1,71 @@
+<?php
+/**
+ * @var $this Infortis_UltraSlideshow_Block_Config
+ */
+?>
+
+	<?php $cfg = $this->getSlideshowCfg(); ?>
+    <script type="text/javascript">
+    //<![CDATA[
+		/*jQuery(window).load(function(){
+                    jQuery('.the-slideshow .viewport').addClass('corner-round');
+                    var height = jQuery('.the-slideshow .viewport').outerHeight();
+                    
+                    var blockHeight = height/2-10;
+                    jQuery('.block_slide').css('height',blockHeight+'px');
+                    jQuery('.the-slideshow').each(function(){
+                        var sliderHeight = 400;
+                        jQuery(this).find('.slides > li').each(function(){
+                            slideHeight = jQuery(this).height();
+                            if (sliderHeight < slideHeight) {
+                                sliderHeight = slideHeight;
+                            }
+                        });
+                        jQuery(this).find('ul.slides').css({'height' : sliderHeight});
+                    });
+                });*/
+	jQuery(function($) {
+		//jQuery(window).load(function(){
+			jQuery('.the-slideshow').flexslider({
+				namespace:			"",
+				animation:			<?php echo $cfg['fx']; ?>,
+				easing:				<?php echo $cfg['easing']; ?>,
+				animationLoop:		<?php echo $cfg['loop']; ?>,
+				smoothHeight: true,
+				height:400,
+			<?php if ($cfg['timeout']): ?>
+				slideshowSpeed:		<?php echo $cfg['timeout']; ?>,
+			<?php else: ?>
+				slideshow:			false,
+			<?php endif; ?>
+			
+			<?php if ($cfg['speed']): ?>
+				animationSpeed:		<?php echo $cfg['speed']; ?>,
+			<?php endif; ?>
+				
+				pauseOnHover:		<?php echo $cfg['pause']; ?>
+			});
+                        
+                    //jQuery('.block_slide').css('height',blockHeight+'px');
+		});
+                
+       // Damit die Slide-Block-right auf korreckt angepasst werden
+       // nach Window-resize wird erst das Hauptelement geresized...zu diesem Zeitpunkt kann
+       // die neue Höhe noch nicht abgefrage werden...daher dieser kleine workaround.
+jQuery(window).bind('resize', function(e)
+ {
+     window.resizeEvt;
+    jQuery(window).resize(function()
+    {
+        clearTimeout(window.resizeEvt);
+        window.resizeEvt = setTimeout(function()
+        {
+            var height = jQuery('.the-slideshow .viewport').height();
+                    var blockHeight = height/2-7;
+                    jQuery('.block_slide').css('height',blockHeight+'px');
+        }, 10);
+    });
+     
+});
+    //]]>
+    </script>

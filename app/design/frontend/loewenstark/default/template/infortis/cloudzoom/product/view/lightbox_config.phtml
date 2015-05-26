@@ -1,0 +1,30 @@
+<?php $zoomHelper = $this->helper('infortis_cloudzoom'); ?>
+<?php if($zoomHelper->useLightbox()): ?>
+	<?php
+		$maxWidth	= $zoomHelper->getCfg('lightbox/max_width');
+		$maxHeight	= $zoomHelper->getCfg('lightbox/max_height');
+		$cfg = '';
+		if ($maxWidth)
+			$cfg .= ", maxWidth:'{$maxWidth}'";
+		if ($maxHeight)
+			$cfg .= ", maxHeight:'{$maxHeight}'";
+	?>
+	<script type="text/javascript">
+        jQuery(function($) {
+            
+            $(".lightbox-group").colorbox({
+                rel:		'lightbox-group',
+                opacity:	0.5,
+                speed:		300 <?php if($cfg) echo $cfg; ?>,
+                current:	'<?php echo $this->__('image {current} of {total}') ?>'
+                });
+            
+            <?php if($zoomHelper->useLightbox()): ?>
+                $(".cloud-zoom-gallery").click(function() {
+                    $("#zoom-btn").prop('href', $(this).prop('href'));
+                });
+            <?php endif; ?>
+            
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var $this Infortis_UltraSlideshow_Block_Slideshow
+ */
+?>
+
+<?php if (Mage::helper('ultraslideshow')->getCfg('general/enabled')): ?>
+
+    <div class="the-slideshow gen-slider-arrows2 gen-slider-pager1 gen-slider-pager1-pos-bottom-right">    
+        <div class="border-image"></div>
+        <ul class="slides">
+
+			<?php foreach ($this->getStaticBlockIds() as $bid): ?>
+                <?php if (!empty($bid)): ?>
+                	<li class="slide">
+                    	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($bid)->toHtml(); ?>
+					</li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        
+			<?php $i = 1; foreach ($this->getImgUrls() as $imgUrl): ?>
+            	<li class="slide">
+            		<img src="<?php echo $imgUrl; ?>" alt="Slide-<?php echo $i++; ?>" />
+            	</li>
+            <?php endforeach; ?>
+        
+        </ul>
+        
+    </div>
+<div class="slider-bottom"></div>
+    <?php echo $this->getChildHtml('config'); ?>
+
+<?php endif; ?>

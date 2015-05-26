@@ -1,0 +1,47 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+$gleiterProducts = $this->getGleiterProducts();
+$oeseProducts = $this->getOeseProducts();
+?> 
+<script type="text/javascript">
+    var spConfig = [];
+    var optionsPrice=[];
+    var currentPrices=[];
+ </script>
+<div class="configurator-wrapper">
+    <div class="configurator corner-round">
+            
+     </div>
+    <div class="configurator-fields">
+        <div class="start corner-round field">
+            <div class="title"><?php echo $this->__('Produktkonfigurator')?></div>
+            <div class="sub-title"><?php echo $this->__('Jetzte selbst zusammenstellen')?></div>
+        </div>
+        <div class="gleiter corner-round field" id="gleiter">
+            <div class="title"><?php echo $this->__('Bilderschiene mit Gleiter')?></div>
+            <div class="sub-title"><?php echo $this->__('Individuell Konfigurieren')?></div>
+            <div class="right-arrow"></div>
+        </div>
+        <div class="oese corner-round field" id="oese">
+            <div class="title"><?php echo $this->__('Bilderschiene mit Öse')?></div>
+            <div class="sub-title"><?php echo $this->__('Individuell Konfigurieren')?></div>
+            <div class="right-arrow"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+       $('#gleiter').click(function(){
+          setLocation('<?php echo $this->getGleiterUrl();?>') 
+       });
+       $('#oese').click(function(){
+          setLocation('<?php echo $this->getOeseUrl();?>') 
+       });
+        
+    });
+</script>

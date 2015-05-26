@@ -1,0 +1,477 @@
+/**
+ * Additional styling for selected elements.
+ */
+
+
+
+/* Helper classes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Layout helper classes
+-------------------------------------------------------------- */
+.section-container {}
+.section { padding:10px 0; }
+.section-space { padding:10px; }
+.float-left { float:left; }
+.float-right { float:right; }
+.margin-top { margin-top:20px; }
+.margin-bottom { margin-bottom:20px; }
+.padding-top { padding-top:20px; }
+.padding-bottom { padding-bottom:20px; }
+
+
+
+/* Additional styling for grid elements %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Nav container: stretched or with side padding
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Add top margin for nav element, the same value as left and right margin of the grid unit,
+   and remove margin if stretched */
+.nav > .grid-full { float:left; }
+.nav.stretched > .grid-full { margin-top:0; }
+
+
+/* Cart
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Collateral boxes - stretch */
+.cart-left-column .grid-full,
+.cart-right-column .grid-full { width:100%; }
+
+
+
+/* Common styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* Override specific classes to change colors, fonts, backgrounds etc. */
+ 
+/* Shadows: for pop-ups, drop-downs etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* IE version included */
+#nav ul.level0,
+#nav div.level0,
+.nav-classic #nav .parent > ul,
+
+/* Mini cart */
+#mini-cart .block-content,
+.truncated .truncated_full_value .item-options,
+
+/* Search autocomplete */
+.header .form-search .search-autocomplete ul,
+
+/* Drop-down button */
+.dropdown-button:hover,
+.dropdown-button ul,
+
+/* Pop-ups and tooltips */
+.remember-me-popup,
+.map-popup,
+.tool-tip,
+#subscribe-form .input-box .validation-advice
+{
+	-moz-box-shadow:1px 1px 5px rgba(0,0,0, 0.2);
+	-webkit-box-shadow:1px 1px 5px rgba(0,0,0, 0.2);
+	box-shadow:1px 1px 5px rgba(0,0,0, 0.2);
+}
+
+
+/* Headings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Secondary headings
+-------------------------------------------------------------- */
+
+/* Account */
+.box-account .box-head h2,
+.order-items h2.table-caption,
+.order-items h2.sub-title,
+.order-items .order-comments h2,
+
+/* Forms headings */
+.fieldset .legend,
+
+/* Log in */
+.account-login h2,
+
+/* Checkout log in */
+#opc-login h3,
+
+/* Multiple checkout */
+.multiple-checkout .col2-set h2.legend,
+.info-set h2.legend
+{
+	font-size:1.4em; /*18px*/
+	font-weight:normal;
+	text-transform:uppercase;
+}
+
+/* Headings with bottom border */
+.account-login h2,
+#opc-login h3 { border-bottom:1px solid #ddd; padding-bottom:5px; }
+
+
+/* Section headings
+-------------------------------------------------------------- */
+
+/* Sections */
+.section-title,
+
+/* Cart */
+.cart .crosssell h2,
+.cart .discount h2,
+.cart .shipping h2,
+
+/* Sidebar blocks */
+.block .block-title
+{
+	text-align:center;
+	border-bottom:1px solid #ddd;
+	font-weight:normal;
+        color:#942329;
+	font-size: 18px;
+        font-weight: bold;
+	line-height:35px; 
+}
+.block-layered-nav .block-title{padding:0;background:url(../images/button_bg.jpg) repeat-x;border-bottom:none;color:#fff;text-align:center;font-weight:bold;}
+.block{border-radius:10px;overflow:hidden;border:1px solid #ddd;margin-top: 20px;font-size:15px;}
+.block .block-bottom{border-top:1px solid #ddd;text-align:center;padding:10px 0;}
+.block .block-bottom .top{font-size:19px;font-weight:bold;color:#942329;}
+.block .block-bottom .bottom{font-size:14px;font-weight:bold;}
+.block .number{font-size:18px;color:#942329;font-weight: bold;line-height: 45px;text-align: left;}
+.block .number a{color:#942329;}
+/* Account headings
+-------------------------------------------------------------- */
+
+/* Primary */
+.box-account .box-head h2,
+.order-items h2.table-caption,
+.order-items h2.sub-title,
+.order-items .order-comments h2 {}
+
+/* Secondary */
+.dashboard .box .box-title h3,
+.dashboard .box .box-title h4,
+.order-info-box h2 {}
+
+ccc
+/* Common borders
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Elements with horizontal border - normal
+-------------------------------------------------------------- */
+
+/* Page title */
+.my-account .page-title,
+.category-title,
+
+/* Misc */
+.toolbar { border-color:#ddd; }
+
+/* Elements with horizontal border - lighter
+-------------------------------------------------------------- */
+/* Product page - Add-to-cart area */
+.product-view .product-type-data .price-box,
+.container1-wrapper,
+.container2-wrapper,
+.product-view .add-to-box,
+
+/* Product grid/list */
+.category-products-grid .item,
+.products-list li.item,
+
+/* Pop-ups */
+.remember-me-popup h3,
+.map-popup-heading
+{
+    
+	border-color:#ddd;
+}
+.product-view .add-to-box{padding-bottom: 10px;}
+/* Elements with vertical border - normal
+-------------------------------------------------------------- */
+/* Product page */
+.product-secondary-column .inner,
+.product-view .box-sidebar .box-sidebar-inner
+{
+	border-color:#ddd;
+}
+
+/* Elements with vertical border - lighter
+-------------------------------------------------------------- */
+/* Product grid/list */
+.products-list .product-shop-inner
+{
+	border-color:#f5f5f5;
+}
+
+
+/* Common colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Elements with light gray background
+-------------------------------------------------------------- */
+/* Account */
+.addresses-list .addresses-primary .item,
+.order-info-box,
+
+/* Advanced search */
+.advanced-search-summary,
+
+/* Checkout */
+.opc .gift-messages-form
+{
+	background-color:#f5f5f5;
+}
+
+/* Elements with lighter text
+-------------------------------------------------------------- */
+/* Forms */
+.form-list label,
+
+/* Product grid/list */
+.products-list .ratings,
+.products-grid .ratings,
+.products-list .ratings a,
+.products-grid .ratings a,
+
+/* Breadcrumbs */
+.breadcrumbs li,
+.breadcrumbs a,
+
+/* Layered nav */
+.block-layered-nav dd li,
+
+/* Availability */
+.availability,
+
+/* Reviews */
+.product-view .box-reviews dd .date,
+
+/* Product options */
+.item-options dd,
+
+/* Prices */
+.price-notice .price,
+.tier-prices li,
+
+/* MSRP price and old price */
+.old-price,
+.map-popup-msrp .price
+{
+	color:#000;
+}
+.block-layered-nav .block-content{font-size:15px;}
+/* Breadcrumbs */
+.breadcrumbs li,
+.breadcrumbs a { color:#000; }
+
+/* Elements with darker border
+-------------------------------------------------------------- */
+/* Cart */
+.data-table thead,
+.cart-table thead tr,
+.cart-table tfoot td.last,
+
+/* Availability */
+.availability-only-details thead
+{
+	border-color:#bbb;
+}
+
+/* Interface elements (like buttons or special links) with background color
+-------------------------------------------------------------- */
+/*.btn-remove,
+.btn-remove2,
+.btn-edit,
+.tool-tip .btn-close a {}*/
+
+
+
+/* Effects %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Transitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Product image (and other elements)
+-------------------------------------------------------------- */
+.product-image img {
+	transition:			opacity 300ms ease-in-out;
+	-moz-transition:	opacity 300ms ease-in-out;
+	-webkit-transition:	opacity 300ms ease-in-out;
+	-o-transition:		opacity 300ms ease-in-out;
+}
+.product-image img:hover { opacity:0.85; filter:alpha(opacity=85); }
+
+	/* Remove this transition in product grid. Raplace it with "on item hover" transition. */
+	.products-grid .product-image img:hover { opacity:1; }
+	/*
+	.products-grid .item:hover .product-image img { opacity:0.85; }
+	*/
+
+/* All links
+-------------------------------------------------------------- */
+a,
+.feature div.icon,
+#mobnav-trigger .icon .line
+{
+	transition:			color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-moz-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-webkit-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-o-transition:		color 450ms ease-in-out, background-color 450ms ease-in-out;
+}
+a:hover,
+.feature:hover div.icon,
+#mobnav-trigger:hover .icon .line
+{
+	transition-duration:			200ms;
+	-moz-transition-duration:		200ms;
+	-webkit-transition-duration:	200ms;
+	-o-transition-duration:			200ms;
+}
+
+/* Accordions & tabs
+-------------------------------------------------------------- */
+.gen-tabs .tabs a,
+.gen-tabs .acctab,
+
+/* OPC accordion */
+.opc .step-title
+{
+	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+}
+
+/* Elements with animated color and borders
+-------------------------------------------------------------- */
+/* Forms */
+input.input-text, select, textarea,
+.product-options ul.options-list,
+
+/* Product image thumbnails */
+.product-view .product-img-box .more-views .thumbnails li a,
+
+/* Product mini-lists */
+.mini-products-list .product-image,
+.cart .crosssell .product-image
+{
+	transition:			color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, border-color 300ms ease-in-out;
+}
+
+/* Structural elements
+-------------------------------------------------------------- */
+/* Layered nav */
+.block-layered-nav dd li,
+
+/* Grid */
+.grid12-1,
+.grid12-2,
+.grid12-3,
+.grid12-4,
+.grid12-5,
+.grid12-6,
+.grid12-7,
+.grid12-8,
+.grid12-9,
+.grid12-10,
+.grid12-11,
+.grid4-1,
+.grid4-2,
+.grid4-3,
+.grid2-1,
+.grid-full,
+.grid-col2-sidebar,
+.grid-col2-main,
+
+/* Products */
+
+.product-view .product-img-box,
+
+/* Misc */
+.header .logo,
+
+/* Menu */
+#nav > li
+{
+	transition:			all 300ms ease-in-out;
+	-moz-transition:	all 300ms ease-in-out;
+	-webkit-transition:	all 300ms ease-in-out;
+	-o-transition:		all 300ms ease-in-out;
+}
+
+
+/* Shadow for the main containers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.shadow .show-bg {
+	-moz-box-shadow:	0 2px 3px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow:	0 2px 3px rgba(0, 0, 0, 0.1);
+	box-shadow:			0 2px 3px rgba(0, 0, 0, 0.1);
+}
+/* Note: "show-bg" for ".main" added via js */
+
+
+
+/* Custom static blocks %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Category page */
+.block_category_above_collection { margin:10px 0; }
+.block_category_below_collection { margin:10px 0; }
+.block_category_above_empty_collection {}
+
+/* Product page */
+	
+	/* Main blocks */
+	.block_product_primary_bottom { border-top:1px solid #f5f5f5; margin:10px 0 0; padding:15px 0 0; }
+	.block_product_primary_bottom .addthis_toolbox {}
+	.block_product_secondary_bottom { margin:15px 0; }
+
+	/* Static blocks replacing related and up-sell products */
+	.block_product_replace_related {}
+	.block_product_replace_related {}
+	
+/* Cart */
+.block_cart_below_totals {}
+.block_cart_below_table {}
+
+/* Mini cart */
+.block_mini_cart_above_products { margin:0 0 10px; }
+
+/* OPC */
+.block_opc_below_progress { margin:15px 0; }
+
+/* CMS pages */
+.block_cms_page_top { margin:5px 0 15px; }
+
+/* Footer */
+.block_footer_primary_bottom_left {}
+block_footer_primary_bottom_right {}
+.block_footer_payment { margin-right:10px; margin-bottom:10px; margin-left:20px; }
+
+
+/* Styling for custom block content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.sample-block { padding:20px; background-color:#f5f5f5; }
+
+
+
+/* Misc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+body.cms-index-index .the-slideshow,
+body.cms-index-defaultindex .the-slideshow {
+	margin-top:-10px;
+}

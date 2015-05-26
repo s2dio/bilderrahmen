@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout version="0.0.1">
+    <discounts_index_index>
+        <reference name="content">
+            <block type="codevog_discounts/view" name="category.products" template="codevog/discounts/view.phtml">
+                <block type="codevog_discounts/sales" name="product_list" template="catalog/product/list.phtml">
+                    <block type="core/text_list" name="product_list.name.after" as="name.after" />
+                    <block type="core/text_list" name="product_list.after" as="after" />
+                    <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                        <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setColumnCount"><count>3</count></action>
+                    <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                </block>
+            </block>
+        </reference>
+        <reference name="left">
+            <remove name="catalog.leftnav"/>
+            <block type="codevog_discounts/categories" name="left.discounts"
+                   template="codevog/discounts/categories_left.phtml" before="-"/>
+        </reference>
+    </discounts_index_index>
+</layout>

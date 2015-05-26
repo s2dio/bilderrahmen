@@ -1,0 +1,135 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package      Billpay
+ * @author       Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright    Copyright (c) 2009 Billpay GmbH
+ * @license      http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * @var Billpay_Block_Control_BankAccount $this
+ */
+?>
+<style type="text/css">
+    .billpay_bank_account tr {
+        height: 23px;
+        width: 130px;
+    }
+    .billpay_bank_account tr td:first-child {
+        color: #666;
+    }
+    .billpay_bank_account .input-text {
+        width: <?php echo $this->getFieldWidth(); ?>px;
+    }
+    .bpy-btn-sepa-info-popup {
+        position: absolute;
+        background: silver;
+        padding: 1px 5px;
+        line-height: 10px;
+        font-size: 12px;
+        color: #fff;
+        margin-left: 5px;
+        font-weight: bold;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        background: url('/skin/frontend/default/default/images/billpay/sepa_info_16.png');
+        text-indent: -9999px;
+        height: 13px;
+        width: 6px;
+    }
+    .bpy-popup {
+        position: absolute;
+        background: #fff;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 1px solid #c0c0c0;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -moz-box-shadow:    -5px 5px 14px 5px #c0c0c0;
+        -webkit-box-shadow: -5px 5px 14px 5px #c0c0c0;
+        box-shadow:         -5px 5px 14px 5px #c0c0c0;
+        height: 290px;
+        width: 290px;
+        padding: 15px;
+    }
+    .bpy-external-popup iframe {
+        height: 290px;
+        width: 290px;
+    }
+    .bpy-popup .bpy-popup-close {
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        height: 16px;
+        width: 16px;
+        text-indent: -99999px;
+        background: url('/skin/frontend/default/default/images/billpay/close.png');
+    }
+    .billpay_bank_account .bpy-popup {
+        top: -50px;
+        right: -50px;
+    }
+    #onestepcheckout-form .billpay_bank_account .bpy-popup {
+        top: -140px;
+        right: -305px;
+    }
+    #aw-onestepcheckout-general-form .billpay_bank_account .bpy-popup {
+        top: 210px;
+        right: -210px;
+    }
+    .bpy-input-row {
+        min-height: 23px;
+    }
+    .bpy-input-row label {
+        width: 130px;
+        display: inline-block;
+    }
+</style>
+<div class="billpay_bank_account" id="bpy_sepa_bank_account">
+    <div class="bpy-input-row input-box">
+        <label for="<?php echo $this->getMethodCode(); ?>_account_holder">
+            <?php echo $this->__('billpay_account_holder'); ?>
+            <span class="required">*</span>
+        </label>
+        <input class="input-text required-entry" type="text"
+               id="<?php echo $this->getMethodCode(); ?>_account_holder"
+               name="payment[<?php echo $this->getMethodCode(); ?>_account_holder]"
+               value="<?php echo $this->getFullName(); ?>"/>
+    </div>
+
+    <div class="bpy-input-row input-box">
+        <label for="<?php echo $this->getMethodCode(); ?>_account_number">
+            <?php echo $this->__('billpay_iban'); ?>
+            <span class="required">*</span>
+            <i class="bpy-btn-sepa-info-popup" data-popup-target="#bpy_sepa_bank_account">i</i>
+        </label>
+        <input class="input-text required-entry" type="text" autocomplete="off"
+               id="<?php echo $this->getMethodCode(); ?>_account_number"
+               name="payment[<?php echo $this->getMethodCode(); ?>_account_number]" type="text"/>
+    </div>
+
+    <div class="bpy-input-row input-box">
+        <label for="<?php echo $this->getMethodCode(); ?>_sort_code">
+            <?php echo $this->__('billpay_bic'); ?>
+            <i class="bpy-btn-sepa-info-popup" data-popup-target="#bpy_sepa_bank_account">i</i>
+        </label>
+        <input class="input-text" type="text" autocomplete="off"
+               id="<?php echo $this->getMethodCode(); ?>_sort_code"
+               name="payment[<?php echo $this->getMethodCode(); ?>_sort_code]" />
+    </div>
+</div>

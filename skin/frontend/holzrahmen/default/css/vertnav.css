@@ -1,0 +1,89 @@
+.vertnav-container {
+	margin-top:0px;
+}
+.vertnav-container .title{line-height:42px;font-size:20px;background: url(../images/block_header.jpg) no-repeat;color: #e4e2d1;padding-left:10px;}
+#vertnav{
+    
+    overflow:hidden;
+}
+
+
+#vertnav li .vertnav-cat {
+	display:block;
+	padding:10px 10px;
+        margin-bottom:1px;
+}
+#vertnav li a {
+    text-decoration:none;
+    color:#000;
+    font-size:17px;
+    display:block;
+}
+
+#vertnav .inactive .vertnav-cat {
+	
+}
+
+#vertnav .next .vertnav-cat {
+	
+}
+
+#vertnav .prev .vertnav-cat {
+	
+}
+
+#vertnav .first .vertnav-cat {
+}
+
+#vertnav .last .vertnav-cat {
+}
+
+#vertnav .only .vertnav-cat {
+}
+
+#vertnav li.parent .vertnav-cat {
+	background-color:#E0E0E0;
+	
+}
+#vertnav li.active{}
+
+
+#vertnav li.active .vertnav-cat {
+	background-color:transparent;
+
+}
+#vertnav li.active a {
+	color:#a8a8a8;
+}
+#vertnav li.inactive a{color:#000;}
+#vertnav li.inactive .vertnav-cat {
+	font-weight:normal;
+}
+#vertnav li.level0.active{background:url(../images/bg_verlauf.png) left top repeat-x;background-size:100%;background-position: 0px -60px;}
+#vertnav .level0{
+    border:1px solid #cccccc;
+    margin-top:2px;
+}
+#vertnav .level0 .vertnav-cat {
+    padding-left:5px;
+}
+#vertnav .level1{
+    border-top:1px dotted #cccccc;
+    background:#f6f6f6;
+}
+#vertnav .level1 a{font-size:16px;}
+#vertnav .level1 .vertnav-cat {padding:5px 5px;
+	padding-left:15px;
+	width:182px;
+}
+
+#vertnav .level2 .vertnav-cat {
+	
+    padding-left:20px;
+	width:172px;
+}
+
+#vertnav .level3 .vertnav-cat {
+	padding-left:30px;
+	width:162px;
+}

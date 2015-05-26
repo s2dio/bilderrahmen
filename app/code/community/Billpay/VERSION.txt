@@ -1,0 +1,432 @@
+version 0.9.40
+- support for magento 1.8.0.0
+- implemented: SEPA support
+- fixing possible problem for ssl checkout (loading of unsafe content)
+- updated jquery library link and removed calls of deprecated/deleted functions
+
+version 0.9.39
+
+- implemented: Profiling tags not iframe element
+
+version 0.9.38
+
+- implemented: complete overhaul for transaction credit, currently just for onepagecheckout (beta version)
+
+version 0.9.37
+
+- implemented Transaction Credit for AUT 
+- fix Transaction Credit  form for GoMage LightCheckout 
+
+version 0.9.36
+
+- fix: for one step checkout - if gender/dob is part of the (left side) personal data form don't show them on the (centered side) billpay payment forms
+- fix: on the checkout form (all) take in to consideration salutation and gender as salutation send in the api billpay requests 
+- fix: category "subscription_simple" add as product category accepted by the plugin (canimix.de)
+
+version 0.9.35
+
+- implemented: B2B Invoice Payment for oneStepCheckout and LightCheckout
+
+version 0.9.34
+
+- fixed: sendEditcartRequest - rounded ($val,3) newgrnadtotal for wrong rounding in some magento
+- fixed: sendEditcartRequest - tax item price wass null in magento < 1.4
+- fixed: TC problem with no jquery
+- fixed: check class markup problem 
+
+version 0.9.33
+
+- fixed: form autocomplete=off for debit and transaction credit
+
+version 0.9.32
+
+- fixed: sendEditcartRequest check payment method change
+- implemented: transaction credit for onestepcheckout 
+
+version 0.9.31
+
+- fixed: order creation in shopbackend
+
+version 0.9.30
+
+- fixed: API not getting correct order id for magento older then 1.7 
+
+version 0.9.29
+
+- Added prescore request
+- fixed: year of birth selection problem for young customers  
+- Added editcart request for orders before invoice 
+
+version 0.9.28
+
+- replaced partialCancel with editCartContent request
+- fixed: fraud prevention js problem 
+
+version 0.9.27
+
+- fixed: select customer order history with customerID
+
+version 0.9.26
+
+- persist billpay transaction ID 
+
+version 0.9.25
+
+- added italian translations
+- added english translations
+- added french language file
+- spelling mistake corrected: "detailierte" -> "detaillierte" for languages en_US / fr_FR / it_IT 
+
+version 0.9.24
+- magento 1.6 compatibility implemented
+- bug fix: use correct acceptTermsHtml() for OneStepCheckout
+- bug fix: use correct logo for OneStepCeckout
+
+version 0.9.23
+
+- bug fix: use correct country for buildTermsofServiceURL
+- bug fix: strip_tags in rat info phtml
+- DiagnosticsController -> CheckController
+- mage 1.6 compatibility: select all fields of order for order history in preauth request
+
+version 0.9.22
+
+- bug fix: wrong fee tax calculation on invoice in magento 1.3
+
+version 0.9.21
+
+- market ready for austria
+- generic AGB link by country
+
+version 0.9.20
+
+- spelling mistake corrected: "misc_captial" -> "misc_capital"
+- use www-link for billpay customer landing page
+
+version 0.9.19
+
+- new b2b fields added
+- bug fix: save applied tax fix for Magento 1.3
+- bug fix: in some cases b2c AND b2b options were shown at the same time
+
+version 0.9.18
+
+- bug fix: fee tax was added to subtotal incl. tax unintentionally
+- bug fix: ensure backward compability for fee handling in credit memo
+
+version 0.9.17
+
+- bug fix: syntax error in Billpay_Block_Adminhtml_Sales_Order_Totals_Item
+
+version 0.9.16
+
+- bug fix: prevent error message when refunded billpay fee is zero
+- do not use config heading in magento 1.4.X 
+- instruction text for fee steps corrected
+
+version 0.9.15
+
+- bug fix: save applied tax for billpay fee
+- bug fix: sort order of totals changed because sometimes it conflicted with other installed addons
+- new design for payment form implemented
+- internationalization switzerland
+
+version 0.9.14
+
+- bug fix: calculate and show correct payment fee taxes   
+
+version 0.9.13
+
+- bug fix: select correct telephone for preauthorize request
+
+version 0.9.12
+
+- bug fix: under certain conditions fees for b2b and b2c have been mixed
+
+version 0.9.11
+
+- bug fix: conditional removing of required-entry classes
+
+version 0.9.10
+
+- bug fixes
+
+version 0.9.9
+
+- bug fix: check if phone is available before accessing it
+- B2B functionality implemented
+- bug fix: use % symbol in formula for interest rate
+
+version 0.9.8
+
+- bug fix: recalculate billpay payment fee when cart contents change
+
+version 0.9.7
+
+- skip addition of hidden tax for discount calculation
+
+version 0.9.6
+
+- show payment form for transaction credit when it is the only payment method available
+- bug fix: partial cancel for grouped products
+- bug fix: show surcharge after grandTotal incl. tax
+
+version 0.9.5
+
+- added fee for transaction credit to pdf invoice
+- changed label of total amount to 'Gesamtsumme Ratenkauf'
+
+version 0.9.4
+
+- send order confirmation mail with pdfs from backend
+- core lib 1.3.5 added
+- use getSubtotalInclTax for calculation of base amount if present
+- display text input field for phone number if number has not been entered before
+
+version 0.9.3
+
+- hide billpay if virtual items are in basket
+
+version 0.9.2
+
+- added totals section for market ready germany
+
+version 0.9.1
+
+- display all totals for orders in frontend customer account
+- bug fix: display transaction fee without html tags on pdf invoice
+
+version 0.9.0
+
+- partial cancel capabilities added for transaction credit
+- bug fix: write history message on cancellation only for billpay payment methods
+- full cancellation after partial refund is possible now
+- core lib 1.3.0 added and interface adapted
+
+version 0.8.5
+
+- ugiftcert compatibility
+
+version 0.8.4
+
+- css slightly changed
+
+version 0.8.3
+
+- adminhtml.xml added
+
+version 0.8.2
+
+- template and locale files have mistakenly been commited -> removed
+- do not show billpay for virtual orders
+
+version 0.8.1
+
+- use method assginData in payment model class instead of Observer 
+- support for light checkout added
+- wrong order totals in checkout fixed
+
+version rate alpha (later 0.8.0)
+
+- bug fix: gross price calculation went wrong when certain price rule was defined
+- billpay logos added
+- bug fix: gender and dob selection failed when user was logged in
+- ie6 formatting fixed
+- server side minimum order value implemented
+- inscriptions for fee changed
+- use ssl url for terms of service
+- added comments for successful activation/cancellation on invoice and order
+- GUI for delayed activation added to invoice form
+- 2 further total models added for rate payment
+- bug fix: text spacing for elv payment on info block corrected
+
+version 0.7.1
+
+- (sync with trunk: rewrite invoice and creditmemo pdf-models for mage 1.2)
+- (TODO: sync again before merge)
+
+- core lib 1.1.7 added (with delayed activation)
+- payment methods are "non-capturable" now
+- auto hiding of payment form added
+
+version 0.7.0
+
+- include api classes only if needed
+- server-side validation if terms checkbox is ticked
+- do not send reservedOrderId with preauth request
+- show info box in test|sandbox mode
+- trim all address fields in order to avoid unnesessary validation errors
+- config param for editing the sort order added
+- bug fix: clear fee in session if limit is exceeded
+- lib from refactoring branch added (tests not yet finished)
+- bug fix: collect totals before preauth request when using onestepcheckout (caused inconsistent request data in mage 1.3)
+- config parameter for enabling trusted shops buyer protection added
+- non-ajax form added. can be activated in admin
+- bug fix: hide template for billpay fee automatically if corresponding display value is 0
+- specialiced layout update (adminhtml) for Mage 1.2 added 
+- bug fix: use modified class Billpay_Block_Adminhtml_Sales_Order_Totals_Item for Mage 1.4 because it threw an exception in Mage 1.2 
+- info block modified, image added to html block
+
+version 0.6.1
+
+- bug fix: initialize trusted shops amount
+- use debug email address for invoice mails in test mode
+- bug fix: concatenation of full street name failed in some cases
+
+version 0.6.0
+
+- support for OneStepCheckout implemented
+- auto capture implemented
+
+version 0.5.0
+
+- bug fix: use Mage_Core_Exception to trigger error when partial cancel fails
+- use offline service by default
+- bug fix for Mage 1.4: refund of configurable products fixed 
+- show terms of service in iframe
+
+version 0.4.2
+
+- replaced step products with totals module
+- dispatch billpay_after_save_payment event after savePayment has been called
+- use magento sales_order_creditmemo_save_before event to trigger partial cancel
+- admin config section divided
+- error/exception handling for creation of fee step products added
+- elv branch merge and refined
+
+vesion 0.4.1
+
+- create step products according to configuration setting concerning the contained tax
+
+version 0.4.0
+
+- text for html invoice changed
+- store billpay specific data in session in order to restore the state of payment form
+- show charged fee gross in title of payment method
+- error messages for admin actions corrected
+- code clean-up and programmer hints (in case merge is necessary) added
+- show info text on payment form in order to display the charged fee
+- automatically add step priced product during checkout if this is configured
+- minumum order value implemented
+
+version 0.3.14
+
+- bug fix: if external checkout after order creation fails no new order id is being reserved
+- bug fix: virtual products could not be partial cancelled
+
+version 0.3.13
+
+- core lib version 1.1.1 added
+- concatenate both street parts which are provided by magento
+- several graphical and layout bugs fixed
+
+version 0.3.12
+
+- disallow cancel after complete
+
+version 0.3.11
+
+- core lib version 1.0.0 added (fully backward compatible to previous version)
+- add product to products array for dynamic price bundle products
+
+version 0.3.10
+
+- info.phtml for pdf invoice creation was missing
+- core lib version 0.2.3 added
+
+version 0.3.9
+
+- typos corrected ("ihr" -> "Ihr")
+
+version 0.3.8
+
+- label for checkbox on form added 
+- form text reduced
+
+version 0.3.7
+
+- bug fix for 1.4: set template before calling parent ctr in Billpay_Block_Form
+- get customer id from quote
+- reserve order id only if it is not existing
+
+version 0.3.6
+
+- lib 0.2.2 added
+- parameter rebategross
+- calculate gross price explictly
+
+version 0.3.5 
+
+- api version 0.2.1 added
+- bug fix: show info text in frontend only if bank account is present
+- support for virtual items added
+- use magento helper for calculdation of item price gross 
+- use quote item id as article id
+- product configuration mapping refactored
+- fp changes commited
+- partial cancel refactored (rebatedecreasegross added)
+
+version 0.3.4
+
+- use detailed info.phtml for frontend
+- fetch prices from product item if neccessary
+- hook sales_order_invoice_pay event instead of sales_order_invoice_save_before because of trusted shops issue
+- trusted shops handling fixed
+- collect products in order to determine maximum delivery date
+
+version 0.3.3
+
+- bug fix: send gross shipping amount in partial cancel
+- utils classes added and hooked in Observer.php
+
+version 0.3.2
+
+- DiagnosticsController: load xml file instead of config
+- Support for Trusted Shops buyer protection added (not yet verified)
+- Bug fix: Wrong calculation of gross when there was a tax on shippment
+- Selection of order states that indicate that payment has already been processed for an order (admin) 
+
+version 0.3.1
+
+- handle different magento product configurations (configurable|simple|bundle|grouped) in preauth and partial cancel
+- use invoice amount instead of order amount when creating invoice (allows billpay to throw error if invoice-amount < order-amount)
+- item renderer for invoice removed from config.xml
+- bug fix: use store id to fetch config values in multi store mode
+
+version: 0.3.0
+
+- bug fix: throw exception after invoiceCreate requests returns error
+- show DiagnosticsController only in test mode
+- lib version 0.2.0 added
+
+version: 0.2.3
+
+- lib version 0.1.5 added
+- show due date only on order confirmation if available
+- 3 different capture modes: immediately, auto, manual
+- config.xml cleaned up
+- form text simplified
+- DiagnosticsController added
+
+version: 0.2.2
+
+- bug fix: do not store an empty config in session if error occured during ModuleConfig request
+
+version: 0.2.1
+
+- bug fix: use getter function of billpay payment model to fetch module config instead of constructor
+
+version: 0.2.0
+
+- fetching merchant/shop-specific config values via new ipl_module_config_request class
+- hide billpay payment method in case of execeeding static limit or credit check failure
+
+version 0.0.2
+
+
+------------------------
+versioning scheme: A.B.C
+
+A: major release (create tag)
+B: minor release (api changes, must be consistent with service minor release version, create tag)
+C: patch level (non-api)

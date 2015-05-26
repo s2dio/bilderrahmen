@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Loewenstark_Galerieschiene>
+            <version>0.0.1</version>
+        </Loewenstark_Galerieschiene>
+    </modules>
+    <global>
+        <models>
+            <galerieschiene>
+                <class>Loewenstark_Galerieschiene_Model</class>
+            </galerieschiene>
+        </models>
+        <blocks>
+            <galerieschiene>
+                <class>Loewenstark_Galerieschiene_Block</class>
+            </galerieschiene>
+        </blocks>
+    </global>
+</config>

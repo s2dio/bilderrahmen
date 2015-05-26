@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<div>
+	<table>
+		<tr>
+			<td>
+				<?php echo $this->__('billpay_rate_calculation_please_enter')?>
+			</td>
+			<td>
+				<select id="billpay_rate_number" name="payment[billpay_rates]" style="margin-left:5px; margin-right:4px; width:43px;">
+					<?php $terms = $this->getAvailableTerms(); ?>	
+					<?php if (!$this->getBillpayRates()):?>
+						<?php for ($i=0; $i<count($terms); ++$i):?>
+							<option value="<?php echo $terms[$i];?>" <?php if(12 == $terms[$i]):?>selected="selected"<?php endif;?>><?php echo $terms[$i];?></option>
+						<?php endfor;?>
+					<?php else: ?>
+						<?php for ($i=0; $i<count($terms); ++$i):?>
+							<option value="<?php echo $terms[$i];?>" <?php if($this->getBillpayRates() == $terms[$i]):?>selected="selected"<?php endif;?>><?php echo $terms[$i];?></option>
+						<?php endfor;?>
+					<?php endif;?>
+				</select>
+			</td>
+			<td>
+				<button type="button" class="form-button button" onclick="billpayCalculateRates()" >
+					<span>
+						<?php echo $this->__('billpay_button_calculate_rates')?>
+					</span>
+				</button>
+			</td>
+		</tr>
+	</table>
+	<table style="width:100%">
+		<tr>
+			<td style="width:400px">
+				<!-- Loading panel -->
+				<div id="billpay-rates-loading" style="display:none; margin-left:10px; margin-top:15px; float:left; color:#9C9C9C;">
+					<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" style="margin-right:3px;" />
+					<?php echo $this->__('loading_text'); ?>
+				</div>
+				
+				<div id="billpay_rates" style="margin-top:15px;">
+					<?php if ($this->getBillpayRates() > 0): ?>
+						<?php echo $this->getCalculationHtml()?>
+					<?php endif; ?>
+				</div>
+			</td>
+			<td style="padding-top:12px; text-align:center; width:200px;">
+				<!-- <a href="http://www.billpay.de" target="_blank">
+					<img src="https://www.billpay.de/sites/default/files/LogoMid2.png" title="Billpay logo" alt="Billpay logo">
+				</a>-->
+				<div style="margin-top:5px; padding-left:5px;">
+					<a href="javascript:void(0)" onclick="showBillpayRateTermsPopup('<?php echo $this->getTermsUrl()?>')"><?php echo $this->__('billpay_rate_terms_link')?></a>
+					<br />
+					<a href="javascript:void(0)" onclick="showBillpayRatePrivacyPopup('<?php echo $this->getPrivacyUrl()?>')"><?php echo $this->__('billpay_privacy_policy')?></a>
+					<br />
+					<a href="javascript:void(0)" onclick="showBillpayRateDetailsPopup('<?php echo $this->getTransactionCreditTermsOfPayment()?>')"><?php echo $this->__('billpay_rate_info_overview')?></a> 
+				</div>
+				<div style="overflow:hidden; margin-top:10px;margin-left:10px; font-size:11px; width:166px; height:64px; padding: 8px 6px 6px 8px; font-weight: bold; border:1px solid #A6A6A6; color:#A6A6A6; text-align:left">
+					<div id="billpay-step-info-pos" style="line-height: 1.5; margin-right: 8px; font-size: 20px; float: left; width: 16px;"></div>
+					<div id="billpay-step-info-box" style="line-height: 1.4; float: left; width: 140px;"></div>
+				</div>
+			</td>
+		</tr>	
+	</table>
+</div>
+<div id="billpay_rat_step2" style="display:none">
+</div>
+
+<script type="text/javascript">
+if (typeof(billpaySetStepInfo) == "function") {
+	billpaySetStepInfo('step1');
+}
+</script>

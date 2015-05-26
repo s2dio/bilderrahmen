@@ -1,0 +1,40 @@
+<?php if(($categories = $this->getCategories()) && $categories->count()):?>
+
+    <div class="clearfix">
+
+        <?php
+            $columns = $this->getColumnCount();
+            $columnCounter = 0;
+        ?>
+
+        <?php foreach($categories as $category):?>
+
+            <?php $category = Mage::getModel('catalog/category')->load($category->getId());?>
+
+            <?php ++$columnCounter;?>
+
+            <?php if($columnCounter == 1):?>
+                <ul class="catblocks">
+            <?php endif;?>
+
+            <li>
+                <a href="<?php echo $category->getUrl();?>">
+                    <img alt="<?php echo $category->getName();?>" src="<?php echo $this->getCategoryImageUrl($category);?>">
+                    <span><?php echo $category->getName();?></span>
+                </a>
+            </li>
+
+            <?php if($columnCounter == $columns):?>
+                <?php $columnCounter = 0;?>
+                </ul>
+            <?php endif;?>
+
+        <?php endforeach;?>
+
+        <?php if($columnCounter != 0):?>
+            </ul>
+        <?php endif;?>
+
+    </div>
+
+<?php endif;?>

@@ -1,0 +1,230 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+	$_collectionSize = $_productCollection->count();
+?>
+
+<?php if ($_collectionSize && $tmpHtml = $this->getChildHtml('block_category_above_collection')): ?>
+	<div class="block_category_above_collection std"><?php echo $tmpHtml; ?></div>
+<?php endif; ?>
+
+<?php if(!$_collectionSize): ?>
+    <?php if ($tmpHtml = $this->getChildHtml('block_category_above_empty_collection')): ?>
+        <div class="block_category_above_empty_collection std"><?php echo $tmpHtml; ?></div>
+    <?php else: ?>
+		<p class="note-msg empty-catalog"><?php echo $this->__('There are no products matching the selection.') ?></p>
+    <?php endif; ?>
+<?php else: ?>
+
+<?php
+	$_helper = $this->helper('catalog/output');
+	$theme = $this->helper('ultimo');
+	$labelsHelper = $this->helper('ultimo/labels');
+	$templateHelper = $this->helper('ultimo/template');
+	
+	//Default image size
+	$imgWidth = 295;
+	$imgHeight = 295;
+	
+	//Aspect ratio settings
+	if ($theme->getCfg('category/aspect_ratio'))
+		$imgHeight = 0; //Height will be computed automatically (based on width) to keep the aspect ratio
+?>
+
+<div class="category-products">
+    <?php echo $this->getToolbarHtml() ?>
+    <?php // List mode ?>
+    <?php if($this->getMode()!='grid'): ?>
+    
+    <?php //List mode specific settings
+	
+		$listClasses = $theme->getCfg('category_list/hover_effect') ? ' hover-effect' : '';
+		
+		//Check if "Add to" links are displayed as simple icons
+		$isListAddtoSimple = $theme->getCfg('category_list/addtolinks_simple');
+	?>
+    
+    <?php $_iterator = 0; ?>
+    <ol class="products-list<?php if($listClasses) echo $listClasses; ?>" id="products-list">
+    <?php foreach ($_productCollection as $_product): ?>
+        <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+
+            <?php // Product Image ?>
+            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image grid12-4 persistent-grid2-1">
+            
+            	<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(204,177) ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                
+            	<?php //Product labels
+				echo  $labelsHelper->getLabels($_product); ?>
+            
+            </a>
+            <?php // Product description ?>
+            <div class="product-shop grid12-5 persistent-grid2-1">
+            	<div class="product-shop-inner">
+					<?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                    <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+                    <?php if($_product->getRatingSummary()): ?>
+                    	<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                    <?php endif; ?>
+                    
+                    <div class="desc std">
+                    	<?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                    	<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+                    </div>
+                </div>
+			</div>
+                
+            <div class="right-column grid12-3 persistent-grid2-1">
+                <div class="product_border">
+                <?php echo $this->getPriceHtml($_product, true) ?>
+                <?php if($_product->isSaleable()): ?>
+                    <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                <?php else: ?>
+                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                <?php endif; ?>
+                
+                <?php
+                if ($isListAddtoSimple)
+					echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product));
+				else
+					echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-textlink');
+				?>
+                </div>
+            </div>
+
+        </li>
+    <?php endforeach; ?>
+    </ol>
+    <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+    
+    
+    
+    <?php else: ?>
+    <?php // Grid Mode ?>
+
+    <?php //Grid mode specific settings
+	
+		//Get grid configuration array
+		$gc = $theme->getCfgGroup('category_grid');
+		
+		//General grid classes
+		$gridClasses = $gc['hover_effect'] ? ' hover-effect' : '';
+		if ($gc['equal_height'])
+			$gridClasses .= ' equal-height'; 
+	?>
+    
+    <ul class="products-grid category-products-grid itemgrid itemgrid-<?php echo $gc['column_count']; ?>cols<?php if($gridClasses) echo $gridClasses; ?>">
+    	<?php foreach ($_productCollection as $_product): ?>
+            <li class="item">
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
+                
+                	<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(204,177)?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                
+                	<?php //Product labels
+						echo $labelsHelper->getLabels($_product); ?>
+                
+                </a>
+                
+                <?php //Add-to links
+					if ($gc['display_addtolinks'] != 0 && $gc['addtolinks_simple'])
+					{
+						if ($gc['display_addtolinks'] == 1) //Display on hover
+							echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-onimage display-onhover');
+						else //Always display
+							echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-onimage');
+					}
+				?>
+                
+                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                
+				<?php if($_product->getRatingSummary()): ?>
+                	<?php if ($gc['display_rating'] == 1): //Display on hover ?>
+                    	<div class="display-onhover"><?php echo $this->getReviewsSummaryHtml($_product, 'short') ?></div>
+                    <?php elseif ($gc['display_rating'] == 2): //Always display ?>
+						<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                
+                <?php echo $this->getPriceHtml($_product, true) ?>
+                
+                
+                	<?php if ($gc['display_addtocart'] != 0): ?>
+                    	<?php $btnClass = ($gc['display_addtocart'] == 1) ? ' display-onhover' : ''; ?>
+						<?php if ($_product->isSaleable()): ?>
+                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart<?php echo $btnClass; ?>" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                         <?php echo $this->getLayout()->createBlock('galerieschiene/product_list')->setProduct($_product)->getTaxDetailsHtml();?>
+                       <?php else: ?>
+                            <p class="availability out-of-stock<?php echo $btnClass; ?>"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                      
+                   
+                    <?php //Add-to links
+						if ($gc['display_addtolinks'] != 0 && !$gc['addtolinks_simple'])
+						{
+							if ($gc['display_addtolinks'] == 1) //Display on hover
+								echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-textlink display-onhover');
+							else //Always display
+								echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-textlink');
+						}
+					?>
+               
+            </li>
+        <?php endforeach; ?>    
+	</ul>
+    <?php endif; ?>
+
+    <div class="toolbar-bottom">
+        <?php echo $this->getToolbarHtml() ?>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php if ($_collectionSize && $tmpHtml = $this->getChildHtml('block_category_below_collection')): ?>
+	<div class="block_category_below_collection std"><?php echo $tmpHtml; ?></div>
+<?php endif; ?>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+			var tmpHeight = 0;
+			jQuery('ul.products-grid .product-name').each(function(){
+				if(jQuery(this).height() > tmpHeight){
+					tmpHeight = jQuery(this).height();
+				}
+			});
+			jQuery('ul.products-grid .product-name').css('height', tmpHeight);
+		});
+
+</script>

@@ -1,0 +1,89 @@
+<?php $optionsHelper = Mage::helper('codevog_options');?>
+
+<?php if (($_products = $this->getItems()) && $_products->getSize()): ?>
+<div class="cms-index-index">
+    <div class="products-grid">
+            <h2 class="subtitle"><?php echo $this->__('Related Products') ?></h2>
+            <p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+            <?php $_columnCount = $this->getColumnCount(); ?>
+            <div class="jcarousel">
+                <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+                    <?php $i=0; foreach ($_products->getItems() as $_product): ?>
+                        <?php /*if ($i++%$_columnCount==0): ?>
+        <ul class="products-grid">
+        <?php endif*/ ?>
+                        <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="product-image">
+                                <?php echo $optionsHelper->productLabels($_product);?>
+                                <?php $_imgSize = 260; ?>
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                <?php echo $optionsHelper->getProductDiscount($_product);?>
+                            </a>
+                            <?php if(!$_product->isComposite() && $_product->isSaleable()): ?>
+                                <?php if (!$_product->getRequiredOptions()): ?>
+                                    <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_product->getId() ?>" name="related_products[]" value="<?php echo $_product->getId() ?>" />
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h3>
+
+                            <?php echo $this->getPriceHtml($_product, true, '-new') ?>
+                            <div class="actions">
+                                <?php if($_product->isSaleable()): ?>
+                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                                <?php else: ?>
+                                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                <?php endif; ?>
+
+                                <div><?php echo $optionsHelper->getInListInfo($_product);?></div>
+
+                            </div>
+                        </li>
+                        <?php /*if ($i%$_columnCount==0 || $i==count($_products)): ?>
+        </ul>
+        <?php endif*/ ?>
+                    <?php endforeach; ?>
+                </ul>
+                <?php if($this->getItems()->getSize() > 4 ): ?>
+	                <a href="#" class="jcarousel-control-prev"></a>
+	                <a href="#" class="jcarousel-control-next"></a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        $$('.related-checkbox').each(function(elem){
+            Event.observe(elem, 'click', addRelatedToProduct)
+        });
+
+        var relatedProductsCheckFlag = false;
+        function selectAllRelated(txt){
+            if (relatedProductsCheckFlag == false) {
+                $$('.related-checkbox').each(function(elem){
+                    elem.checked = true;
+                });
+                relatedProductsCheckFlag = true;
+                txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+            } else {
+                $$('.related-checkbox').each(function(elem){
+                    elem.checked = false;
+                });
+                relatedProductsCheckFlag = false;
+                txt.innerHTML="<?php echo $this->__('select all') ?>";
+            }
+            addRelatedToProduct();
+        }
+
+        function addRelatedToProduct(){
+            var checkboxes = $$('.related-checkbox');
+            var values = [];
+            for(var i=0;i<checkboxes.length;i++){
+                if(checkboxes[i].checked) values.push(checkboxes[i].value);
+            }
+            if($('related-products-field')){
+                $('related-products-field').value = values.join(',');
+            }
+        }
+        //]]>
+    </script>
+<?php endif; ?>

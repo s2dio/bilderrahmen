@@ -1,0 +1,587 @@
+<?xml version="1.0"?>
+<!--
+	/**
+	* Magento
+	*
+	* NOTICE OF LICENSE
+	*
+	* This source file is subject to the Open Software License (OSL 3.0)
+	* that is bundled with this package in the file LICENSE.txt.
+	* It is also available through the world-wide-web at this URL:
+	* http://opensource.org/licenses/osl-3.0.php
+	* If you did not receive a copy of the license and are unable to
+	* obtain it through the world-wide-web, please send an email
+	* to license@magentocommerce.com so we can send you a copy immediately.
+	*
+	* @package    Billpay
+	* @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+	* @copyright  Copyright (c) 2009 Billpay GmbH
+	* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+	*/
+-->
+<config>
+	<sections>
+		<payment>
+			<groups>
+				<billpay_rec translate="label" module="billpay">
+					<label>BILLPAY Kauf auf Rechnung</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Aktiviert</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<order_status translate="label">
+							<label>Neuer Bestellstatus</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>
+						<sort_order translate="label">
+							<label>Sortierreihenfolge</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<title translate="label">
+							<label>Titel</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<allowspecific translate="label">
+							<label>Zahlung aus zugelassenen Ländern</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>6</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Zahlung aus bestimmten Ländern</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>7</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<min_order_total>
+							<label>Mindestbestellwert</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<allowed_customer_group translate="label">
+							<label>Erlaubte Kundengruppen</label>
+							<comment>
+								<![CDATA[Hinweis! Die B2B-Option muss zuerst bei Billpay freigeschaltet werden. Aktivieren Sie die B2B-Option nur, wenn Sie die Freigabe für die Aktivierung von Billpay erhalten haben!]]>
+							</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>billpay/source_allowedCustomerGroup</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowed_customer_group>
+						<heading_b2c translate="label">
+                            <label>Gebühren (B2C)</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading_b2c>
+						<charge_fee_steps_enabled translate="label">
+							<label>Gebühren aktivieren</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_steps_enabled>
+						<charge_fee_steps_tax_class translate="label">
+							<label>Steuerklasse für Gebühren</label>
+							<frontend_type>select</frontend_type>
+							<source_model>billpay/source_productTaxClass</source_model>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_steps_tax_class>
+						<charge_fee_steps translate="label">
+							<label>Gebührenstaffel</label>
+							<comment><![CDATA[Beispiel:<br /> <strong>DE:100.00=0.50;500.00=1.00;<br />CH:100.00=0.60;500.00=1.10;</strong><br /><br />Bedeutung:<br />Bis 100€ Warenkorbwert 0.50€ Gebühr, bis 500€ Warenkorbwert 1€ Gebühr (für Kunden aus Deutschland)<br />Bis 100€ Warenkorbwert 0.60€ Gebühr, bis 500€ Warenkorbwert 1,10€ Gebühr (für Kunden aus der Schweiz)]]></comment>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_steps>
+						<heading_b2b translate="label">
+                            <label>Gebühren (B2B)</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading_b2b>
+						<charge_fee_b2b_steps_enabled translate="label">
+							<label>Gebühren aktivieren</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_b2b_steps_enabled>
+						<charge_fee_b2b_steps_tax_class translate="label">
+							<label>Steuerklasse für Gebühren</label>
+							<frontend_type>select</frontend_type>
+							<source_model>billpay/source_productTaxClass</source_model>
+							<sort_order>17</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_b2b_steps_tax_class>
+						<charge_fee_b2b_steps translate="label">
+							<label>Gebührenstaffel</label>
+							<comment><![CDATA[Beispiel:<br /> <strong>DE:100.00=0.50;500.00=1.00;<br />CH:100.00=0.60;500.00=1.10;</strong><br /><br />Bedeutung:<br />Bis 100€ Warenkorbwert 0.50€ Gebühr, bis 500€ Warenkorbwert 1€ Gebühr (für Kunden aus Deutschland)<br />Bis 100€ Warenkorbwert 0.60€ Gebühr, bis 500€ Warenkorbwert 1,10€ Gebühr (für Kunden aus der Schweiz)]]></comment>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>18</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_b2b_steps>
+					</fields>
+				</billpay_rec>
+				<billpay_elv translate="label" module="billpay">
+					<label>BILLPAY Lastschrift</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Aktiviert</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<order_status translate="label">
+							<label>Neuer Bestellstatus</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>
+						<sort_order translate="label">
+							<label>Sortierreihenfolge</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<title translate="label">
+							<label>Titel</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<allowspecific translate="label">
+							<label>Zahlung aus zugelassenen Ländern</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>6</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Zahlung aus bestimmten Ländern</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>7</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<min_order_total>
+							<label>Mindestbestellwert</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<charge_fee_steps_enabled translate="label">
+							<label>Gebühren aktivieren</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_steps_enabled>
+						<charge_fee_steps_tax_class translate="label">
+							<label>Steuerklasse für Gebühren</label>
+							<frontend_type>select</frontend_type>
+							<source_model>billpay/source_productTaxClass</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_steps_tax_class>
+						<charge_fee_steps translate="label">
+							<label>Gebührenstaffel</label>
+							<comment><![CDATA[Beispiel:<br /> <strong>100.00=0.50;500.00=1.00;1000.00=2.00</strong><br /><br />Bedeutung:<br />Bis 100€ Warenkorbwert 0.50€ Gebühr, bis 500€ Warenkorbwert 1€ Gebühr, bis 1000€ Warenkorbwert 2€ Gebühr]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</charge_fee_steps>
+					</fields>
+				</billpay_elv>
+				<billpay_rat translate="label" module="billpay">
+					<label>BILLPAY Ratenkauf</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Aktiviert</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<order_status translate="label">
+							<label>Neuer Bestellstatus</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>
+						<sort_order translate="label">
+							<label>Sortierreihenfolge</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<title translate="label">
+							<label>Titel</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<allowspecific translate="label">
+							<label>Zahlung aus zugelassenen Ländern</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>6</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Zahlung aus bestimmten Ländern</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>7</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<min_order_total>
+							<label>Mindestbestellwert</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<transaction_fee_tax_class translate="label">
+							<label>Steuerklasse für die oblig. Bearbeitungsgebühr</label>
+							<frontend_type>select</frontend_type>
+							<source_model>billpay/source_productTaxClass</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</transaction_fee_tax_class>
+					</fields>
+				</billpay_rat>
+			</groups>
+		</payment>
+		<billpaysettings translate="label" module="billpay">
+			<label>Billpay Einstellungen</label>
+			<tab>sales</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>1000</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<account translate="label">
+					<label>Zugangsdaten</label>
+					<comment><![CDATA[<a href="http://www.billpay.de/kontakt" target="_blank">Jetzt einen Händler-Account anfordern</a>]]></comment>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+                       <merchant_id>
+							<label>Händler ID</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</merchant_id>
+						<portal_id>
+							<label>Portal ID</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</portal_id>
+						<security_key>
+							<label>Security Key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</security_key>
+						<transaction_mode>
+							<label>Transaction Mode</label>
+							<frontend_type>select</frontend_type>
+							<source_model>billpay/source_transactionMode</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</transaction_mode>
+						<api_url_base>
+							<label>API url base (Testmodus)</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</api_url_base>
+						<api_url_base_live>
+							<label>API url base (Livemodus)</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</api_url_base_live>
+						<prescore_option>
+							<label>Zahlartensteuerung aktivieren</label>
+							<comment>Achtung! Diesen Modus nur auf "Ja" stellen, wenn Sie mit Billpay die aktive Zahlartensteuerung vertraglich vereinbart haben.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</prescore_option>
+                    </fields>
+                </account>
+                <fee translate="label">
+                	<label>Gebühren</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<fee_contain_tax>
+							<label>Eingabe enthält Steuern</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</fee_contain_tax>
+						<display_incl_tax_frontend>
+							<label>Bruttowerte anzeigen (FRONTEND)</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</display_incl_tax_frontend>
+						<display_incl_tax_admin>
+							<label>Bruttowerte anzeigen (ADMIN)</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</display_incl_tax_admin>
+					</fields>
+                </fee>
+				<settings translate="label">
+					<label>Allgemeine Einstellungen</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<temp_path>
+							<label>Temporärer Pfad</label>
+							<frontend_type>text</frontend_type>
+							<comment><![CDATA[<span style="color:red; font-weight:bold">Wichtig!</span> Bitte achten Sie darauf, dass für dieses Verzeichnis Schreibrechte vorhanden sind!]]></comment>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</temp_path>
+						<send_invoice_mail_copy>
+							<label>Kopie der Rechnung an Billpay senden</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</send_invoice_mail_copy>
+						<paidstatus_by_method translate="label">
+							<label>Bestellstatuszuordnung</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>2</sort_order>
+							<source_model>billpay/source_statusPaidByMethod</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</paidstatus_by_method>
+						<!-- <onestepcheckout_enabled translate="label">
+							<label>OneStepCheckout aktivieren</label>
+							<comment>Achtung! Diese Option darf nur aktiviert werden, wenn der OneStepCheckout installiert ist und verwendet wird (siehe http://www.onestepcheckout.com)</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</onestepcheckout_enabled>-->
+						<checkout_type>
+							<label>Checkout Typ</label>
+							<comment><![CDATA[OneStepCheckout: http://www.onestepcheckout.com, LightCheckout: http://www.gomage.com/extensions/lightcheckout.html]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>billpay/source_checkoutType</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</checkout_type>
+						<activate_ajax_form>
+							<label>Ajaxformular aktivieren</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</activate_ajax_form>
+						<use_trusted_shops_buyer_protection>
+							<label>Trusted Shops Käuferschutzunterstützung aktivieren</label>
+							<comment>Achtung! Diese Option darf nur aktiviert werden, wenn der Trusted Shops Käuferschutz installiert ist und verwendet werden soll</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</use_trusted_shops_buyer_protection>
+						<activate_auto_hide_payment>
+							<label>Zahlart bei Ablehnung zuklappen</label>
+							<comment>Achtung! Diese Option sollte nur bei nicht-modifiziertem Onpage-Checkout verwendet werden</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</activate_auto_hide_payment>
+                        <activate_sepa_handling>
+                            <label>SEPA Zahlungsverkehr aktivieren</label>
+                            <comment>Achtung! Diese Option muss am 1.2.2014 auf "Yes" gestellt werden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </activate_sepa_handling>
+                    </fields>
+                </settings>
+            </groups>
+        </billpaysettings>
+        <sales>
+            <groups>
+                <totals_sort>
+                    <fields>
+                        <billpay translate="label">
+                            <label>Billpay Gebühr</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </billpay>
+                    </fields>
+                </totals_sort>
+            </groups>
+        </sales>
+	</sections>
+</config>

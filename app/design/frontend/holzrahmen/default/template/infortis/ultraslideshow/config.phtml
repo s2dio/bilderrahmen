@@ -1,0 +1,39 @@
+<?php
+/**
+ * @var $this Infortis_UltraSlideshow_Block_Config
+ */
+?>
+
+	<?php $cfg = $this->getSlideshowCfg(); ?>
+    <script type="text/javascript">
+    //<![CDATA[
+		
+		//jQuery(function($) {
+		jQuery(window).load(function(){
+			jQuery('.the-slideshow').flexslider({
+				namespace:			"",
+				animation:			<?php echo $cfg['fx']; ?>,
+				easing:				<?php echo $cfg['easing']; ?>,
+				animationLoop:		<?php echo $cfg['loop']; ?>,
+				smoothHeight: true,
+								controlNav: false,
+                        
+			<?php if ($cfg['timeout']): ?>
+				slideshowSpeed:		<?php echo $cfg['timeout']; ?>,
+			<?php else: ?>
+				slideshow:			false,
+			<?php endif; ?>
+			
+			<?php if ($cfg['speed']): ?>
+				animationSpeed:		<?php echo $cfg['speed']; ?>,
+			<?php endif; ?>
+				
+				pauseOnHover:		<?php echo $cfg['pause']; ?>
+			});
+console.log(jQuery('.the-slideshow .slide:nth-child(3) img').attr('src'));
+                         jQuery('.the-slideshow .slide:nth-child(2) button.button').attr('onClick',"setLocation('<?php echo $cfg['link1']?>')");
+                       jQuery('.the-slideshow .slide:nth-child(3) button.button').attr('onClick',"setLocation('<?php echo $cfg['link2']?>')");
+                       jQuery('.the-slideshow .slide:first-child button.button').attr('onClick',"setLocation('<?php echo $cfg['link3']?>')");
+		});
+    //]]>
+    </script>

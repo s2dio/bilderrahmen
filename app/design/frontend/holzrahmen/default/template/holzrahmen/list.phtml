@@ -1,0 +1,88 @@
+<?php
+
+    $_productCollection=$this->getProductCollection();
+	$_collectionSize = $_productCollection->count();
+?>
+
+<?php if ($_collectionSize && $tmpHtml = $this->getChildHtml('block_category_above_collection')): ?>
+	<div class="block_category_above_collection std"><?php echo $tmpHtml; ?></div>
+<?php endif; ?>
+
+<?php if($_collectionSize): ?>
+
+
+<?php
+	$_helper = $this->helper('catalog/output');
+	$theme = $this->helper('ultimo');
+	$labelsHelper = $this->helper('ultimo/labels');
+	$templateHelper = $this->helper('ultimo/template');
+	
+	//Default image size
+	$imgWidth = 295;
+	$imgHeight = 295;
+	
+	//Aspect ratio settings
+	if ($theme->getCfg('category/aspect_ratio'))
+		$imgHeight = 0; //Height will be computed automatically (based on width) to keep the aspect ratio
+        $gc = $theme->getCfgGroup('category_grid');
+?>
+<div class="product-home">
+    <div class="title"><?php echo $this->getTitle();?></div>
+    <ul class="products-grid category-products-grid itemgrid itemgrid-5cols">
+    	<?php foreach ($_productCollection as $_product): ?>
+            <li class="item">
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
+                
+                	<img src="<?php echo $theme->getImgUrl($this, $_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                
+                	<?php //Product labels
+						echo $labelsHelper->getLabels($_product); ?>
+                
+                </a>
+                
+                <?php //Add-to links
+
+				?>
+                
+                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                <div class="actions">
+				<?php if($_product->getRatingSummary()): ?>
+                	<?php if ($gc['display_rating'] == 1): //Display on hover ?>
+                    	<div class="display-onhover"><?php echo $this->getReviewsSummaryHtml($_product, 'short') ?></div>
+                    <?php elseif ($gc['display_rating'] == 2): //Always display ?>
+						<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                
+                <?php echo $this->getPriceHtml($_product, true) ?>
+                
+                
+                	<?php if (!$gc['display_addtocart'] != 0): ?>
+                            <p class="availability out-of-stock<?php echo $btnClass; ?>"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?>
+                      
+                   
+                    <?php //Add-to links
+						if ($gc['display_addtolinks'] != 0 && !$gc['addtolinks_simple'])
+						{
+							if ($gc['display_addtolinks'] == 1) //Display on hover
+								echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-textlink display-onhover');
+							else //Always display
+								echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-textlink');
+						}
+					?>
+                            <button class="button toProduct">
+                                <span>
+                                    <span><?php echo $this->__('Jetzt ansehen')?></span>
+                                </span>
+                            </button>
+                            <div class="tax">
+                                <?php echo $this->getLayout()->createBlock('holzrahmen/product_list')->setProduct($_product)->getTaxDetailsHtml()?>
+                            </div>
+                </div>
+            </li>
+        <?php endforeach; ?>    
+	</ul>
+</div>
+        <?php endif; ?>
+

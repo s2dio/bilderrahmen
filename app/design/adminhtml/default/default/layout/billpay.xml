@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+	/**
+	* Magento
+	*
+	* NOTICE OF LICENSE
+	*
+	* This source file is subject to the Open Software License (OSL 3.0)
+	* that is bundled with this package in the file LICENSE.txt.
+	* It is also available through the world-wide-web at this URL:
+	* http://opensource.org/licenses/osl-3.0.php
+	* If you did not receive a copy of the license and are unable to
+	* obtain it through the world-wide-web, please send an email
+	* to license@magentocommerce.com so we can send you a copy immediately.
+	*
+	* @package    Billpay
+	* @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+	* @copyright  Copyright (c) 2009 Billpay GmbH
+	* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+	*/
+-->
+<layout version="0.1.0">
+    <!-- Mage 1.4 -->
+    <adminhtml_sales_order_view>
+        <reference name="order_totals">
+            <block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+                <action method="setBeforeCondition"><value>grand_total</value></action>
+                <action method="setBillpaySourceType"><value>1</value></action>
+            </block>
+            <block type="billpay/adminhtml_sales_order_totals_surcharge" name="billpay_surcharge" template="billpay/order/totals/surcharge.phtml">
+            	<action method="setAfterCondition"><value>due</value></action>
+           		<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+            	<action method="setBeforeCondition"><value>grand_total, billpay_activation</value></action>
+                <action method="setBillpaySourceType"><value>1</value></action>
+            </block>
+            <block type="billpay/adminhtml_sales_order_invoice_activation" name="billpay_activation" template="billpay/order/invoice/activation.phtml" >
+  				<action method="setAfterCondition"><value>grand_total, billpay_surcharge</value></action>
+        		<action method="setDisplayArea"><value>footer</value></action>
+        	</block>
+            <block type="billpay/adminhtml_sales_order_totals_surcharge" name="billpay_surcharge" template="billpay/order/totals/surcharge.phtml">
+            	<action method="setAfterCondition"><value>grand_total</value></action>
+            	<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+            	<action method="setBeforeCondition"><value>grand_total, billpay_surcharge</value></action>
+                <action method="setBillpaySourceType"><value>1</value></action>
+            </block>
+            <block type="billpay/adminhtml_sales_order_totals_surcharge" name="billpay_surcharge" template="billpay/order/totals/surcharge.phtml">
+            	<action method="setAfterCondition"><value>grand_total</value></action>
+            	<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="invoice_totals">
+            <block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+            	<action method="setBeforeCondition"><value>grand_total, billpay_activation</value></action>
+                <action method="setBillpaySourceType"><value>1</value></action>
+            </block>
+            <block type="billpay/adminhtml_sales_order_invoice_activation" name="billpay_activation" template="billpay/order/invoice/activation.phtml" >
+  				<action method="setAfterCondition"><value>grand_total, billpay_surcharge</value></action>
+        		<action method="setDisplayArea"><value>footer</value></action>
+        	</block>
+            <block type="billpay/adminhtml_sales_order_totals_surcharge" name="billpay_surcharge" template="billpay/order/totals/surcharge.phtml">
+            	<action method="setAfterCondition"><value>grand_total</value></action>
+            	<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="creditmemo_totals">
+            <block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item.phtml">
+            	<action method="setBeforeCondition"><value>grand_total</value></action>
+                <action method="setBillpaySourceType"><value>2</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+	<adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="creditmemo_totals">
+            <block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item.phtml">
+            	<action method="setBeforeCondition"><value>grand_total</value></action>
+                <action method="setBillpaySourceType"><value>2</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+   	<adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_totals">
+            <block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+            	<action method="setBeforeCondition"><value>grand_total</value></action>
+                <action method="setBillpaySourceType"><value>3</value></action>
+            </block>
+            <block type="billpay/adminhtml_sales_order_totals_surcharge" name="billpay_surcharge" template="billpay/order/totals/surcharge.phtml">
+            	<action method="setAfterCondition"><value>grand_total</value></action>
+            	<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+</layout>

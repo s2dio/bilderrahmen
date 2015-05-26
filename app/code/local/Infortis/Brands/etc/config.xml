@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category	Infortis
+ * @package		Infortis_Brands
+ * @author		Infortis
+ * @copyright	Copyright 2012 Infortis
+ * @version:    1.0.0
+ */
+-->
+<config>
+    <modules>
+        <Infortis_Brands>
+            <version>1.0.0</version>
+        </Infortis_Brands>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <brands>
+                    <file>infortis_brands.xml</file>
+                </brands>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <models>
+            <brands>
+                <class>Infortis_Brands_Model</class>
+            </brands>
+        </models>
+        <blocks>
+            <brands>
+                <class>Infortis_Brands_Block</class>
+            </brands>
+        </blocks>
+        <helpers>
+            <brands>
+                <class>Infortis_Brands_Helper</class>
+            </brands>
+        </helpers>
+    </global>
+	<default>
+		<brands>
+			<general>
+				<product_view_enabled>0</product_view_enabled>
+				<attr_id>manufacturer</attr_id>
+				<image_extension>png</image_extension>
+				<link_search_enabled>1</link_search_enabled>
+				<page_base_path></page_base_path>
+				<append_category_suffix>0</append_category_suffix>
+			</general>
+		</brands>
+	</default>
+</config>

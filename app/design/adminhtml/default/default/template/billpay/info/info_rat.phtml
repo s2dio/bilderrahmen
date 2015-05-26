@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<!--<?php echo $this->__("billpay_rat");?>--> 
+<!-- <div style="margin-top:7px">
+	<img src="https://www.billpay.de/sites/default/files/LogoMid1.png" title="Billpay" alt="Billpay logo">
+</div>-->
+<?php if($this->hasOrder()):?>
+	<?php if(count($this->getDues()) == 0):?>
+		<?php echo $this->__("billpay_order_cancelled")?>
+	<?php else:?>
+		<?php echo $this->__("billpay_rat_info_text1")?>
+		<?php echo $this->__("billpay_rat_info_text2")?>
+		<?php echo $this->__("billpay_rat_info_text3")?> *.
+		<br /><br />
+		<?php foreach ($this->getDues() as $d):?>
+			<?php echo $d['pos']?>. <?php echo $this->__("billpay_rat_one_rate")?>:&nbsp;
+			<?php echo $d['value']?>&nbsp;&nbsp;
+			<?php if (!empty($d['date'])):?>
+				(<?php echo $this->__("billpay_rat_due_text")?> <?php echo $d['date']?>)
+			<?php endif; ?>
+			<br />
+		<?php endforeach;?>
+		<br />
+		<div style="font-weight:bold; font-size:16px">
+			<?php echo $this->__("billpay_rat_total_price_calculation")?>
+		</div>
+		<table style="width:320px; border-collapse:collapse; margin-top:5px">
+			<tbody>
+				<tr>
+					<td style="width:250px"><?php echo $this->__("billpay_cart_value")?></td>
+					<td style="width:15px">=</td>
+					<td style="width:50px; text-align: right"><?php echo $this->getCalculationBaseAmount() ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->__('billpay_rate_calculation_interest_add')?></td>
+					<td>+</td>
+					<td style="width:50px; text-align: right"></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->getFormula()?></td>
+					<td>=</td>
+					<td style="width:50px; text-align: right"><?php echo $this->getSurcharge() ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->__("billpay_rate_transaction_fee")?></td>
+					<td>+</td>
+					<td style="width:50px; text-align: right"><?php echo $this->getTransactionFee() ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->__("billpay_cart_specific_costs")?></td>
+					<td>+</td>
+					<td style="width:50px; text-align: right"><?php echo $this->getCalculationResidualAmount() ?></td>
+				</tr>
+				<tr style="border-top: 1px solid silver">
+					<td><strong><?php echo $this->__('billpay_rate_calculation_partial_price')?></strong></td>
+					<td><strong>=</strong></td>
+					<td style="width:50px; text-align: right"><strong><?php echo $this->getTotalPaymentAmount() ?></strong></td>
+				</tr>
+				<tr>
+					<td><strong><?php echo $this->__('billpay_rate_calculation_anual_rate')?></strong></td>
+					<td><strong>=</strong></td>
+					<td style="width:50px; text-align: right"><strong><?php echo $this->getAnualPercentageRate() ?>%</strong></td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<div style="font-size:8px; line-height: 1.5">
+			* <?php echo $this->__('billpay_rat_info_sample_text1')?>
+			<?php echo $this->__('billpay_rat_info_sample_text2')?>
+			<?php echo $this->__('billpay_rat_info_sample_text3')?>
+			<?php echo $this->__('billpay_rat_info_sample_text4')?>
+			<?php echo $this->__('billpay_rat_info_sample_text5')?>
+		</div>
+	<?php endif;?>
+<?php endif;?>

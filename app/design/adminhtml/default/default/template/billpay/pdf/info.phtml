@@ -1,0 +1,44 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<?php echo $this->htmlEscape($this->__('billpay_form_info_pdf1')) ?>
+{{pdf_row_separator}}
+<?php echo $this->htmlEscape($this->__('billpay_form_info_pdf2')) ?>
+<?php echo $this->getInfo()->getOrder()->getBillpayInvoiceReference() ?>
+<?php echo $this->htmlEscape($this->__('billpay_form_info_pdf3')) ?>
+{{pdf_row_separator}}
+<?php echo $this->htmlEscape($this->__('billpay_form_info_pdf4')) ?>
+<?php echo $this->formatDate($this->getInfo()->getOrder()->getBillpayInvoiceDuedate()) ?>
+<?php echo $this->htmlEscape($this->__('billpay_form_info_pdf5')) ?>
+{{pdf_row_separator}}
+---
+{{pdf_row_separator}}
+<?php echo $this->__('billpay_account_holder') ?>:  <?php echo $this->getInfo()->getOrder()->getBillpayAccountHolder() ?>
+    {{pdf_row_separator}}
+<?php echo $this->__('billpay_bank_name') ?>:  <?php echo $this->getInfo()->getOrder()->getBillpayBankName() ?>
+	{{pdf_row_separator}}
+<?php echo $this->__('billpay_bank_code') ?>:  <?php echo $this->getInfo()->getOrder()->getBillpayBankCode() ?>
+    {{pdf_row_separator}}
+<?php echo $this->__('billpay_account_number') ?>:  <?php echo $this->getInfo()->getOrder()->getBillpayAccountNumber() ?>
+    {{pdf_row_separator}}
+<?php echo $this->__('billpay_invoice_reference') ?>:  <?php echo $this->getInfo()->getOrder()->getBillpayInvoiceReference() ?>
+    {{pdf_row_separator}}
+<?php echo $this->__('billpay_invoice_duedate') ?>:  <?php echo $this->formatDate($this->getInfo()->getOrder()->getBillpayInvoiceDuedate()) ?>

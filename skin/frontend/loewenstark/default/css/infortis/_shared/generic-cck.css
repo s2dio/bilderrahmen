@@ -1,0 +1,89 @@
+/**
+ * Generic interface elements
+ */
+
+
+
+/* Text box with icon
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+.feature { margin:10px 0; }
+.feature:after { display:block; content:"."; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; }
+.feature.first { margin-top:0; }
+.feature.last { margin-bottom:0; }
+
+.feature .heading { font-size:1.3333em; margin-bottom:0.3125em; }
+
+/* Icons
+-------------------------------------------------------------- */
+.feature .icon { float:left; margin:0 15px 10px 0; }
+.feature div.icon {
+	background-color:#999;
+	background-position:0 0;
+	background-repeat:no-repeat;
+	border-radius:50%;
+}
+.feature:hover div.icon { background-color:#333; }
+
+	/* Predefined background image icons */
+	/*.feature div.icon.phone		{ background-image:url(../../../images/infortis/_shared/cck/icons/phone.png); }
+	.feature div.icon.mobile	{ background-image:url(../../../images/infortis/_shared/cck/icons/mobile.png); }
+	.feature div.icon.email		{ background-image:url(../../../images/infortis/_shared/cck/icons/email.png); }
+	.feature div.icon.skype		{ background-image:url(../../../images/infortis/_shared/cck/icons/skype.png); }*/
+
+	/* Small icons
+	-------------------------------------------------------------- */
+	.feature.small .icon { width:18px; height:18px; margin:0 10px 10px 0; }
+	.feature.small div.icon {
+		background-position:0 0;
+		background-repeat:no-repeat;
+		border-radius:0;
+	}
+	
+		/* Small icons: predefined background image icons */
+		.feature.small div.icon.list1 { background-image:url(../../../images/infortis/_shared/cck/list/list1.png); }
+		.feature.small div.icon.list2 { background-image:url(../../../images/infortis/_shared/cck/list/list2.png); }
+
+	/* Additional classes
+	-------------------------------------------------------------- */
+	/* Icon without background color */
+	.feature .icon.no-bg-color { background-color:transparent !important; }
+
+/* Indent
+-------------------------------------------------------------- */
+.feature.indent { padding-left:45px; }
+.feature.indent .icon { margin-left:-45px; margin-bottom:0; }
+
+	/* Small */
+	.feature.small.indent { padding-left:28px; }
+	.feature.small.indent .icon { margin-left:-28px; }
+
+/* With top/bottom line
+-------------------------------------------------------------- */
+.feature.top-border { border-top:1px solid #f5f5f5; padding-top:10px; }
+.feature.bottom-border { border-bottom:1px solid #f5f5f5; padding-bottom:10px; }
+
+
+/* With top/bottom line
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.feature-wrapper.top-border {
+	border-top:1px solid #f5f5f5;
+	margin-top:20px;
+	padding-top:20px;
+}
+.feature-wrapper.bottom-border {
+	border-bottom:1px solid #f5f5f5;
+	margin-bottom:20px;
+	padding-bottom:20px;
+}
+
+
+/* Misc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+a.go {
+	background:url(../../../images/infortis/_shared/cck/bullet.png) 100% 4px no-repeat;
+	padding-right:11px;
+}

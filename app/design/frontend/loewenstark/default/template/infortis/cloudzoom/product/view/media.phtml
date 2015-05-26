@@ -1,0 +1,196 @@
+<?php
+/**
+ * @var $this		Mage_Catalog_Block_Product_View_Media
+ * @var $_product	Mage_Catalog_Model_Product
+ */
+?>
+<?php
+	$_product = $this->getProduct();
+	$_helper = $this->helper('catalog/output');
+	$zoomHelper = $this->helper('infortis_cloudzoom');
+
+	//Get image sizes. If height is not specified, aspect ratio will be kept.
+    $imgWidth		= intval($zoomHelper->getCfg('images/main_width'));
+	$imgHeight		= intval($zoomHelper->getCfg('images/main_height'));
+	$thumbImgWidth	= intval($zoomHelper->getCfg('images/thumbnail_width'));
+	$thumbImgHeight	= intval($zoomHelper->getCfg('images/thumbnail_height'));
+	$bigImageWidth  = intval($zoomHelper->getCfg('general/big_image_width'));
+	$bigImageHeight = intval($zoomHelper->getCfg('general/big_image_height'));
+	
+	//If main image width is not specified, use default values
+    if ($imgWidth <= 0) {
+		$imgWidth = 364;
+		$imgHeight = 364;
+	}
+	
+	//If thumbnail image width is not specified, use default values
+    if ($thumbImgWidth <= 0) {
+		$thumbImgWidth = 65;
+		$thumbImgHeight = 65;
+	}
+	
+	//If main image width is not specified, use default values
+    if ($bigImageWidth <= 0) {
+		$bigImageWidth = 650;
+		$bigImageHeight= 650;
+	}
+
+	//Aspect ratio settings
+	if ($zoomHelper->getCfg('images/aspect_ratio'))
+	{
+		//Height will be computed automatically (based on width) to keep the aspect ratio
+		$imgHeight = 0;
+		$thumbImgHeight = 0;
+		$bigImageHeight= 0;
+	}
+?>
+
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+
+	<?php if($zoomHelper->isCloudZoomEnabled()): ?>
+    
+    	<?php
+			$zoomClasses = '';
+			if ($zoomHelper->useCloudZoom() == false)
+				$zoomClasses .= ' simple-mode';
+			else
+			{
+				if ($zoomHelper->isPositionInside())
+					$zoomClasses .= ' zoom-inside';
+			}
+		?>
+        <p class="product-image<?php echo $zoomClasses; ?>">
+
+                <a href="<?php echo $zoomHelper->createImgUrl($this, $_product, $bigImageWidth, $bigImageHeight); ?>" class="cloud-zoom" id="zoom1" rel="<?php echo $zoomHelper->getCloudZoomOptions(); ?>">
+                    <img src="<?php echo $zoomHelper->createImgUrl($this, $_product, $imgWidth, $imgHeight); ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel());?>" title="<?php echo $this->htmlEscape($this->getImageLabel());?>" />
+                </a>
+            
+            <?php //TODO: removed code:  $zoomHelper->useCloudZoom() && ?>
+            <?php if($zoomHelper->useLightbox()): ?>
+				<?php
+					$zoomBtnClasses = '';
+					if ($zoomHelper->useCloudZoom() == false)
+						$zoomBtnClasses .= ' zoom-btn-large';
+					else
+						$zoomBtnClasses .= ' zoom-btn-small';
+				?>
+            
+                <a id="zoom-btn" class="lightbox-group<?php echo $zoomBtnClasses; ?>" href="<?php echo $zoomHelper->createImgUrl($this, $_product, $bigImageWidth, $bigImageHeight); ?>" title="<?php echo $this->__('Zoom'); ?>"><?php echo $this->__('Zoom'); ?></a>
+            <?php endif; ?>
+        </p>
+    
+    <?php else: //Show images in Magento default style ?>
+    
+        <p class="product-image">
+        	<img src="<?php echo $zoomHelper->createImgUrl($this, $_product, $imgWidth, $imgHeight); ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel());?>" title="<?php echo $this->htmlEscape($this->getImageLabel());?>" />
+		</p>
+    
+    <?php endif; ?>
+    
+<?php else: //No image ?>
+
+    <p class="product-image">
+        <?php
+            $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize($imgWidth).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+            echo $_helper->productAttribute($_product, $_img, 'image');
+        ?>
+    </p>
+
+<?php endif; ?>
+
+
+
+<?php
+	//Modify thumbnail slider depending on number of thumbnails
+	$imageCount = count($this->getGalleryImages());
+	
+	$sliderClasses = '';
+	if($imageCount > 0)
+	{
+		if($imageCount <= 5)
+			$sliderClasses .= " count-$imageCount";
+		else
+			$sliderClasses .= " count-multi";
+	}
+
+	if($imageCount < 4)
+		$sliderClasses .= ' hide-direction-nav';
+?>
+
+<?php if ($imageCount > 0): ?>
+<div class="more-views itemslider itemslider-thumbnails<?php if($sliderClasses) echo $sliderClasses; ?> gen-slider-arrows3">
+    <ul class="thumbnails slides">
+    
+    <?php //Display thumbnails with cloud zoom or lightbox ?>
+    <?php //TODO:old code: || $zoomHelper->useLightbox() ?>
+    <?php //if($zoomHelper->useCloudZoom() || $zoomHelper->useLightbox()): ?>
+	<?php if (true): ?>
+    
+		<?php foreach ($this->getGalleryImages() as $_image): ?>
+            <?php //Skip, if no image
+                if ($_image->getFile() == NULL)
+                    continue; ?>
+            <li>
+                <a href="<?php echo $zoomHelper->createImgUrl($this, $_product, $bigImageWidth, $bigImageHeight, 'image', $_image->getFile()); ?>" class="cloud-zoom-gallery lightbox-group" title="<?php echo $this->htmlEscape($_image->getLabel()); ?>"
+                	rel="useZoom:'zoom1', smallImage: '<?php echo $zoomHelper->createImgUrl($this, $_product, $imgWidth, $imgHeight, 'image', $_image->getFile()); ?>'">
+                    
+                    <img src="<?php echo $zoomHelper->createImgUrl($this, $_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()); ?>"/>
+                    
+                </a>
+            </li>
+        <?php endforeach; ?>
+    
+    <?php else: //Display thumbnails without cloud zoom and lightbox ?>
+    
+		<?php foreach ($this->getGalleryImages() as $_image): ?>
+            <?php //Skip, if no image
+                if ($_image->getFile() == NULL)
+                    continue; ?>
+            <li>
+                <a href="#" onclick="popWin('<?php echo $this->getGalleryUrl($_image) ?>', 'gallery', 'width=300,height=300,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>">
+                    <img src="<?php echo $zoomHelper->createImgUrl($this, $_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>"/>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    
+    <?php endif; ?>
+    </ul>
+</div> <!-- end: more-views -->
+<?php endif; ?>
+
+
+
+
+<?php echo $this->getChildHtml('lightboxConfig'); ?>
+
+<script type="text/javascript">
+	jQuery(function($) {
+	var t; $(window).resize(function() { clearTimeout(t); t = setTimeout(function() { $(".more-views .cloud-zoom-gallery").first().click(); }, 500); });
+	});
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(function($) {
+		$('.itemslider-thumbnails').flexslider({
+			namespace: "",
+			animation: "slide",
+			easing: "easeInQuart",
+			animationSpeed: 300,
+			animationLoop: false,
+			slideshow: false,
+			
+			pauseOnHover: true,
+			controlNav: false,
+			
+			<?php /*?>
+			//itemWidth: 75,
+			//itemMargin: 4,
+			<?php */?>
+			
+			itemWidth: 79,
+			move: 1
+		});
+	});
+//]]>
+</script>

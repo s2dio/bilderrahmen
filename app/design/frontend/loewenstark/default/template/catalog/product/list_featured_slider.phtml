@@ -1,0 +1,133 @@
+<?php
+/**
+ * - Main "foreach" loop is based on: \BASE\DEFAULT\template\catalog\product\list.phtml
+ *   with some small changes:
+ *		- h2 replaced with h3
+ */
+?>
+<?php
+	$_productCollection = $this->getLoadedProductCollection();
+?>
+<?php if ($_productCollection && ($_collectionSize = $_productCollection->count())): ?>
+<?php
+	$_helper = $this->helper('catalog/output');
+	$theme = $this->helper('ultimo');
+	$labelsHelper = $this->helper('ultimo/labels');
+	$templateHelper = $this->helper('ultimo/template');
+	
+	//Default image size
+	$imgWidth = 168;
+	$imgHeight = 168;
+	//$_columnCount = $this->getColumnCount();
+	
+	//Aspect ratio settings
+	if ($theme->getCfg('category/aspect_ratio'))
+		$imgHeight = 0; //Height will be computed automatically (based on width) to keep the aspect ratio
+
+	//Modify slider depending on number of slides
+	$sliderClasses = '';
+	if($_collectionSize > 0)
+	{
+		if($_collectionSize <= 5)
+			$sliderClasses .= " count-$_collectionSize";
+		else
+			$sliderClasses .= " count-multi";
+	}
+?>
+
+<h3 class="section-title"><?php echo $this->getBlockName(); ?></h3>
+<div class="featured-itemslider-wrapper itemslider-wrapper">
+
+	<div class="nav-wrapper gen-slider-arrows1 gen-slider-arrows1-pos-top-right"></div>
+    
+    <div class="itemslider itemslider-horizontal itemslider-q<?php if($sliderClasses) echo $sliderClasses; ?> adjusted">
+        <ul class="slides products-grid">
+            <?php foreach ($_productCollection as $_product): ?>
+                <li class="item">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
+                    
+                        <img src="<?php echo $theme->getImgUrl($this, $_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                        
+                        <?php //Product labels
+							echo $labelsHelper->getLabels($_product); ?>
+                    
+                    </a>
+
+					<?php //Add-to links
+					if ($theme->getCfg('category_grid/display_addtolinks') != 0 && $theme->getCfg('category_grid/addtolinks_simple'))
+					{
+						if ($theme->getCfg('category_grid/display_addtolinks') == 1) //Display on hover
+							echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-onimage visible-onhover');
+						else //Always display
+							echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-onimage');
+					}
+					?>
+                    
+                    <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h3>
+                    <?php if($_product->getRatingSummary()): ?>
+                        <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                    <?php endif; ?>
+                    <div class="product_border">
+                        <?php  echo $this->getPriceHtml($_product, true) ?>
+                        <div class="actions">
+                            <?php if($_product->isSaleable()): ?>
+
+                                    <?php if ($this->getHideButton() == false): ?>
+                                <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                                <?php endif; ?>
+
+                            <?php else: ?>
+                                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                            <?php endif; ?>
+
+                            <?php //Add-to links
+                                                    if ($theme->getCfg('category_grid/display_addtolinks') != 0 && !$theme->getCfg('category_grid/addtolinks_simple'))
+                                                    {
+                                                            if ($theme->getCfg('category_grid/display_addtolinks') == 1) //Display on hover
+                                                                    echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-textlink display-onhover');
+                                                            else //Always display
+                                                                    echo $templateHelper->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-textlink');
+                                                    }
+                                                    ?>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul> <!-- end: slides -->
+    </div> <!-- end: itemslider -->
+
+</div> <!-- end: featured-itemslider-wrapper -->
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(function($) {
+		$('.featured-itemslider-wrapper .itemslider').flexslider({
+			namespace: "",
+			animation: "slide",
+			easing: "easeInQuart",
+			
+			<?php if($time = intval($theme->getCfg('product_slider/timeout'))): ?>
+				slideshowSpeed: <?php echo $time; ?>,
+				animationLoop: true,
+			<?php else: ?>
+				slideshow: false,
+				animationLoop: false,
+			<?php endif; ?>
+			
+			<?php if($speed = intval($theme->getCfg('product_slider/speed'))): ?>
+				animationSpeed: <?php echo $speed; ?>,
+			<?php endif; ?>
+			
+			pauseOnHover: true,
+			controlNav: false,
+			
+			controlsContainer: ".featured-itemslider-wrapper .nav-wrapper",
+			
+			itemWidth: 188,
+			move: <?php echo intval($theme->getCfg('product_slider/move_items')); ?>
+		});
+	});
+//]]>
+</script>
+<?php endif; ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('configurator')->toHtml()?>
+

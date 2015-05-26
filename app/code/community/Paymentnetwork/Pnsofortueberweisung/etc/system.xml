@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Paymentnetwork
+ * @package	Paymentnetwork_Sofortueberweisung
+ * @copyright  Copyright (c) 2008 [m]zentrale GbR, 2010 Payment Network AG, 2013 initOS GmbH & Co. KG
+ * @license	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version	$Id: system.xml 3847 2012-04-18 07:45:32Z dehn $
+ */ 
+-->
+
+<config>
+	<sections>
+		<payment>
+			<groups>
+				<pnsofortueberweisung translate="label" module="paygate">
+					<label>Sofortueberweisung</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<createNew translate="label">
+							<label></label>
+							<frontend_type>linkpnso</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</createNew>
+						<active translate="label">
+							<label>Activate module</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<order_status translate="label">
+							<label>Confirmed order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>
+						<sort_order translate="label">
+							<label>Sort sequence</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<title translate="label">
+							<label>Label</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<allowspecific translate="label">
+							<label>Payment from applicable countries</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>6</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Payment from Specific countries</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>7</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<customer>
+							<label>User Id</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>32</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-number</validate>
+						</customer>
+						<project>
+							<label>Projekt Id</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>64</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-number</validate>
+						</project>
+						<project_pswd>
+							<label>Project password</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>128</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</project_pswd>							
+						<notification_pswd>
+							<label>Notification password</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>256</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</notification_pswd>
+						<createinvoice translate="label">	
+							<label>Create Invoice</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>512</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</createinvoice>
+						<reason_1>
+							<label>Reason</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>760</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</reason_1>
+						<reason_2 translate="label,comment">
+							<label>Reason 2</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>761</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>reason_help</comment>
+						</reason_2>
+						<model>
+						</model>
+					</fields>
+				</pnsofortueberweisung>
+				<sofort translate="label" module="paygate">
+					<label>SOFORT Ueberweisung and other SOFORT-products</label>
+					<help_url><![CDATA[https://www.payment-network.com/sue_de/integration/list/121]]></help_url>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>  
+					<frontend_model>pnsofortueberweisung/adminhtml_system_config_fieldset_global</frontend_model>
+					<fields>
+						<version>
+							<label><![CDATA[Modul Version 2.4.0]]></label>
+							<frontend_type>label</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</version>
+						<allowspecific translate="label">
+							<label>Payment from applicable countries</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>6</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Payment from Specific countries</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>7</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<configkey translate="label">
+							<label>Configuration key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>128</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</configkey>
+						<logo translate="label">
+							<label>Banner or text</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/system_config_source_logo</source_model>
+							<sort_order>129</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</logo>	
+						<pnsofort_active translate="label comment">
+							<label>Sofortueberweisung</label>
+							<frontend_type>checkbox</frontend_type>
+							<comment>Direct payment method of Payment Network AG.</comment>
+							<more_url><![CDATA[https://www.payment-network.com/sue_de/online-anbieterbereich/start]]></more_url>
+							<sort_order>1024</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pnsofort_active>
+						<pnsofort_sort_order translate="label">
+							<label>Sort sequence</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1025</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-number</validate>
+						</pnsofort_sort_order>
+						<pnsofort_customerprotection translate="label">
+							<label>customer protection</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1026</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pnsofort_customerprotection>
+						
+						<pnsofort_order_status_holding translate="label">
+							<label>Holding order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>1027</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pnsofort_order_status_holding>
+						<pnsofort_order_status translate="label">
+							<label>Confirmed order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>1029</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pnsofort_order_status>
+						<pnsofort_order_status_loss translate="label">
+ 							<label>Loss order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>1030</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>	 
+						</pnsofort_order_status_loss>
+						<pnsofort_reason_1>
+							<label>Reason</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1031</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pnsofort_reason_1>
+						<pnsofort_reason_2 translation="label,comment">
+							<label>Reason 2</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1032</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>reason_help</comment>
+						</pnsofort_reason_2>
+						
+						<sofortrechnung_active translate="label comment">
+							<label>Rechnung by SOFORT</label>
+							<frontend_type>checkbox</frontend_type>
+							<more_url><![CDATA[http://rechnung.sofort.com]]></more_url>
+							<comment>Invoice with payment guarantee.</comment>
+							<sort_order>2048</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sofortrechnung_active>
+						<sofortrechnung_sort_order translate="label">
+							<label>Sort sequence</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2049</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-number</validate>
+						</sofortrechnung_sort_order>
+						
+						<sofortrechnung_order_status_holding translate="label">
+							<label>Holding order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2050</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sofortrechnung_order_status_holding>
+						<sofortrechnung_order_status_waiting translate="label">
+							<label>Unconfirmed order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2051</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sofortrechnung_order_status_waiting>
+						<sofortrechnung_order_status translate="label">
+							<label>Confirmed invoice order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2052</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sofortrechnung_order_status>
+						<sofortrechnung_order_status_refund translate="label">
+							<label>Refund order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2053</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sofortrechnung_order_status_refund>
+						
+						
+						<lastschriftsofort_active translate="label comment">
+							<label>Lastschrift by SOFORT</label>
+							<comment>Lastschriftverfahren</comment>
+							<more_url><![CDATA[https://www.payment-network.com/sl_de/online-anbieterbereich/start]]></more_url>
+							<frontend_type>checkbox</frontend_type>
+							<sort_order>2070</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</lastschriftsofort_active>
+						<lastschriftsofort_sort_order translate="label">
+							<label>Sort sequence</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2071</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-number</validate>
+						</lastschriftsofort_sort_order>
+						
+						<lastschriftsofort_order_status_holding translate="label">
+							<label>Holding order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2072</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</lastschriftsofort_order_status_holding>
+						<!-- lastschriftsofort_order_status_waiting translate="label">
+							<label>Loss order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2073</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</lastschriftsofort_order_status_waiting-->
+						<lastschriftsofort_order_status translate="label">
+							<label>Confirmed invoice order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2074</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</lastschriftsofort_order_status>
+						<lastschriftsofort_order_status_refund translate="label">
+							<label>Refund order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2075</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</lastschriftsofort_order_status_refund>
+						
+					</fields>
+				</sofort>
+				<sofort_ideal translate="label" module="paygate">
+					<label>sofort.com iDEAL</label>	
+					<help_url><![CDATA[https://www.sofort-bank.com/de/online-anbieterbereich/ideal]]></help_url>				
+					<frontend_type>text</frontend_type>
+					<sort_order>2y</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>  
+					<!-- <frontend_model>pnsofortueberweisung/adminhtml_system_config_fieldset_global</frontend_model>-->
+					<fields>
+						<active translate="label">
+							<label>Activate module</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<order_status_holding translate="label">
+							<label>Holding order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status_holding>
+						<order_status_waiting translate="label">
+							<label>Loss order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status_waiting>
+						<order_status translate="label">
+							<label>Confirmed invoice order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pnsofortueberweisung/order_status</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>
+						<configkey translate="label">
+							<label>Configuration key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>128</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</configkey>	
+						<password>
+							<label>Project password</label>
+							<frontend_type>password</frontend_type>
+							<sort_order>129</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</password>		
+						<notification_password>
+							<label>Notification password</label>
+							<frontend_type>password</frontend_type>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</notification_password>				
+						<sort_order translate="label">
+							<label>Sort sequence</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1025</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-number</validate>
+						</sort_order>						
+					</fields>
+				</sofort_ideal>
+			</groups>
+		</payment>
+	</sections>
+</config>

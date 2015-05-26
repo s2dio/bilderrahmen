@@ -1,0 +1,144 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<ul id="payment_form_<?php echo $this->getMethodCode() ?>" style="display: none">
+	<li style="padding:10px;">		
+			<button type="button" class="form-button button" id='ratePlanTrigger'>
+				<span>
+					<?php echo $this->__('billpay_button_calculate_rates')?>
+				</span>
+			</button>
+	</li>
+	<li>
+	<div id="billpay_rat_calc_popup" style="display:none;position:absolute;left: 50%%;margin-left: -290px;top: 20%;width: 580px;z-index: 20;padding: 5px;background: none repeat scroll 0 0 white;border: 1px solid silver;">
+		<div>
+			<?php echo $this->getTestModeInfoBoxHtml() ?>
+			<div style="margin-top:5px;margin-left:10px;">
+				
+				<!-- Loading panel -->
+				<div id="billpay-container-loading" style="display:none; margin-top:10px; color:#9C9C9C; ">
+					<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" style="margin-right:3px;" />
+					<?php echo $this->__('loading_text'); ?>
+				</div>
+
+				<div id="billpay_container_rat" style="margin-top:10px;">
+					<div>
+						<table>
+							<tr>
+								<td>
+									<?php echo $this->__('billpay_rate_calculation_please_enter')?>
+								</td>
+								<td>
+									<select id="billpay_rate_number" name="payment[billpay_rates]" style="margin-left:5px; margin-right:4px; width:43px;">
+										<?php $terms = $this->getAvailableTerms(); ?>	
+										<?php if (!$this->getBillpayRates()):?>
+											<?php for ($i=0; $i<count($terms); ++$i):?>
+												<option value="<?php echo $terms[$i];?>" <?php if(12 == $terms[$i]):?>selected="selected"<?php endif;?>><?php echo $terms[$i];?></option>
+											<?php endfor;?>
+										<?php else: ?>
+											<?php for ($i=0; $i<count($terms); ++$i):?>
+												<option value="<?php echo $terms[$i];?>" <?php if($this->getBillpayRates() == $terms[$i]):?>selected="selected"<?php endif;?>><?php echo $terms[$i];?></option>
+											<?php endfor;?>
+										<?php endif;?>
+									</select>
+								</td>
+								<td>
+									<button type="button" class="form-button button" onclick="billpayCalculateRates('<?php echo $this->getUrl("billpay/processing/calculateRates", array("_secure" => true)) ?>', 1, '<?php echo $this->__("billpay_rate_step_text1")?>')" >
+										<span>
+											<?php echo $this->__('billpay_button_calculate_rates')?>
+										</span>
+									</button>
+								</td>
+								
+							</tr>
+						</table>
+						<table style="width:100%">
+							<tr>
+								<td style="width:400px">
+									<!-- Loading panel -->
+									<div id="billpay-rates-loading" style="display:none; margin-left:10px; margin-top:15px; float:left; color:#9C9C9C;">
+										<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" style="margin-right:3px;" />
+										<?php echo $this->__('loading_text'); ?>
+									</div>
+									
+									<div id="billpay_rates" style="margin-top:15px;">
+										
+									</div>
+								</td>
+								<td style="padding-top:12px; text-align:center; width:200px;">
+									<div style="margin-top:5px; padding-left:5px;">
+										<a href="javascript:void(0)" onclick="showBillpayRateTermsPopup('<?php echo $this->getTermsUrl()?>')"><?php echo $this->__('billpay_rate_terms_link')?></a>
+										<br />
+										<a href="javascript:void(0)" onclick="showBillpayRatePrivacyPopup('<?php echo $this->getPrivacyUrl()?>')"><?php echo $this->__('billpay_privacy_policy')?></a>
+										<br />
+										<a href="javascript:void(0)" onclick="showBillpayRateDetailsPopup('<?php echo $this->getTransactionCreditTermsOfPayment()?>')"><?php echo $this->__('billpay_rate_info_overview')?></a> 
+									</div>
+									<div style="overflow:hidden; margin-top:10px;margin-left:10px; font-size:11px; width:166px; height:64px; padding: 8px 6px 6px 8px; font-weight: bold; border:1px solid #A6A6A6; color:#A6A6A6; text-align:left">
+										<div id="billpay-step-info-pos" style="line-height: 1.5; margin-right: 8px; font-size: 20px; float: left; width: 16px;">1.</div>
+										<div id="billpay-step-info-box" style="line-height: 1.4; float: left; width: 140px;"><?php echo $this->__("billpay_rate_step_text1")?></div>
+									</div>
+								</td>
+							</tr>	
+						</table>
+					</div>
+					<div id="billpay_rat_step2" style="display:none">
+					</div>
+					<p style="margin-top: 10px; float:left;">
+					<button type="button" class="form-button button" id="saveRatesBillpay" >
+						<span>
+							<?php echo $this->__('Save')?>
+						</span>
+					</button>
+					</p>		
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<?php echo $this->getFraudDetectionHtml() ?>
+</li>
+</ul>
+<script type="text/javascript">
+bpyQuery(function($) {
+    var bpFlagCheck = false;
+
+    $('#ratePlanTrigger').on("click", function(){
+        $('#billpay_rat_calc_popup').show();
+    });
+
+    $('#saveRatesBillpay').on("click", function(){
+        $('#p_method_billpay_rat').trigger( 'click' );
+        $('#billpay_rat_calc_popup').hide();
+    });
+
+    <?php if ($this->isLightCheckout()):?>
+    jQuery(document).ready(function($) {
+        $('#gcheckout-payment-methods').find('input[type=radio]').on('click', function() {
+            if(this.checked){
+                if (typeof getTotalsUrl != 'undefined'){ // get getTotalsUrl only existed in Light Checkout version 1; If higher version and undefined do not do it
+                    $('#gcheckout-onepage-form').attr('action', getTotalsUrl).submit();
+                }
+            }
+        });
+    });
+    <?php endif; ?>
+});
+</script>

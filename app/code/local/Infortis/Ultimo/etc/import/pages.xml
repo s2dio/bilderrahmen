@@ -1,0 +1,114 @@
+<root>
+   <pages>
+      <cms_page>
+         <title>ULTIMO Home Page</title>
+         <identifier>sample-home-page</identifier>
+         <content><![CDATA[<div class="nested-container">
+    <div class="page-banners clearer">
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="#"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="#"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/02.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="#"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/03.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+</div>
+
+
+{{block type="ultimo/product_list_featured" category_id="3" product_count="16" is_random="0" hide_button="1" block_name="Our Featured Products" template="catalog/product/list_featured_slider.phtml"}}
+
+{{block type="catalog/product_new" products_count="12" block_name="New Products" hide_button="0" template="catalog/product/new.phtml"}}]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_page>
+      <cms_page>
+         <title>ULTIMO Home Page 2</title>
+         <identifier>sample-home-page2</identifier>
+         <content><![CDATA[{{block type="ultimo/product_list_featured" category_id="3" product_count="16" is_random="0" hide_button="0" block_name="Our Featured Products" template="catalog/product/list_featured_slider.phtml"}}
+
+<div class="nested-container">
+
+    <div class="page-banners clearer">
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/02.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/03.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="nested-container">
+
+    <div class="page-banners clearer">
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+       	</div>
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/02.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/03.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="nested-container">
+
+    <div class="page-banners clearer">
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/11.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/11.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-6 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/03.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_page>
+   </pages>
+</root>

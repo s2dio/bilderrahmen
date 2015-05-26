@@ -1,0 +1,138 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Paymentnetwork
+ * @package	Paymentnetwork_Pnsofortueberweisung
+ * @copyright  Copyright (c) 2012 initOS GmbH & Co. KG
+ * @license	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version	$Id: edit.phtml 3844 2012-04-18 07:37:02Z dehn $
+ */
+$items = $transData->getItems();
+?>
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Order # %s', $order->getId()); ?></h3></td>
+            <td class="a-right">
+            	<button type="button" class="scalable back" onclick="setLocation('<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/sales_order/view',array('order_id'=>$order->getId())); ?>')" style=""><span>Back</span></button>
+                <button  id="saveButton" onclick="editForm.submit()" class="scalable save" type="button"><span><?php echo Mage::helper('pnsofortueberweisung')->__('Update Invoice'); ?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="grid">
+	<div id="errorMessages">
+		<ul class="messages">
+			<li class="error-msg">
+				<ul>
+					<li id="errorMessageAmountHigh"><?php echo Mage::helper('pnsofortueberweisung')->__('Amount increase not allowed')?></li>
+					<li id="errorMessageAmountLow"><?php echo Mage::helper('pnsofortueberweisung')->__('Amount have to be positive')?></li>
+					<li id="errorMessageCancel"><?php echo Mage::helper('pnsofortueberweisung')->__('Invoice will be canceled')?></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	
+    <form id="edit_form" name="edit_form" method="post" action="<?php echo $this->getUrl('*/*/post', array('order_id'=>$order->getId())); ?>">
+        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <!--<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('This fieldset name')?></h4>-->
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="data">
+                	<tr class="headings">
+                		<th>
+                			<?php echo $this->__('SKU'); ?>
+                		</th>
+                		<th>
+                			<?php echo $this->__('Product'); ?>
+                		</th>
+                		<th colspan="2">
+                			<?php echo $this->__('Price'); ?>
+                		</th>
+                		<th colspan="2">
+                			<?php echo $this->__('Qty'); ?>
+                		</th>
+                		<th>
+                			<?php echo $this->__('Tax'); ?>
+                		</th>
+                		<th class="last">
+                			<?php echo $this->__('Row Total'); ?>
+                		</th>
+                	</tr>
+                	
+                	
+                <?php $rowIndex = 0; foreach($items as $line): ?>
+                	<tr id="row<?php echo $rowIndex ?>" class="cartRow">
+                		<td class="label">
+                			<?php echo $line['product_number']; ?>
+                		</td>
+                		<td class="label">
+                			<strong><?php echo $line['title']; ?></strong><br/>
+                			<p><?php echo $line['description']?></p>
+                		</td>
+                		<td class="label lastPrice">
+                			 <span style="display: inline-block; width: 20px; text-align: right;"><?php echo $line['unit_price']; ?></span>
+                			 <span style="display: inline-block; width: 40px; text-align: right;"><?php echo $this->__('=&gt;'); ?></span>
+                		</td>
+                		<td class="unitPriceCell label">
+                			<?php if($line['unit_price'] > 0): ?>
+                				<input class="text-input required-entry validate-zero-or-greater validate-number" name="price[<?php echo $line['item_id']; ?>]" value="<?php echo $line['unit_price']; ?>" />
+                				<?php echo $order->getOrderCurrencyCode(); ?>
+                			<?php else: ?>
+                			    <input class="text-input required-entry validate-number" name="price[<?php echo $line['item_id']; ?>]" value="<?php echo $line['unit_price']; ?>" />
+                				<?php echo $order->getOrderCurrencyCode(); ?>
+                			<?php endif; ?>
+                		</td>
+                		<td class="label lastQuantity">
+                			 <span style="display: inline-block; width: 20px; text-align: right;"><?php echo $line['quantity']; ?></span>
+                			 <span style="display: inline-block; width: 40px; text-align: right;"><?php echo $this->__('=&gt;'); ?></span>
+                		</td>
+                		<td class="quantityCell input-ele">
+                			<input class="text-input required-entry validate-zero-or-greater validate-digits" name="line[<?php echo $line['item_id']; ?>]" value="<?php echo $line['quantity']; ?>" />
+                		</td>
+                		
+                		<td class="label">
+                			<?php echo $line['tax']; ?> %
+                		</td>
+                		<td class="priceCell label last">
+                			<span><?php echo ($line['unit_price']*$line['quantity']); ?></span> <?php echo $order->getOrderCurrencyCode(); ?>
+                		</td>
+                	</tr>
+                <?php $rowIndex	++; endforeach; ?>
+            </table>
+            <div class="grid np">
+            	<div class="entry-edit">
+                	<fieldset>
+                        <span class="field-row" style="float:left">
+                            <label for="comment"><?php echo Mage::helper('pnsofortueberweisung')->__('Comment'); ?> *</label>
+                            <textarea rows="3" cols="30" id="comment" name="comment" class="required-entry"></textarea>
+                        </span>
+                        <div style="display: inline-block; float: right">
+                        <span style="display: block; font-weight: bold"><?php echo Mage::helper('pnsofortueberweisung')->__('Old Amount:')?> 
+                        	<span id="basicTotalPrice"></span> 
+                        	<?php echo $order->getOrderCurrencyCode(); ?>
+                        </span>
+                        <span id="currentPrice" style="display: block; font-weight: bold"><?php echo Mage::helper('pnsofortueberweisung')->__('New Amount:')?>  
+                        	<span id="currentTotalPrice"></span> 
+                        		<?php echo $order->getOrderCurrencyCode(); ?>
+                        	</span>
+						</div>                    
+                    </fieldset>
+            	</div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+</script>

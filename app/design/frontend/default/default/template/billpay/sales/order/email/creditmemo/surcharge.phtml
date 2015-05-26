@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<!-- Mage 1.2/1.3 -->
+
+<?php $_order = $this->getParentBlock()->getOrder() ?>
+<?php $_creditmemo = $this->getParentBlock()->getCreditmemo() ?>
+<?php if ($_creditmemo->getOrder()->getPayment()->getMethod() == 'billpay_rat'): ?>
+<tr bgcolor="#DEE5E8">
+	<td colspan="3" align="right" style="padding: 1px 9px"><strong> <?php echo $this->__('billpay_rate_calculation_interest_add') ?>
+	</strong></td>
+	<td align="right" style="padding: 6px 9px"><strong> <?php echo $_order->formatPrice($_creditmemo->getBillpayRateSurcharge()) ?></strong></td>
+</tr>
+<tr bgcolor="#DEE5E8">
+	<td colspan="3" align="right" style="padding: 1px 9px"><strong> <?php echo $this->__('billpay_rate_transaction_fee') ?>
+	</strong>
+	<?php $feeTaxAmount = $_creditmemo->getBillpayRateFee() - $_creditmemo->getBillpayRateFeeNet(); ?>
+	<?php if ($feeTaxAmount > 0): ?>
+		<br >(<?php echo $this->__('billpay_contained_tax')?>:&nbsp; <?php echo $_order->formatPrice($feeTaxAmount) ?>)
+	<?php endif; ?>
+	</td>
+	<td align="right" style="padding: 6px 9px"><strong> <?php echo $_order->formatPrice($_creditmemo->getBillpayRateFee()) ?>
+	</strong></td>
+</tr>
+<tr bgcolor="#DEE5E8">
+	<td colspan="3" align="right" style="padding: 3px 9px"><strong><big> <?php echo $this->__('billpay_rate_calculation_partial_price') ?>
+	</big></strong></td>
+	<td align="right" style="padding: 6px 9px"><strong><big> <?php echo $_order->formatPrice($_creditmemo->getBillpayRateTotalAmount()) ?></big></strong></td>
+</tr>
+	<?php endif; ?>

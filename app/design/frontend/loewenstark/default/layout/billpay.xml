@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+-->
+<layout version="0.1.0">
+
+	<billpay_info_rates>
+		<block type="page/html" name="root" output="toHtml" template="page/one-column.phtml">
+			<block type="billpay/form_rat_rateInfo" name="content" as="content">
+                <action method="setTemplate"><value>billpay/form/rat/rate_info.phtml</value></action>
+            </block>
+		</block>
+    </billpay_info_rates>
+
+	<!-- Magento 1.4 -->
+	<checkout_onepage_index>
+        <reference name="head">
+            <action method="addJs" ifconfig="payment/billpay_rec/active"><script>billpay/payment.js</script></action>
+            <action method="addJs" ifconfig="payment/billpay_elv/active"><script>billpay/payment.js</script></action>
+            <action method="addJs" ifconfig="payment/billpay_rat/active"><script>billpay/payment.js</script></action>
+        </reference>
+ 	</checkout_onepage_index>
+ 	
+ 	<onestepcheckout_index_index>
+ 	    <reference name="head">
+            <action method="addJs" ifconfig="payment/billpay_rec/active"><script>billpay/payment.js</script></action>
+            <action method="addJs" ifconfig="payment/billpay_elv/active"><script>billpay/payment.js</script></action>
+            <action method="addJs" ifconfig="payment/billpay_rat/active"><script>billpay/payment.js</script></action>
+        </reference>
+ 	</onestepcheckout_index_index>
+ 	
+ 	<gomage_checkout_onepage_index>
+ 		<reference name="head">
+            <action method="addJs" ifconfig="payment/billpay_rec/active"><script>billpay/payment.js</script></action>
+        </reference>
+         <reference name="head">
+            <action method="addJs" ifconfig="payment/billpay_elv/active"><script>billpay/payment.js</script></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs" ifconfig="payment/billpay_rat/active"><script>billpay/payment.js</script></action>
+        </reference>
+ 	</gomage_checkout_onepage_index>
+ 	
+ 	
+     <sales_email_order_items>
+		<reference name="order_totals">
+			<block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+				<action method="setBeforeCondition"><value>grand_total</value></action>
+				<action method="setBillpaySourceType"><value>1</value></action>
+			</block>
+			<block type="billpay/sales_order_totals_surcharge" name="billpay_surcharge">
+				<action method="setShowFormula"><value>0</value></action> 
+			</block>
+		</reference>
+     </sales_email_order_items>
+     
+     <sales_email_order_invoice_items>
+		<reference name="invoice_totals">
+			<block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+				<action method="setBeforeCondition"><value>grand_total</value></action>
+				<action method="setBillpaySourceType"><value>1</value></action>
+			</block>
+			<block type="billpay/sales_order_totals_surcharge" name="billpay_surcharge">
+				<action method="setShowFormula"><value>0</value></action>
+			</block>
+		</reference>
+     </sales_email_order_invoice_items>
+     
+     <sales_email_order_creditmemo_items>
+     	<reference name="creditmemo_totals">
+			<block type="billpay/adminhtml_sales_order_totals_item" name="billpay" template="billpay/order/totals/item_ro.phtml">
+				<action method="setBeforeCondition"><value>grand_total</value></action>
+				<action method="setBillpaySourceType"><value>3</value></action>
+			</block>
+			<block type="billpay/sales_order_totals_surcharge" name="billpay_surcharge">
+				<action method="setShowFormula"><value>0</value></action>
+			</block>
+		</reference>
+     </sales_email_order_creditmemo_items>
+     
+     <!-- Customer account section -->
+     <sales_order_view>
+        <reference name="order_totals">
+            <block type="billpay/sales_order_totals_surcharge" name="billpay_surcharge">
+            	<action method="setAfterCondition"><value>grand_total</value></action>
+           		<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+ 	</sales_order_view>
+ 	
+ 	<sales_order_invoice>
+		<reference name="invoice_totals">
+            <block type="billpay/sales_order_totals_surcharge" name="billpay_surcharge">
+            	<action method="setAfterCondition"><value>grand_total</value></action>
+            	<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+ 	</sales_order_invoice>
+	
+	<sales_order_creditmemo>
+		<reference name="creditmemo_totals">
+            <block type="billpay/sales_order_totals_surcharge" name="billpay">
+            	<action method="setAfterCondition"><value>grand_total</value></action>
+            	<action method="setDisplayArea"><value>footer</value></action>
+            </block>
+        </reference>
+	</sales_order_creditmemo>
+    
+</layout>

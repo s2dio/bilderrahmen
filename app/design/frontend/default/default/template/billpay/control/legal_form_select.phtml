@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+
+<select id="billpay-legal-form-select" class="required-entry" id="<?php echo $this->getMethodCode() ?>_legal_form" name="payment[<?php echo $this->getMethodCode() ?>_legal_form]" style="<?php echo $this->getLegalFormSelectCssStyle(); ?>">
+  	<option value=""></option>
+  	<option value="ag" <?php if($this->getSelectedLegalForm() == 'ag'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_ag')?></option>
+  	<option value="eg" <?php if($this->getSelectedLegalForm() == 'eg'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_eg')?></option>
+  	<option value="ek" <?php if($this->getSelectedLegalForm() == 'ek'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_ek')?></option>
+  	<option value="ev" <?php if($this->getSelectedLegalForm() == 'ev'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_ev')?></option>
+  	<option value="freelancer" <?php if($this->getSelectedLegalForm() == 'freelancer'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_freelancer1')?></option>
+  	<option value="gbr" <?php if($this->getSelectedLegalForm() == 'gbr'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_gbr')?></option>
+  	<option value="gmbh" <?php if($this->getSelectedLegalForm() == 'gmbh'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_gmbh')?></option>
+  	<option value="gmbh_ig" <?php if($this->getSelectedLegalForm() == 'gmbh_ig'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_gmbh_ig')?></option>
+  	<option value="gmbh_co_kg" <?php if($this->getSelectedLegalForm() == 'gmbh_co_kg'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_gmbh_co_kg')?></option>
+  	<option value="freelancer"><?php echo $this->__('billpay_business_freelancer2')?></option>
+  	<option value="kg" <?php if($this->getSelectedLegalForm() == 'kg'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_kg')?></option>
+  	<option value="freelancer"><?php echo $this->__('billpay_business_freelancer3')?></option>
+  	<option value="ltd" <?php if($this->getSelectedLegalForm() == 'ltd'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_ltd')?></option>
+  	<option value="ltd_co_kg" <?php if($this->getSelectedLegalForm() == 'ltd_co_kg'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_ltd_co_kg')?></option>
+  	<option value="ohg" <?php if($this->getSelectedLegalForm() == 'ohg'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_ohg')?></option>
+  	<option value="public_inst" <?php if($this->getSelectedLegalForm() == 'public_inst'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_public_inst')?></option>
+  	<option value="misc_capital" <?php if($this->getSelectedLegalForm() == 'misc_captial'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_misc_capital')?></option>
+  	<option value="misc" <?php if($this->getSelectedLegalForm() == 'misc'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_misc')?></option>
+  	<option value="foundation" <?php if($this->getSelectedLegalForm() == 'foundation'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_foundation')?></option>
+  	<option value="ug" <?php if($this->getSelectedLegalForm() == 'ug'):?>selected="selected"<?php endif;?>><?php echo $this->__('billpay_business_ug')?></option>
+</select>

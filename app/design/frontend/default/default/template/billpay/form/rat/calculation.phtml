@@ -1,0 +1,225 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package    Billpay
+ * @author 	   Jan Wehrs <jan.wehrs@billpay.de>
+ * @copyright  Copyright (c) 2009 Billpay GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * @var Billpay_Block_Form_Rat_Calculation $this
+ */
+?>
+<style type="text/css">
+    #billpay_rat_popup {
+        position: absolute;
+        width: 400px;
+        left: 50%;
+        top: -5%;
+        margin-left: -200px;
+        z-index: 10;
+        padding: 5px;
+        background: #fff;
+        font-weight: bold;
+        font-size: 12px;
+        text-align: center;
+    }
+    #billpay_rat_popup .bpy-rate-tbl {
+        width: 350px;
+        border-collapse: collapse;
+        margin: 20px auto;
+    }
+    .bpy-rate-tbl .bpy-rate-key {
+        width: 250px;
+    }
+    .bpy-rate-tbl .bpy-rate-op {
+        width: 15px;
+    }
+    .bpy-rate-tbl .bpy-rate-value {
+        width: 50px;
+        text-align: right;
+    }
+    .bpy-rate-tbl .bpy-rate-result-row {
+        border-top:1px solid #C0C0C0;
+    }
+    .bpy-rate-tbl .bpy-rate-result-row td {
+        padding-bottom: 5px;
+        font-weight: bold;
+    }
+    .bpy-input-row {
+        min-height: 23px;
+    }
+    .bpy-input-row label {
+        width: 130px;
+        display: inline-block;
+    }
+    .bpy-terms-box {
+        margin-top: 15px;
+    }
+    .bpy-terms-box input {
+        float: left;
+        margin: 5px;
+    }
+    .bpy-terms-box .bpy-terms-box-text {
+        float: none;
+        padding: 5px 0;
+        overflow: hidden;
+        font-weight:normal;
+        line-height:10px;
+        font-size:11px
+    }
+    #firecheckout-form .bpy-terms-box .bpy-terms-box-text {
+        display: inline;
+    }
+    .bpy-terms-box .bpy-terms-box-text label {
+        font-weight: normal;
+    }
+    .bpy-terms-box-text > label * {
+        color: #666;
+        text-decoration: none;
+    }
+    .bpy-terms-box-text > label a:hover {
+        text-decoration: underline;
+    }
+    #bpy_user_input_box .bpy-popup {
+        right: -95px;
+    }
+    #onestepcheckout-form .input-box table {
+        width: 95%;
+    }
+</style>
+<div class="bpy-rate-calculation">
+<?php if ($this->getHasValidationError()):?>
+    <div style="color:red">
+        <?php echo $this->getValidationError()?>
+    </div>
+<?php else:?>
+    <div class="bpy-border bpy-highlight-box" style="padding: 10px;margin-top:10px;">
+        <span><?php echo $this->__('billpay_rate_calculation_first_rate')?></span>
+        <span><?php echo $this->getFirstRatePrice()?></span>
+        <br/>
+        <span><?php echo $this->__('billpay_rate_calculation_follow_rate')?></span>
+        <span><?php echo $this->getRatePrice()?></span>
+    </div>
+
+    <a href="#" class="bpy-show-hide-aware" data-show-hide-target="#billpay_rat_popup">
+        <?php echo $this->__('billpay_rate_details')?>
+    </a>
+
+    <div id="billpay_rat_popup" class="bpy-border" style="display: none;">
+        <p style="font-size:16px;">
+            <?php echo $this->__('billpay_rate_calculation_info1')?><?php echo $this->getSelectedRateNumber()?><?php echo $this->__('billpay_rate_calculation_info2')?> (<?php echo $this->getSelectedRateNumber()?><?php echo $this->__('billpay_rate_calculation_info3')?>)
+        </p>
+
+        <table class="bpy-rate-tbl">
+            <tbody>
+                <tr>
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_cart_value')?></td>
+                    <td class="bpy-rate-op">=</td>
+                    <td class="bpy-rate-value"><?php echo $this->getCalculationBaseAmount(true) ?></td>
+                </tr>
+                <tr>
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_rate_calculation_interest_add')?> <?php echo $this->getFormula()?></td>
+                    <td class="bpy-rate-op">+</td>
+                    <td class="bpy-rate-value"><?php echo $this->getTotalSurcharge() ?></td>
+                </tr>
+                <tr>
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_rate_transaction_fee')?></td>
+                    <td class="bpy-rate-op">+</td>
+                    <td class="bpy-rate-value"><?php echo $this->getTransactionFee() ?></td>
+                </tr>
+                <tr>
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_cart_specific_costs')?></td>
+                    <td class="bpy-rate-op">+</td>
+                    <td class="bpy-rate-value"><?php echo $this->getCalculationResidualAmount() ?></td>
+                </tr>
+                <tr class="bpy-rate-result-row">
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_rate_calculation_partial_price')?></td>
+                    <td class="bpy-rate-op">=</td>
+                    <td class="bpy-rate-value"><?php echo $this->getTotalPaymentAmount() ?></td>
+                </tr>
+                <tr>
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_rate_calculation_divide_text')?></td>
+                    <td class="bpy-rate-op"></td>
+                    <td class="bpy-rate-value"><?php echo $this->getSelectedRateNumber()?> <?php echo $this->__("billpay_rate_rates_text") ?></td>
+                </tr>
+                <tr>
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_rate_calculation_first_text')?></td>
+                    <td class="bpy-rate-op"></td>
+                    <td class="bpy-rate-value"><?php echo $this->getFirstRatePrice()?></td>
+                </tr>
+                <tr>
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_rate_calculation_single_text')?></td>
+                    <td class="bpy-rate-op"></td>
+                    <td class="bpy-rate-value"><?php echo $this->getRatePrice()?></td>
+                </tr>
+                <tr class="bpy-rate-result-row">
+                    <td class="bpy-rate-key"><?php echo $this->__('billpay_rate_calculation_anual_rate')?></td>
+                    <td class="bpy-rate-op">=</td>
+                    <td class="bpy-rate-value"><?php echo $this->getAnualPercentageRate() ?></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a href="#" class="bpy-hide-aware" data-hide-target="#billpay_rat_popup">
+                <?php echo $this->__('billpay_rate_details_close'); ?>
+            </a>
+        </p>
+    </div>
+
+    <div class="bpy-border bpy-highlight-box" id="bpy_user_input_box" style="padding: 5px;margin-top:5px;">
+        <?php if ($this->getShowGenderSelect() === true): ?>
+            <div class="bpy-input-row input-box">
+                <label for="billpay-gender-select">
+                    <?php echo $this->__('gender') ?>&nbsp;<span class="required">*</span>
+                </label>
+                <?php echo $this->getGenderSelectHtml(); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($this->getShowDobSelect() === true): ?>
+            <div class="bpy-input-row input-box">
+                <label><?php echo $this->__('date_of_birth') ?>&nbsp;<span class="required">*</span></label>
+                <?php echo $this->getDobSelectHtml() ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($this->getShowPhoneInputField() === true): ?>
+            <div class="bpy-input-row input-box">
+                <label><?php echo $this->__('billpay_phone') ?>&nbsp;<span class="required">*</span></label>
+                <?php echo $this->getPhoneInputHtml(); ?>
+            </div>
+        <?php endif; ?>
+
+        <div style="margin-top:5px;">
+            <?php echo $this->getBankAccountHtml() ?>
+        </div>
+
+        <div class="bpy-highlight-box" style="margin-top: 5px;">
+            <div class="bpy-terms-box">
+                <input id="<?php echo $this->getMethodCode() ?>_tcaccepted"
+                       name="payment[<?php echo $this->getMethodCode() ?>_tcaccepted]"
+                       type="checkbox" class="radio required-entry"/>
+                <div class="bpy-terms-box-text">
+                    <label for="<?php echo $this->getMethodCode() ?>_tcaccepted">
+                        <?php echo $this->getAcceptTermsHtml() ?>
+                    </label>
+                    <?php echo $this->getAdditionalSepaInformationHtml() ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php endif;?>
+</div>

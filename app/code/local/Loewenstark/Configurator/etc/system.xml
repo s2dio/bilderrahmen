@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <!--<configurator translate="label" module="configurator">
+            <label>Konfigurator</label>
+            <tab>sales</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <configurator_options translate="label" module="configurator">
+                    <label>Einstellungen</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <configurator_gleiter translate="label">
+                            <label>Gleiter Artikel:</label>
+                            <comment>Artikel Kommasepariert angeben</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </configurator_gleiter>
+                        <configurator_oese translate="label">
+                            <label>Öse Artikel:</label>
+                            <comment>Artikel Kommasepariert angeben</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </configurator_oese>
+                    </fields>
+                </configurator_options>
+            </groups>
+        </configurator>-->
+    </sections>
+</config>

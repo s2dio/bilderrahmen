@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * This file is part of the FIREGENTO project.
+ *
+ * FireGento_Debug is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * @author    FireGento Team <team@firegento.com>
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
+ * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
+ */
+ -->
+<config>
+	<sections>
+        <firegento translate="label" module="firegento">
+            <label>FIREGENTO</label>
+            <tab>advanced</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <log translate="label" module="firegento">
+                    <label>Log Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <log_file tanslate="label" module="firegento">
+                            <label>FIREGENTO Log File Name</label>
+                            <comment><![CDATA[File is located in {{base_dir}}/var/log]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </log_file>
+                        <force_log translate="label" module="firegento">
+                            <label>Force Logging</label>
+                            <comment><![CDATA[Force logging even if the Magento setting is "no"?]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </force_log>
+                        <chromephp translate="label comment" module="firegento">
+                            <label>Enable ChromePhp</label>
+                            <comment><![CDATA[<strong>Important:</strong> Requires PHP 5.0 or higher!<br />Chrome-Addon: https://chrome.google.com/webstore/detail/chromephp/noaneddfkdjfnfdakjjmocngnfkfehhd]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </chromephp>
+                        <firelogger translate="label comment" module="firegento">
+                            <label>Enable FireLogger</label>
+                            <comment><![CDATA[<strong>Important:</strong> Requires PHP 5.3 or higher!<br />Firefox-Addon: http://firelogger.binaryage.com/#php]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </firelogger>
+                        <firephp translate="label comment" module="firegento">
+                            <label>Enable FirePHP</label>
+                            <comment><![CDATA[<strong>Important:</strong> Requires PHP 5.0 or higher!<br />Firefox-Addon: https://addons.mozilla.org/en-US/firefox/addon/firephp/]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </firephp>
+                    </fields>
+                </log>
+            </groups>
+        </firegento>
+	</sections>
+</config>
