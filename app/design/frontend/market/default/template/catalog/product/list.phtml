@@ -91,8 +91,6 @@
                             <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                         <?php endif; ?>
 
-                        <div><?php echo $optionsHelper->getInListInfo($_product);?></div>
-
                     </div>
                     <div class="desc std">
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
@@ -146,8 +144,6 @@
                         <?php else: ?>
                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                         <?php endif; ?>
-
-                        <div><?php echo $optionsHelper->getInListInfo($_product);?></div>
 
                     </div>
                 </div>

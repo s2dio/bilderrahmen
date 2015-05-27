@@ -62,7 +62,6 @@
 
                 <div class="price-info">
                     <?php echo $this->getLayout()->createBlock('codevog_options/price')->getPriceHtml($_product, '_product'); ?>
-                    <div><?php echo $optionsHelper->getInListInfo($_product);?></div>
                     <?php echo $this->getChildHtml('bundle_prices') ?>
                     <?php echo $this->getTierPriceHtml() ?>
                 </div>

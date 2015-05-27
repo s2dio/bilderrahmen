@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <modules>
+        <Codevog_Options>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Codevog_Options>
+    </modules>
+</config>
