@@ -1552,7 +1552,7 @@ a.button:hover {
   padding: 15px;
 }
 .main-container {
-    max-width: 1024px;
+    max-width: 1010px;
 }
 .main-container:after,
 .footer-container:after {

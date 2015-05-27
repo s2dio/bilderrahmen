@@ -1,11 +1,12 @@
 .vertnav-container {
 	margin-top:36px;
+	margin-left: 10px;
 }
 #vertnav{
     border-radius:0px;
     overflow:hidden;
 	float: left;
-	width: 210px;
+	width: 90%;
 }
 #vertnav li .vertnav-cat {
 	display:block;
@@ -39,13 +40,44 @@ li.level1,li.level2,li.level3{display:none;}
 	line-height: 35px;
 	text-decoration: none;
 	color: #333;
-	display: block;
 	overflow: hidden;
+	position: relative;
+	text-overflow: ellipsis;
+	padding-right: 20px;
+	white-space: nowrap;
 }
+
+
+
+#vertnav li a:after {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	content: "";
+	border: 5px solid;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-top-color: transparent;
+	position: absolute;
+	right: 7px;
+	top: 13px;
+}
+
 
 #vertnav li a:hover {
 	color: #ff9900;
 }
+
+
+#vertnav li:hover a:after {
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
+	border-top-color: #ff9900;
+	right: 11px;
+	top: 15px;
+}
+
 
 #vertnav .inactive .vertnav-cat {
 

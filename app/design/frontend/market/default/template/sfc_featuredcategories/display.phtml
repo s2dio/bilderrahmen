@@ -1,0 +1,36 @@
+<?php
+$_categories = $this->getFeaturedCategories();
+$_catNo = 0;
+
+?>
+<div class="clearfix"></div>
+<div class="featured-cat-block">
+	<div class="featured-cat-content">
+		<?php
+
+		foreach ( $_categories as $FeaturedGroup ) {
+    		if ( isset($FeaturedGroup['Category']) ) {
+		?>
+
+        <?php if($_catNo++ % 4 == 0): ?>
+            <ul class="category-list-home">
+        <?php endif ?>
+
+			<li class="featured-cat <?php if(($_catNo % 4) == 0){echo 'last';}?>">
+                <div class="wrap-cat">
+				<div class="cat-image">
+					<a href="<?php echo $FeaturedGroup['Category']->getUrl(); ?>">
+                        <img src="<?php echo $FeaturedGroup['Category']->getImageUrl(); ?>"  border="0" alt="View <?php echo $FeaturedGroup['Category']->getName() ?>" />
+					</a>
+				</div>
+				<div class="cat-title"><a href="<?php echo $FeaturedGroup['Category']->getUrl(); ?>"><?php echo $FeaturedGroup['Category']->getName(); ?></a></div>
+			    </div>
+		    </li>
+		<?php if ($_catNo % 4 == 0 || $_catNo==4): ?>
+			</ul>
+		<?php endif ?>
+
+		<?php }} ?>
+
+	</div>
+</div>
