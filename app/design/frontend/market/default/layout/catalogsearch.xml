@@ -49,7 +49,7 @@
     <catalogsearch_result_index translate="label">
         <label>Quick Search Form</label>
         <reference name="root">
-            <action method="setTemplate"><template>page/3columns.phtml</template></action>
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
         </reference>
         <reference name="left">
             <block type="catalogsearch/layer" name="catalogsearch.leftnav" after="currency" template="catalog/layer/view.phtml">
@@ -66,10 +66,11 @@
                     </block>
                     <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
                     <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
-                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>3</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
                     <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>3</count></action>
                     <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
                     <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                    <action method="setColumnCount"><count>4</count></action>
                 </block>
                 <action method="setListOrders"/>
                 <action method="setListModes"/>
@@ -82,7 +83,7 @@
         <label>Advanced Search Form</label>
         <!-- Mage_Catalogsearch -->
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
         </reference>
         <reference name="head">
             <action method="setTitle" translate="title" module="catalogsearch"><title>Advanced Search</title></action>
@@ -117,10 +118,11 @@ Advanced search results
                     </block>
                     <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
                     <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
-                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>3</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
                     <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>3</count></action>
                     <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
                     <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                    <action method="setColumnCount"><count>4</count></action>
                 </block>
                 <action method="setListOrders"/>
                 <action method="setListModes"/>
