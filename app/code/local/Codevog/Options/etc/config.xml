@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Codevog_Options>
-            <version>0.0.1</version>
+            <version>0.0.5</version>
         </Codevog_Options>
     </modules>
     <global>
@@ -20,6 +20,16 @@
                     <account_navigation>Codevog_Options_Block_Account_Navigation</account_navigation>
                 </rewrite>
             </customer>
+            <page>
+                <rewrite>
+                    <html_topmenu>Codevog_Options_Block_Topmenu</html_topmenu>
+                </rewrite>
+            </page>
+            <checkout>
+                <rewrite>
+                    <cart_item_renderer>Codevog_Options_Block_Checkout_Cart_Item_Renderer</cart_item_renderer>
+                </rewrite>
+            </checkout>
         </blocks>
         <models>
             <codevog_options>

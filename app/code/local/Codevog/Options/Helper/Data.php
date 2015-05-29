@@ -3,6 +3,7 @@
 class Codevog_Options_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const MAX_PERCENTS = 100;
+    private $activeStores = array(6, 7, 8, 9, 10);
 
     public function canEmailToFriend()
     {
@@ -88,5 +89,18 @@ class Codevog_Options_Helper_Data extends Mage_Core_Helper_Abstract
     public function stateRequired()
     {
         return Mage::getStoreConfig('general/region/display_all');
+    }
+
+    public function getActiveStores()
+    {
+        return $this->activeStores;
+    }
+
+    public function isHomePage()
+    {
+        $routeName = Mage::app()->getRequest()->getRouteName();
+        $identifier = Mage::getSingleton('cms/page')->getIdentifier();
+
+        return ($routeName == 'cms' && $identifier == 'index') ? true : false;
     }
 }

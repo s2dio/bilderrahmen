@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category Dsdata
+ * @package Dsdata_NoState
+ * @authors Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>
+ * @developer Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>  
+ * @version 1.2.1
+ * @copyright Golox-Web.de, Daniel Sasse
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)  
+ */
+ -->
+<layout version="0.1.0">
+
+	<!-- Multishipping Checkout, kein Bundesland in den Feldern / Umordnung der Feld Reihenfolge -->	
+	
+	<checkout_multishipping_customer_address>
+		<reference name="customer_address_edit">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/customer/address/edit.phtml</template>
+			</action>
+		</reference>
+    </checkout_multishipping_customer_address>
+
+	<!-- Warenkorb, kein Bundesland in der "Versandkosten geschaetzt Box" -->
+	
+	<checkout_cart_index translate="label">
+		<reference name="checkout.cart.shipping">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/checkout/cart/shipping.phtml</template>
+			</action>
+		</reference>
+    </checkout_cart_index>
+
+	<!-- OnePage Checkout, kein Bundesland in den Feldern / Umordnung der Feld Reihenfolge -->	
+	
+	<checkout_onepage_index>
+	 
+		<!--<reference name="head">-->
+			<!--<action method="addJs" ifconfig="customer/nostate/enabled" ifvalue="1">-->
+			<!--<script>dsdata/nostate/nostate.js</script>-->
+			<!--</action>-->
+		<!--</reference>-->
+		
+		<reference name="checkout.onepage.billing">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/checkout/onepage/billing.phtml</template>
+			</action>
+		</reference>
+
+		<reference name="checkout.onepage.shipping">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/checkout/onepage/shipping.phtml</template>
+			</action>
+		</reference>
+		
+    </checkout_onepage_index>
+	<!-- Kundenbereich, kein Bundesland in den Feldern / Umordnung der Feld Reihenfolge -->
+    
+	<customer_account_create translate="label">
+		<reference name="customer_form_register">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/customer/form/register.phtml</template>
+			</action>
+		</reference>
+    </customer_account_create>
+	
+	<!-- Adressbearbeitung -->
+	
+	<customer_address_form>
+		<reference name="customer_address_edit">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/customer/address/edit.phtml</template>
+			</action>
+		</reference>
+    </customer_address_form>	
+	
+</layout>	

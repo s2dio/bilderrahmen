@@ -19,22 +19,19 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     rwd_default
- * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-
-<?php if(Mage::helper('codevog_options')->isHomePage()):?>
-    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('bottom_home_block')->toHtml();?>
-<?php endif;?>
-
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_footer_block')->toHtml();?>
-
-<div class="footer-container">
-    <div class="footer">
-        <?php echo $this->getChildHtml() ?>
-        <address class="copyright"><?php echo $this->getCopyright() ?></address>
+<?php if(count($this->getStores())>1): ?>
+    <div class="form-language">
+        <label for="select-language"><?php echo $this->__('Your Language:') ?></label>
+        <?php foreach ($this->getStores() as $_lang): ?>
+            <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected' : '' ?>
+            <a href="<?php echo $_lang->getCurrentUrl() ?>" class="<?php echo $_selected ?>">
+                <img src="<?php echo $this->getSkinUrl('images/flags/flag_'.$_lang->getCode().'.gif') ?>"/>
+            </a>
+        <?php endforeach; ?>
     </div>
-    <div class="cont_four_market"><a class="four_market" href="http://www.4market.de" target="_blank"><img src="<?php echo $this->getSkinUrl('images/made-by-4market-w.png');?>" alt="4market.de - Internetagentur" title="4market.de - Magento Agentur" /></a></div>
-</div>
+<?php endif; ?>

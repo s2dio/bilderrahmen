@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Codevog_Templateslider>
+            <version>0.0.1</version>
+        </Codevog_Templateslider>
+    </modules>
+	<frontend>
+        <layout>
+            <updates>
+                <templateslider>
+                    <file>codevog_templateslider.xml</file>
+                </templateslider>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <helpers>
+            <templateslider>
+                <class>Codevog_Templateslider_Helper</class>
+            </templateslider>
+        </helpers>
+        <blocks>
+             <templateslider>
+                <class>Codevog_Templateslider_Block</class>
+             </templateslider>
+        </blocks>
+        <models>
+             <templateslider>
+                <class>Codevog_Templateslider_Model</class>
+             </templateslider>
+        </models>
+    </global>
+</config>

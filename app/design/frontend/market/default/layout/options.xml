@@ -5,6 +5,18 @@
         <reference name="minicart_content">
             <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/minicart/totals.phtml"/>
         </reference>
+        <reference name="header">
+            <action method="unsetChild">
+                <name>topSearch</name>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="core/template" name="top.search" as="topSearch" template="catalogsearch/form.mini.phtml"
+                   before="-"/>
+            <block type="cms/block" after="catalog.vertnav" name="left_contact_block">
+                <action method="setBlockId"><block_id>left_contact_block</block_id></action>
+            </block>
+        </reference>
     </default>
     <customer_account>
         <reference name="customer_account_navigation">

@@ -8,7 +8,7 @@ Mage::app()->setUpdateMode(false);
 Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
 $pageId = 'index';
-$stores = array(6, 7, 8, 9, 10);
+$stores = Mage::helper('codevog_options')->getActiveStores();
 
 Mage::getModel('cms/block')
     ->load('home_category')
@@ -22,6 +22,28 @@ $categoriesBlock = Mage::getModel('cms/block')
     ->setContent(
         '
             <p>{{block type="featuredcategories/display" template="sfc_featuredcategories/display.phtml"}}</p>
+        ')
+    ->save();
+
+Mage::getModel('cms/block')
+    ->load('home_description')
+    ->delete();
+
+$categoriesBlock = Mage::getModel('cms/block')
+    ->setTitle('Home page description')
+    ->setIdentifier('home_description')
+    ->setStores($stores)
+    ->setIsActive(true)
+    ->setContent(
+        '
+            <div class="home-description">
+                <h1>Shopping frames cheaply and safely</h1>
+                <p>
+                    Welcome to the online shop for picture and frames, wooden mouldings and picture hanging systems. You will find a wide selection of frames from a variety of materials, colors and profiles. Make your selection from the frameless pictures carrier, aluminum frame, plastic frame to picture frame made of solid wood. The frame profiles go from classic modern to antique rustic. Benefit from 20 years of experience in timber frame, picture frames and mounts with flexible picture hanging rails or Posterstrips. You will also receive framed pictures, posters, key boxes and jewelry boxes in our store. Of course you can find mounts and accessories required.
+                    <strong>Buy all products directly from the manufacturer.</strong>
+                    Your data is transmitted by SSL security. More than 20.000 wooden frames are permanently in stock. The production of special sizes is part of our daily business. Upon request, we will produce your strips as blunt cuts or mitred, or as an empty frame complete with glass and rear bord. We will ship your merchandise daily in more than 60 countries. We wish you a pleasant stay and hope to welcome you again soon as possible on PictureframeShop24.
+                </p>
+            </div>
         ')
     ->save();
 
@@ -42,6 +64,8 @@ $homePageData = array(
         <p>
             {{widget type="slider/slider" slider_id="home_page_slider"}}
             {{widget type="cms/widget_block" template="cms/widget/static_block/default.phtml" block_id="'.$categoriesBlock->getId().'"}}
+            {{block type="templateslider/slider" template="catalog/product/topsellers.phtml"}}
+            {{block type="cms/block" block_id="home_description"}}
         </p>',
 );
 

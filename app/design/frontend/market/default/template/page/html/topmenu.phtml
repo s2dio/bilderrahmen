@@ -33,20 +33,14 @@
 ?>
 <?php $_menu = $this->getHtml('level-top') ?>
 
-<?php if($_menu): ?>
-    <nav id="nav">
-        <ol class="nav-primary clearfix">
-            <?php echo $_menu ?>
+<nav id="nav">
+    <ol class="nav-primary clearfix">
+        <li class="level0 nav-1 first level-top home-link">
+            <a href="<?php echo Mage::getBaseUrl();?>" class="level-top <?php if(Mage::helper('codevog_options')->isHomePage()):?>active<?php endif;?>">
+                <?php echo $this->__('Home');?>
+            </a>
+        </li>
+        <?php echo $_menu ?>
+    </ol>
+</nav>
 
-            <?php $discountHelper = Mage::helper('codevog_discounts');?>
-            <?php if($discountHelper->isActiveDiscount()):?>
-                <li class="level0 <?php if($discountHelper->isDiscountUrl()):?>active<?php endif;?> level-top parent">
-                    <a class="level0" href="<?php echo $discountHelper->getDiscountUrl();?>">
-                        <span><?php echo $discountHelper->getMenuArticle();?></span>
-                    </a>
-                </li>
-            <?php endif;?>
-
-        </ol>
-    </nav>
-<?php endif ?>
