@@ -1000,10 +1000,14 @@ $j(document).ready(function () {
             );
         },
         match: function () {
-            this.toggleElements.toggleSingle();
+            if(this.toggleElements.length > 0) {
+                this.toggleElements.toggleSingle();
+            }
         },
         unmatch: function () {
-            this.toggleElements.toggleSingle({destruct: true});
+            if(this.toggleElements.length > 0) {
+                this.toggleElements.toggleSingle({destruct: true});
+            }
         }
     });
 

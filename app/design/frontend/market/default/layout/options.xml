@@ -16,6 +16,8 @@
             <block type="cms/block" after="catalog.vertnav" name="left_contact_block">
                 <action method="setBlockId"><block_id>left_contact_block</block_id></action>
             </block>
+            <remove name="catalog.leftnav"/>
+            <remove name="catalogsearch.leftnav"/>
         </reference>
     </default>
     <customer_account>
