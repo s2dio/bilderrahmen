@@ -13,28 +13,21 @@
         <ul class="products-grid">
         <?php endif*/ ?>
                         <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                            <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h3>
                             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="product-image">
+                                <?php echo $optionsHelper->getProductDiscount($_product);?>
                                 <?php echo $optionsHelper->productLabels($_product);?>
                                 <?php $_imgSize = 260; ?>
                                 <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
-                                <?php echo $optionsHelper->getProductDiscount($_product);?>
                             </a>
                             <?php if(!$_product->isComposite() && $_product->isSaleable()): ?>
                                 <?php if (!$_product->getRequiredOptions()): ?>
                                     <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_product->getId() ?>" name="related_products[]" value="<?php echo $_product->getId() ?>" />
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h3>
 
                             <?php echo $this->getPriceHtml($_product, true, '-new') ?>
-                            <div class="actions">
-                                <?php if($_product->isSaleable()): ?>
-                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
-                                <?php else: ?>
-                                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-                                <?php endif; ?>
-
-                            </div>
+                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                         </li>
                         <?php /*if ($i%$_columnCount==0 || $i==count($_products)): ?>
         </ul>

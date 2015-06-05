@@ -12,20 +12,20 @@ class Codevog_Options_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function discountLabel($product)
     {
-        if($this->isProductOnSale($product))
-        {
-            return '<span class="discount-label">'.$this->__('Discounts').'</span>';
-        }
+//        if($this->isProductOnSale($product))
+//        {
+//            return '<span class="discount-label">'.$this->__('Discounts').'</span>';
+//        }
 
         return false;
     }
 
     public function newLabel($product)
     {
-        if($this->isProductNew($product))
-        {
-            return '<span class="new-label">'.$this->__('New').'</span>';
-        }
+//        if($this->isProductNew($product))
+//        {
+//            return '<span class="new-label">'.$this->__('New').'</span>';
+//        }
 
         return false;
     }
