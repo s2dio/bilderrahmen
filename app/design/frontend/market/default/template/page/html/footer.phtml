@@ -32,6 +32,7 @@
 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_footer_block')->toHtml();?>
 
 <div class="footer-container">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('bilderrahmen_footer_links')->toHtml();?>
     <div class="footer">
         <?php echo $this->getChildHtml() ?>
         <address class="copyright"><?php echo $this->getCopyright() ?></address>

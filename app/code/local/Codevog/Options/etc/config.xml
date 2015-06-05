@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Codevog_Options>
-            <version>0.0.5</version>
+            <version>0.0.7</version>
         </Codevog_Options>
     </modules>
     <global>
