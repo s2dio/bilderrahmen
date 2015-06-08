@@ -59,4 +59,34 @@ class Codevog_Options_Block_Topmenu extends Mage_Page_Block_Html_Topmenu
 
         return $html;
     }
+
+    protected function _getMenuItemClasses(Varien_Data_Tree_Node $item)
+    {
+        $classes = array();
+
+        $classes[] = 'level' . $item->getLevel();
+        $classes[] = $item->getPositionClass();
+
+        if ($item->getIsFirst()) {
+            $classes[] = 'first';
+        }
+
+        if ($item->getIsActive()) {
+            $classes[] = 'li_on';
+        }
+
+        if ($item->getIsLast()) {
+            $classes[] = 'last';
+        }
+
+        if ($item->getClass()) {
+            $classes[] = $item->getClass();
+        }
+
+        if ($item->hasChildren()) {
+            $classes[] = 'parent';
+        }
+
+        return $classes;
+    }
 }

@@ -35,10 +35,8 @@
 
 <nav id="nav">
     <ul id="MenuBar" class="MenuBarHorizontal">
-        <li class="level0 nav-1 first level-top li_home_on">
-            <a href="<?php echo Mage::getBaseUrl();?>" class="level-top <?php if(Mage::helper('codevog_options')->isHomePage()):?>active<?php endif;?>">
-                <?php echo $this->__('Home');?>
-            </a>
+        <li class="level0 nav-1 first level-top <?php if(Mage::helper('codevog_options')->isHomePage()):?>li_home_on<?php else:?>li_home<?php endif;?>">
+            <a href="<?php echo Mage::getBaseUrl();?>" class="level-top"></a>
         </li>
         <?php echo $_menu ?>
     </ul>
