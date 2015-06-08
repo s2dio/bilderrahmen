@@ -34,13 +34,14 @@
 <?php $_menu = $this->getHtml('level-top') ?>
 
 <nav id="nav">
-    <ol class="nav-primary clearfix">
-        <li class="level0 nav-1 first level-top home-link">
+    <ul id="MenuBar" class="MenuBarHorizontal">
+        <li class="level0 nav-1 first level-top li_home_on">
             <a href="<?php echo Mage::getBaseUrl();?>" class="level-top <?php if(Mage::helper('codevog_options')->isHomePage()):?>active<?php endif;?>">
                 <?php echo $this->__('Home');?>
             </a>
         </li>
         <?php echo $_menu ?>
-    </ol>
+    </ul>
+    <div class="clearfix"></div>
 </nav>
-
+<div class="clearfix"></div>

@@ -42,6 +42,13 @@ $logo = Mage::getStoreConfig('design/header/logo_src', $soreId);
         <div class="store-language-container">
             <?php echo $this->getChildHtml('store_language') ?>
         </div>
+
+        <!-- Account -->
+        <div id="header-account" class="skip-content lb_account_info">
+            <?php echo $this->getChildHtml('topLinks') ?>
+        </div>
+
+
         <?php echo $this->getChildHtml('headers-info') ?>
         <!-- Skip Links -->
 
@@ -69,18 +76,12 @@ $logo = Mage::getStoreConfig('design/header/logo_src', $soreId);
 
 
         </div>
-
         <!-- Navigation -->
 
         <div id="header-nav" class="skip-content">
             <?php echo $this->getChildHtml('topMenu') ?>
         </div>
 
-        <!-- Account -->
-
-        <div id="header-account" class="skip-content">
-            <?php echo $this->getChildHtml('topLinks') ?>
-        </div>
 
         <!-- Cart -->
 

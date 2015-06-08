@@ -8,29 +8,247 @@
      color: #000;
      background:  url("../images/bg.jpg") repeat-x 0px 0px;
  }
+ .wrapper {
+     background: url("../images/bg_white.gif") repeat-y center 0px;
+     margin-top: 10px
+ }
 
  .main-container{
      background-color: #FFF;
  }
-
 
  .cms-index-index  .col-left,  .cms-index-index  .col-main{
      padding-right: 0;
      padding-left: 0;
  }
 
- .main-container, .footer-container{
+ .clearfix{
+     clear: both;
+ }
 
+ /**Site**/
+ .cms-index-index .col-left{
+     width: 22%;
+     min-width: 213px;
+ }
+
+ .cms-index-index .col-main{
+     width: 77%;
+     max-width: 750px;
+ }
+ /**Site**/
+
+
+ p{
+     color: #666;
+ }
+
+ .cms-index-index .std > p{
+        margin: 0;
+ }
+
+ .lb_bt a, .lb_bt a:visited,  .lb_bt button, .lb_bt button:visited{
+     font-family: 'Fjalla One', sans-serif;
+     background-image: url(../images/bg_buttons.png);
+     background-repeat: no-repeat;
+     background-position: 0px -70px;
+     line-height: 30px;
+     width: 190px;
+     height: 30px;
+     border: none;
+     text-indent: 10px;
+     color: #fff;
+     display: block;
+     cursor: pointer;
+     font-size: 18px;
+ }
+
+ .small a, .small a:visited {
+     font-family: Arial;
+     color: #fff;
+     background-position: -70px 0px;
+     font-size: 10px;
+     width: 100px;
+     height: 15px;
+     line-height: 15px;
+     text-indent: 0px;
+     text-align: center;
+ }
+
+ /* ---------------------------------------------------------- */
+ /*  cart
+ /* ---------------------------------------------------------- */
+
+ .header-cart{
+ }
+
+ .header-cart .price{
+     display: block;
+     font-family: 'Fjalla One', sans-serif;
+     font-size: 16px;
+ }
+
+ .header-cart .to-cart{
+     font-family: 'Fjalla One', sans-serif;
+     font-size: 16px;
+     font-weight: 300;
+ }
+
+ .header-cart .cart-qty{
+    position: relative;
+     width: 103px;
+     height:116px;
+     float: right;
+ }
+ .header-cart .qty{
+     font-family: 'Fjalla One', sans-serif;
+     font-size: 35px;
+     color: #f19013;
+     position: absolute;
+     top: 41px;
+     text-align: center;
+     left: 0;
+     width: 88px;
+ }
+
+ .header-minicart span.label {
+     color: #1d1d1b;
+     text-transform: none;
+     line-height: 20px;
+     text-align: left;
+     display: inline-block;
+     margin-top: 20px;
  }
 
 
+ .skip-link .icon {
+     display: inline-block;
+     width: 110px;
+     height:116px;
+     vertical-align: middle;
+ }
 
+
+ /* ---------------------------------------------------------- */
+ /*  Language */
+ /* ---------------------------------------------------------- */
+
+ .form-language a{
+     text-align: right;
+     display: inline-block;
+     opacity: 0.5;
+ }
+
+ .form-language a:hover,  .form-language a.selected{
+     opacity: 1;
+ }
+
+ .form-language img {
+     margin-left: 2px;
+     width: 20px;
+ }
+
+ /* ---------------------------------------------------------- */
+ /*  Top-Menü */
+ /* ---------------------------------------------------------- */
+
+ ul.MenuBarHorizontal {  font-family: 'Fjalla One', sans-serif;  font-weight: 300;  margin: 0px 0px 0px 0px; padding: 0; list-style-type: none; cursor: default; float: left height: 35px; float: left; border-right: 1px solid #D3D3D3;}
+ ul.MenuBarActive {z-index: 1000;}
+
+ ul.MenuBarHorizontal li { margin: 0; padding: 0; list-style-type: none; position: relative; text-align: left; cursor: pointer; float: left;}
+
+ /*  Home */
+ ul.MenuBarHorizontal li.li_home_on a, ul.MenuBarHorizontal li.li_home_on a:visited { text-indent: -9999px; display: block; cursor: pointer; background: url(../images/bg_topmenu.jpg) repeat-x 0px -70px; width: 35px; height: 35px; border: 0px;}
+ ul.MenuBarHorizontal li.li_home_on a:hover, ul.MenuBarHorizontal li.li_home_on a:active { background: url(../images/bg_topmenu.jpg) repeat-x 0px -70px; text-decoration: none;}
+
+ ul.MenuBarHorizontal li.li_home a, ul.MenuBarHorizontal li.li_home a:visited { display: block; cursor: pointer; background: url(../images/bg_topmenu.jpg) repeat-x 0px -105px; width: 35px; height: 35px; border: 0px;}
+ ul.MenuBarHorizontal li.li_home a:hover, ul.MenuBarHorizontal li.li_home a:active { background: url(../images/bg_topmenu.jpg) repeat-x 0px -70px; text-decoration: none;}
+
+ /*  Ebene 1 */
+ ul.MenuBarHorizontal li a, ul.MenuBarHorizontal li a:visited { display: block; cursor: pointer; background: url(../images/bg_topmenu.jpg) repeat-x 0px -35px; text-transform: uppercase; color: #333; text-decoration: none; width: 146px; height: 35px; line-height: 38px; text-align: center; font-size: 15px; border-left: 1px solid #D3D3D3; border-right: 1px solid #fff;}
+ ul.MenuBarHorizontal li a:hover, ul.MenuBarHorizontal li a:active { color: #fff; background: url(../images/bg_topmenu.jpg) repeat-x 0px 0px; text-decoration: none;}
+
+ /*  Ebene 1 - aktiver Zustand beim Mouse-Over! */
+ ul.MenuBarHorizontal li a.MenuBarItemHover, ul.MenuBarHorizontal li a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal li a.MenuBarSubmenuVisible
+ {color: #fff; background: url(../images/bg_topmenu.jpg) repeat-x 0px 0px; text-decoration: none; line-height: 38px;}
+
+ /*  Ebene 1 aktiv */
+ ul.MenuBarHorizontal li.li_on a, ul.MenuBarHorizontal li.li_on a:visited { display: block; cursor: pointer; background: url(../images/bg_topmenu.jpg) repeat-x 0px 0px; text-transform: uppercase; color: #fff; text-decoration: none; width: 146px;  height: 35px; line-height: 38px; text-align: center; font-size: 18px; border-left: 1px solid #D3D3D3; border-right: 1px solid #fff;}
+ ul.MenuBarHorizontal li.li_on a:hover, ul.MenuBarHorizontal li.li_on a:active { color: #fff; background: url(../images/bg_topmenu.jpg) repeat-x 0px 0px; text-decoration: none;}
+
+ ul.MenuBarHorizontal ul {margin: 0; padding: 0;	list-style-type: none; z-index: 1020; cursor: default; position: absolute; left: -1000em; width: 146px; border-bottom: 1px solid #FFD528;}
+ ul.MenuBarHorizontal ul.MenuBarSubmenuVisible {	left: auto;}
+ ul.MenuBarHorizontal ul li { width: auto;}
+ ul.MenuBarHorizontal ul ul {position: absolute; margin: -5% 0 0 95%;}
+ ul.MenuBarHorizontal ul.MenuBarSubmenuVisible ul.MenuBarSubmenuVisible {left: auto; top: 0;}
+
+ /*  Ebene 2 */
+ ul.MenuBarHorizontal li ul li a, ul.MenuBarHorizontal li ul li a:visited { display: block; font-family: Arial; cursor: pointer; color: #fff; text-transform: none; background: #ff9900; text-decoration: none; width: 146px; height: 30px; line-height: 30px; text-align: left; margin: 0px; font-size: 12px; text-indent: 10px; border-top: 1px solid #FFD528; border-left: 1px solid #FFD528; border-right: 1px solid #FFD528;}
+ ul.MenuBarHorizontal li ul li a:hover, ul.MenuBarHorizontal li ul li a:active  { color: #fff; text-decoration: none; background: #333; line-height: 30px;}
+
+ /*  Ebene 2 aktiv Anpassung */
+ ul.MenuBarHorizontal li.li_on ul li a, ul.MenuBarHorizontal li.li_on ul li a:visited { display: block; font-family: Arial; cursor: pointer; color: #fff; text-transform: none; background: #ff9900; text-decoration: none; width: 146px; height: 30px; line-height: 30px; text-align: left; margin: 0px; font-size: 12px; text-indent: 10px; border-top: 1px solid #FFD528; border-left: 1px solid #FFD528;  border-right: 1px solid #FFD528;}
+ ul.MenuBarHorizontal li.li_on ul li a:hover, ul.MenuBarHorizontal li.li_on ul li a:active { color: #fff; text-decoration: none; background: #333; line-height: 30px;}
+
+ /* BROWSER HACKS: the hacks below should not be changed unless you are an expert*/
+ ul.MenuBarHorizontal iframe {position: absolute; z-index: 1010;}
+
+/*search*/
+
+ .lb_satellite {
+        position: relative;
+ }
+ .lb_search_bg {
+     float: left;
+     background: url(../images/bg_search.jpg) no-repeat;
+     width: 175px;
+     height: 41px;
+     overflow: hidden;
+     padding: 5px 0px 0px 10px;
+ }
+
+ .lb_search_bg input {
+     font-family: 'Fjalla One', sans-serif;
+     border: 0px;
+     padding: 0px;
+     margin: 0px;
+     font-size: 16px;
+     text-transform: uppercase;
+     color: #999;
+     width: 165px;
+     line-height: 30px;
+     height: 30px;
+     float: left;
+ }
+
+ .search button:focus,
+ .lb_search_bg input:focus{
+     outline: none;
+     -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+     -webkit-tap-highlight-color: transparent !important;
+     -webkit-user-modify: read-write-plaintext-only !important;
+     border: 0;
+ }
+
+ .search button, .search button:visited {
+     background-position: 0px 0px;
+     float: left;
+     width: 35px;
+     height: 40px;
+     text-indent: -9999px;
+     border-top-right-radius: 5px;
+     overflow: hidden;
+     border-bottom-right-radius: 5px;
+ }
+
+ .search button:hover  {
+     background-position: -35px 0px;
+ }
 
  /* Featured Catagories*/
 
  .featured-cat {
      display: inline-block;
-     width: 180px;
      margin: 0;
      position: relative;
      overflow: visible;
@@ -39,7 +257,6 @@
 
  .wrap-cat{
      position: relative;
-     width: 180px;
      overflow: hidden;
      display: block;
      margin: 0px auto;
@@ -53,32 +270,38 @@
 
 
  .featured-cat .cat-image img {
-     width: 180px;
-     height: 180px;
+     width: 100%;
+     height: auto;
  }
 
  .featured-cat .cat-title {
-     font-size: 16px;
-     line-height: 17px;
-     color: #008ff8;
-     width: 170px;
+     margin: 0px;
+     font-size: 18px;
+     margin-top: 5px;
      overflow: hidden;
      text-overflow: ellipsis;
      white-space: nowrap;
      position: absolute;
      bottom: 10px;
-     left: 0;
+     left: 2px;
+     color: #333;
+     background: #FFF;
+     width: 98%;
+     margin: 0 1px 0 0;
  }
 
 
  .featured-cat .cat-title a,
  .featured-cat .cat-title a:hover
  {
-
-     text-decoration: underline;
-     font-weight: 600;
-     color: black;
-     color: #008ff8;
+     font-family: 'Fjalla One', sans-serif;
+     margin: 0px;
+     font-size: 16px;
+     color: #333;
+     text-transform: uppercase;
+     padding: 0 6px;
+     line-height: 22px;
+     display: block;
  }
 
  .featured-cat .cat-title a:hover{
@@ -93,7 +316,7 @@
 
  .featured-cat li{
      list-style: none;
-     width: 180px;
+     /*width: 180px;*/
      overflow: hidden;
      text-overflow: ellipsis;
      white-space: nowrap;
@@ -124,6 +347,7 @@
  .std .category-list-home>li{
      margin: 0 0 10px 10px;
      vertical-align: top;
+     float: left;
  }
 
  .std .category-list-home>li:first-child{
@@ -132,5 +356,37 @@
 
 
 
+ /*left banner contact*/
 
+ .lb_contact {
+     background: url(../images/bg_contact.jpg) no-repeat 0px 0px;
+     width: 211px;
+     height: 315px;
+     padding: 175px 0px 0px 15px;
+ }
+
+ .lb_contact h4 {
+     font-size: 22px;
+     line-height: 22px;
+ }
+
+ .lb_phone {
+     font-family: 'BebasNeueRegular';
+     background: url(../images/bg_phone.png) no-repeat 0px 0px;
+     height: 35px;
+     line-height: 35px;
+     text-indent: 45px;
+     font-size: 25px;
+     color: #ff9900;
+     margin: 5px 0px 5px 0px;
+ }
+
+ .lb_text_11 {
+     font-size: 11px;
+     line-height: 13px;
+ }
+
+ .lb_space {
+     padding: 5px;
+ }
 

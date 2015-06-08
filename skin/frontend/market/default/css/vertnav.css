@@ -1,12 +1,11 @@
 .vertnav-container {
-	margin-top:36px;
-	margin-left: 10px;
+	margin-top:14px;
 }
 #vertnav{
     border-radius:0px;
     overflow:hidden;
 	float: left;
-	width: 90%;
+	width: 99%;
 }
 #vertnav li .vertnav-cat {
 	display:block;

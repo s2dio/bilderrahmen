@@ -40,13 +40,15 @@
     }
 ?>
 
-<a href="#header-cart" class="skip-link skip-cart <?php if($_cartQty <= 0): ?> no-count<?php endif; ?>">
-    <span class="label"><?php
-    echo $_cartQty.' '.$this->__('Products');?> | <?php echo Mage::helper('checkout')->formatPrice($_cartPrice)
-    ?><br>
-    <span class="to-cart"><?php echo $this->__('To cart') ?></span>
+<a href="#header-cart" class="header-cart skip-link skip-cart <?php if($_cartQty <= 0): ?> no-count<?php endif; ?>">
+    <span class="label">
+        <span class="price"><?php echo Mage::helper('checkout')->formatPrice($_cartPrice) ?></span>
+        <span class="to-cart"><?php echo $this->__('To cart') ?></span>
     </span>
-    <span class="icon"></span>
+    <span class="cart-qty">
+        <span class="qty"><?php  echo $_cartQty ?></span>
+        <span class="icon"></span>
+    </span>
     <span class="label-mini"><?php echo $this->__('View Shopping Cart'); ?></span>
 </a>
 

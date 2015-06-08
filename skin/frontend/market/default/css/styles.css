@@ -927,19 +927,19 @@ textarea {
 }
 
 a {
-  color: #3399cc;
+  color: #1d1d1b;
   text-decoration: none;
     outline: none;
 }
 
 a:hover {
-  color: #2e8ab8;
+  color: #f09214;
   text-decoration: underline;
 }
 
 a:focus {
-  outline-color: #3091c2;
-  color: #143d52;
+  outline-color: #f09214;
+  color: #1d1d1b;
 }
 
 ol,
@@ -954,10 +954,10 @@ ul {
  * ============================================ */
 h1, .h1 {
   margin: 0;
-  margin-bottom: 0.7em;
-  color: #3399cc;
-  font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
-  font-size: 28px;
+  margin-bottom: 0.5em;
+  color: #333;
+    font-family: 'Fjalla One', sans-serif;
+  font-size: 26px;
   font-weight: 400;
   font-style: normal;
   line-height: 1.2;
@@ -969,7 +969,7 @@ h2, .h2 {
   margin: 0;
   margin-bottom: 0.5em;
   color: #636363;
-  font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    font-family: 'Fjalla One', sans-serif;
   font-size: 24px;
   font-weight: 400;
   font-style: normal;
@@ -1549,10 +1549,10 @@ a.button:hover {
 .footer-container {
   position: relative;
   margin: 0 auto;
-  padding: 15px;
+  /*padding: 15px;*/
 }
 .main-container {
-    max-width: 1010px;
+    max-width: 980px
 }
 .main-container:after,
 .footer-container:after {
@@ -3135,8 +3135,8 @@ body {
 .page-header-container .store-language-container {
   float: right;
   max-width: 35%;
-  padding: 5px 0 5px 10px;
-  margin-right: -30px; 
+  padding: 10px 0 0px 10px;
+  margin-right: 0;
 }
 .page-header-container .store-language-container label {
   display: none;
@@ -3160,7 +3160,9 @@ body {
   min-width: 100px;
   min-height: 44px;
   text-align: center;
-  padding: 10px;
+  padding: 0;
+  margin-top: 14px;
+  margin-bottom: 14px;
 }
 .logo img {
   max-width: 100%;
@@ -3173,7 +3175,7 @@ body {
 }
 
 .logo:hover {
-  opacity: 0.8;
+
 }
 
 
@@ -3194,10 +3196,9 @@ body {
   position: relative;
   float: left;
   width: 20%;
-  height: 44px;
-  background: #FFFFFF;
+  height: 35px;
   color: #636363;
-  line-height: 42px;
+  line-height: 35px;
   text-align: center;
 }
 
@@ -3215,8 +3216,6 @@ a.skip-link {
  */
 .skip-link .icon {
   display: inline-block;
-  width: 30px;
-  height: 30px;
   vertical-align: middle;
 }
 
@@ -3242,7 +3241,6 @@ a.skip-link {
 
 .skip-content.skip-active {
   display: block;
-  background: #EDEDED;
 }
 
 
@@ -3395,10 +3393,7 @@ a.skip-link {
 }
 
 #search {
-  width: 100%;
-  height: 40px;
-  padding-right: 40px;
-  font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+
 }
 
 #search_mini_form .search-button {
@@ -3464,10 +3459,10 @@ a.skip-link {
  * Skip Link - Account
  */
 .skip-account:not(.skip-active):hover .icon {
-  background-position: -46px -44px;
+  background-position: -46px -45px;
 }
 .skip-account .icon {
-  background-position: 4px -44px;
+  background-position: 4px -45px;
 }
 
 
@@ -3479,26 +3474,26 @@ a.skip-link {
 /*}*/
 
 #header-account a {
+    font-family: 'Fjalla One', sans-serif;
     position: relative;
     display: block;
-    padding: 0 10px;
-    line-height: 33px;
+    padding: 0px 4px;
+    line-height: 32px;
     text-align: center;
+    font-size: 13px;
 }
 
 #header-account a:hover {
-  color: #3399cc;
+
 }
 
 #header-account {
-    position: absolute;
-    top: 4px;
-    right: 85px;
+    float: right;
     display: block;
 }
 #header-account li {
     float: left;
-    padding: 5px 0;
+    padding:  0;
 }
 #header-account li.last {
     border-right: 0;
@@ -3513,7 +3508,7 @@ a.skip-link {
     color: #fe95c2;
 }
 #header-account a {
-    font-size: 12px;
+
 }
 
 .header-minicart span.label {
@@ -3583,10 +3578,11 @@ a.skip-link {
  * Skip Link - Cart
  */
 .skip-cart:not(.skip-active):hover .icon {
-  background-position: -50px -95px;
+
 }
 .skip-cart .icon {
-  background-position: 0 -95px;
+    background-image: url(../images/bg_cart.jpg);
+
 }
 
 
@@ -8538,10 +8534,15 @@ div.calendar table td.button {
 
 /*Ism slider*/
 .b-ism-slider-control-left {
-    background: url('../images/arrow_back_big.png') no-repeat scroll 50% 50% #D9D9D9;
+    background: url('../images/arrow_back_big.png') no-repeat scroll 50% 50% #f19013;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .b-ism-slider-control-right {
-    background: url('../images/arrow_next_big.png') no-repeat scroll 50% 50% #D9D9D9;
+    background: url('../images/arrow_next_big.png') no-repeat scroll 50% 50% #f19013;
+
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 /*ISM Slider*/
 

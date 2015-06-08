@@ -28,15 +28,19 @@
 $catalogSearchHelper =  $this->helper('catalogsearch');
 ?>
 
+<div class="lb_satellite">
 <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
-    <div class="input-box">
+    <div class="lb_search_bg">
         <label for="search"><?php echo $this->__('Search:') ?></label>
-        <input id="search" type="search" name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text required-entry" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" placeholder="<?php echo $this->__('Search entire store here...') ?>" />
-        <button type="submit" title="<?php echo $this->__('Search') ?>" class="button search-button"><span><span><?php echo $this->__('Search') ?></span></span></button>
-        <input type="hidden" name="order" value="name"/>
-        <input type="hidden" name="dir" value="asc"/>
+        <input id="search" type="search" autocomplete="off"  name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text required-entry" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" onfocus="if(this.value=='Enter search keyword') this.value='';" onblur="if(this.value=='') this.value='Enter search keyword';" />
+
+    </div>
+    <div class="lb_bt search">
+        <button type="submit" title="<?php echo $this->__('Search') ?>" class="lb_bt"><span><span><?php echo $this->__('Search') ?></span></span></button>
     </div>
 
+    <input type="hidden" name="order" value="name"/>
+    <input type="hidden" name="dir" value="asc"/>
     <div id="search_autocomplete" class="search-autocomplete"></div>
     <script type="text/javascript">
     //<![CDATA[
@@ -45,3 +49,6 @@ $catalogSearchHelper =  $this->helper('catalogsearch');
     //]]>
     </script>
 </form>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
