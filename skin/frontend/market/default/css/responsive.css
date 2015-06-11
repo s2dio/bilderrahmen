@@ -840,6 +840,10 @@
 
     }
 
+    .trusted{
+        display: none;
+    }
+
     .wrapper{
         overflow: hidden;
     }

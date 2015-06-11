@@ -1218,3 +1218,9 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
 .skip-nav {
      width: 25%;
 }
+
+.trusted{
+    position: absolute;
+    top: 20%;
+    right: 35%;
+}
