@@ -48,9 +48,8 @@ p {
     margin: 0;
 }
 
-
 .product-view .add-to-cart-buttons .button:after,
-.lb_bt a, .lb_bt a:visited, .lb_bt button, .lb_bt button:visited, .link-wishlist, .link-compare, .link-email-friend{
+.lb_bt a, .lb_bt a:visited, .lb_bt button, .lb_bt button:visited, .link-wishlist, .link-compare, .link-email-friend {
     font-family: 'Fjalla One', sans-serif;
     background-image: url(../images/bg_buttons.png);
     background-repeat: no-repeat;
@@ -78,13 +77,13 @@ p {
     /*background-position: 0px -71px;*/
     color: #FFF;
     background: #f6ca6c;
-    background: -moz-linear-gradient(top,  #f6ca6c 0%, #f3b531 3%, #f1aa13 5%, #f1aa13 37%, #f19513 68%, #f19013 82%, #f19013 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6ca6c), color-stop(3%,#f3b531), color-stop(5%,#f1aa13), color-stop(37%,#f1aa13), color-stop(68%,#f19513), color-stop(82%,#f19013), color-stop(100%,#f19013));
-    background: -webkit-linear-gradient(top,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
-    background: -o-linear-gradient(top,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
-    background: -ms-linear-gradient(top,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
-    background: linear-gradient(to bottom,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6ca6c', endColorstr='#f19013',GradientType=0 );
+    background: -moz-linear-gradient(top, #f6ca6c 0%, #f3b531 3%, #f1aa13 5%, #f1aa13 37%, #f19513 68%, #f19013 82%, #f19013 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6ca6c), color-stop(3%, #f3b531), color-stop(5%, #f1aa13), color-stop(37%, #f1aa13), color-stop(68%, #f19513), color-stop(82%, #f19013), color-stop(100%, #f19013));
+    background: -webkit-linear-gradient(top, #f6ca6c 0%, #f3b531 3%, #f1aa13 5%, #f1aa13 37%, #f19513 68%, #f19013 82%, #f19013 100%);
+    background: -o-linear-gradient(top, #f6ca6c 0%, #f3b531 3%, #f1aa13 5%, #f1aa13 37%, #f19513 68%, #f19013 82%, #f19013 100%);
+    background: -ms-linear-gradient(top, #f6ca6c 0%, #f3b531 3%, #f1aa13 5%, #f1aa13 37%, #f19513 68%, #f19013 82%, #f19013 100%);
+    background: linear-gradient(to bottom, #f6ca6c 0%, #f3b531 3%, #f1aa13 5%, #f1aa13 37%, #f19513 68%, #f19013 82%, #f19013 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6ca6c', endColorstr='#f19013', GradientType=0);
     border-top: 1px solid #FFD02A;
     border-bottom: 1px solid #ff9d06;
     border-right: 1px solid #ff9d06;
@@ -97,17 +96,15 @@ p {
     display: inline-block;
 }
 
-
-
 .button:hover, .cart-table .product-cart-actions .button:hover, #co-shipping-method-form .buttons-set .button:hover, .footer .button:hover, .cart-link:hover {
     background: #343434;
-    background: -moz-linear-gradient(top,  #343434 0%, #323232 14%, #343434 18%, #333333 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#343434), color-stop(14%,#323232), color-stop(18%,#343434), color-stop(100%,#333333));
-    background: -webkit-linear-gradient(top,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
-    background: -o-linear-gradient(top,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
-    background: -ms-linear-gradient(top,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
-    background: linear-gradient(to bottom,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#343434', endColorstr='#333333',GradientType=0 );
+    background: -moz-linear-gradient(top, #343434 0%, #323232 14%, #343434 18%, #333333 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #343434), color-stop(14%, #323232), color-stop(18%, #343434), color-stop(100%, #333333));
+    background: -webkit-linear-gradient(top, #343434 0%, #323232 14%, #343434 18%, #333333 100%);
+    background: -o-linear-gradient(top, #343434 0%, #323232 14%, #343434 18%, #333333 100%);
+    background: -ms-linear-gradient(top, #343434 0%, #323232 14%, #343434 18%, #333333 100%);
+    background: linear-gradient(to bottom, #343434 0%, #323232 14%, #343434 18%, #333333 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#343434', endColorstr='#333333', GradientType=0);
     border-top-color: #656565;
     border-bottom-color: #343434;
     border-right: 1px solid #343434;
@@ -115,16 +112,16 @@ p {
     cursor: pointer;
 }
 
-.btn-update{
+.btn-update {
     padding: 0 10px;
     line-height: 18px;
 }
 
-.btn-checkout{
+.btn-checkout {
     padding: 0 40px;
 }
 
-.btn-checkout:after{
+.btn-checkout:after {
     display: inline-block;
     width: 0;
     height: 0;
@@ -138,13 +135,12 @@ p {
     top: 11px;
 }
 
-.product-view .add-to-cart-buttons .button{
+.product-view .add-to-cart-buttons .button {
     padding: 0 45px 0 30px;
     position: relative;
 }
 
-
-.product-view .add-to-cart-buttons .button:after{
+.product-view .add-to-cart-buttons .button:after {
     content: '';
     background-position: -166px -351px;
     width: 37px;
@@ -173,7 +169,7 @@ p {
     color: #fff;
 }
 
-.lb_icon a, .lb_icon a:visited{
+.lb_icon a, .lb_icon a:visited {
     background-image: url(../images/bg_icons.png);
     background-repeat: no-repeat;
     background-position: 0px 0px;
@@ -266,7 +262,7 @@ ul.MenuBarHorizontal {
     list-style-type: none;
     cursor: default;
     float: left;
-    height : 35px;
+    height: 35px;
     float: left;
     border-right: 1px solid #D3D3D3;
 }
@@ -625,10 +621,10 @@ ul.MenuBarHorizontal iframe {
     padding: 175px 0px 0px 15px;
     margin: 20px 0px 10px;
 }
-.lb_trusted{
+
+.lb_trusted {
     margin: 10px 0 20px;
 }
-
 
 .lb_contact h4 {
     font-size: 18px;
@@ -684,7 +680,7 @@ body:not(.cms-index) h2.subtitle,
     padding: 0;
 }
 
-body:not(.cms-index)  h2.subtitle{
+body:not(.cms-index) h2.subtitle {
     background: none;
     border: 0 !important;
     padding-left: 0;
@@ -697,7 +693,7 @@ body:not(.cms-index)  h2.subtitle{
 }
 
 body:not(.cms-index) .jcarousel-control-prev, body:not(.cms-index) .jcarousel-last-image,
-body:not(.cms-index) .jcarousel-control-next, body:not(.cms-index) .jcarousel-next-image{
+body:not(.cms-index) .jcarousel-control-next, body:not(.cms-index) .jcarousel-next-image {
 
     border-radius: 0;
     width: 25px;
@@ -717,13 +713,13 @@ body:not(.cms-index) .jcarousel-control-next, body:not(.cms-index) .jcarousel-ne
 
 .products-grid li {
     background: #ffffff;
-    background: -moz-linear-gradient(top,  #ffffff 0%, #ffffff 79%, #f4f4f4 90%, #e2e2e2 95%, #e8e8e8 100%, #fdfdfd 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(79%,#ffffff), color-stop(90%,#f4f4f4), color-stop(95%,#e2e2e2), color-stop(100%,#e8e8e8), color-stop(100%,#fdfdfd));
-    background: -webkit-linear-gradient(top,  #ffffff 0%,#ffffff 79%,#f4f4f4 90%,#e2e2e2 95%,#e8e8e8 100%,#fdfdfd 100%);
-    background: -o-linear-gradient(top,  #ffffff 0%,#ffffff 79%,#f4f4f4 90%,#e2e2e2 95%,#e8e8e8 100%,#fdfdfd 100%);
-    background: -ms-linear-gradient(top,  #ffffff 0%,#ffffff 79%,#f4f4f4 90%,#e2e2e2 95%,#e8e8e8 100%,#fdfdfd 100%);
-    background: linear-gradient(to bottom,  #ffffff 0%,#ffffff 79%,#f4f4f4 90%,#e2e2e2 95%,#e8e8e8 100%,#fdfdfd 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fdfdfd',GradientType=0 );
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 79%, #f4f4f4 90%, #e2e2e2 95%, #e8e8e8 100%, #fdfdfd 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(79%, #ffffff), color-stop(90%, #f4f4f4), color-stop(95%, #e2e2e2), color-stop(100%, #e8e8e8), color-stop(100%, #fdfdfd));
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 79%, #f4f4f4 90%, #e2e2e2 95%, #e8e8e8 100%, #fdfdfd 100%);
+    background: -o-linear-gradient(top, #ffffff 0%, #ffffff 79%, #f4f4f4 90%, #e2e2e2 95%, #e8e8e8 100%, #fdfdfd 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%, #ffffff 79%, #f4f4f4 90%, #e2e2e2 95%, #e8e8e8 100%, #fdfdfd 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 79%, #f4f4f4 90%, #e2e2e2 95%, #e8e8e8 100%, #fdfdfd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#fdfdfd', GradientType=0);
 
     border-radius: 4px;
     border: 1px solid #c1c1c1 !important;
@@ -733,15 +729,13 @@ body:not(.cms-index) .jcarousel-control-next, body:not(.cms-index) .jcarousel-ne
     padding: 20px;
 }
 
-.product-image{
+.product-image {
     border-radius: 0;
 }
 
 .cms-index h2.subtitle {
     margin-bottom: 10px;
 }
-
-
 
 .products-grid .product-name, .products-list .product-name {
     height: 28px;
@@ -841,7 +835,7 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
     z-index: 222;
 }
 
-.info_benefit{
+.info_benefit {
     font-family: 'Fjalla One', sans-serif;
     position: absolute;
     top: 14px;
@@ -1042,40 +1036,38 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
     margin: 10px 0;
 }
 
-
-
 /*product deteil*/
-.product-name{
+.product-name {
     font-size: 26px;
     line-height: 30px;
     color: #333;
     margin-bottom: 10px;
 }
 
-.page-title h1, .page-title h2, .product-name h1, .product-name .h1{
+.page-title h1, .page-title h2, .product-name h1, .product-name .h1 {
     font-size: 26px;
     line-height: 30px;
     color: #333;
     margin-bottom: 10px;
 }
 
-.model{
+.model {
     margin-bottom: 20px;
 }
 
-.sku, .model{
+.sku, .model {
     font-size: 10px;
     line-height: 12px;
     width: 100%;
     clear: both;
 }
 
-.sku-title, .model-title{
+.sku-title, .model-title {
     width: 100px;
     float: left;
 }
 
-.tax-details{
+.tax-details {
     font-size: 10px;
     line-height: 12px;
     width: 100%;
@@ -1084,79 +1076,93 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
     margin-bottom: 10px;
 }
 
-.tax-details a{
+.tax-details a {
     color: #990000;
     text-decoration: underline;
 }
 
-.tax-details a:hover{
+.tax-details a:hover {
     color: #333;
     text-decoration: underline;
 }
 
-.status{
+.status {
     font-family: 'Fjalla One', sans-serif;
     width: 100%;
     text-transform: uppercase;
 
 }
 
-.status .in-stock{ color:  #f19013;  margin-bottom: 10px;}
-.status .sold-out{  color:  #990000; margin-bottom: 10px;}
-.status .available{ color: #4a9919;  margin-bottom: 10px;}
+.status .in-stock {
+    color: #f19013;
+    margin-bottom: 10px;
+}
 
+.status .sold-out {
+    color: #990000;
+    margin-bottom: 10px;
+}
 
-.status .in-stock span{ background:  #f19013; }
-.status .sold-out span{  background:  #990000; }
-.status .available span{ background: #4a9919;}
+.status .available {
+    color: #4a9919;
+    margin-bottom: 10px;
+}
 
-.status span{
+.status .in-stock span {
+    background: #f19013;
+}
+
+.status .sold-out span {
+    background: #990000;
+}
+
+.status .available span {
+    background: #4a9919;
+}
+
+.status span {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     display: inline-block;
 }
 
-
-
-
- .link-wishlist, .link-compare, .link-email-friend{
-     width: 30px;
-     height: 30px;
-     padding: 0;
-     float: left;
-     margin: 0px 7px 0px 0px;
+.link-wishlist, .link-compare, .link-email-friend {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    float: left;
+    margin: 0px 7px 0px 0px;
 }
 
-.link-wishlist{
+.link-wishlist {
     background-position: -90px -280px;
 }
 
-.link-compare{
+.link-compare {
     background-position: -60px -280px;
 }
-.link-email-friend{
+
+.link-email-friend {
     background-position: -30px -280px;
 }
 
-
-.link-email-friend:hover{
+.link-email-friend:hover {
     background-position: -30px -310px;
 }
 
-.link-wishlist:hover{
+.link-wishlist:hover {
     background-position: -90px -310px;
 }
 
-.link-compare:hover{
+.link-compare:hover {
     background-position: -60px -310px;
 }
 
 .customer-account-create .col-main,
-.checkout-onepage-index .col-main{
+.checkout-onepage-index .col-main {
     margin-bottom: 50px;
 }
-
 
 .customer-account table {
     font-family: Arial, Helvetica, sans-serif;
@@ -1165,61 +1171,56 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
     line-height: 1.5;
 }
 
-.customer-account .pager .amount{
+.customer-account .pager .amount {
     float: left;
     height: 30px;
     line-height: 30px;
     margin: 0 20px;
 }
 
-.customer-account  .toolbar label, .customer-account .pager-no-toolbar label{
+.customer-account .toolbar label, .customer-account .pager-no-toolbar label {
     display: inline;
 }
 
-
-.customer-account .pager .limiter{
+.customer-account .pager .limiter {
     float: right;
     height: inherit;
 }
 
-
-
-
-.opc #opc-login .col-1 .buttons-set{
+.opc #opc-login .col-1 .buttons-set {
     padding-top: 67px;
 }
 
-.opc #opc-login .col-2 .buttons-set{
+.opc #opc-login .col-2 .buttons-set {
     padding-top: 18px;
 }
 
-
 @media only screen and (max-width: 780px) {
-    .opc #opc-login .col-2 .buttons-set{
+    .opc #opc-login .col-2 .buttons-set {
         padding-top: 1px;
     }
 }
 
-
 @media only screen and (max-width: 480px) {
-    .opc #opc-login .buttons-set{
+    .opc #opc-login .buttons-set {
         margin-left: 10px;
     }
-    .opc #opc-login .col-1 .buttons-set{
+
+    .opc #opc-login .col-1 .buttons-set {
         padding-top: 10px;
     }
+
     input[type=email], input[type=search], input[type=number], input[type=password], input[type=tel], input[type=text] {
         width: 96%;
         max-width: 100%;
     }
 }
 
-
 .skip-nav {
-     width: 25%;
+    width: 25%;
 }
 
-.trusted{
+.trusted {
     position: absolute;
     top: 20%;
     right: 35%;
