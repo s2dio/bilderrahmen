@@ -10,11 +10,13 @@
 #vertnav li .vertnav-cat {
 	display:block;
 	padding:0px;
-        margin-bottom:1px;
+    margin-bottom:1px;
+	position: relative;
 }
 li.level1,li.level2,li.level3{display:none;}
 
 
+.block-account ul li a,
 #vertnav li a {
 	font-size: 14px;
 	text-indent: 10px;
@@ -46,36 +48,12 @@ li.level1,li.level2,li.level3{display:none;}
 	white-space: nowrap;
 }
 
-
-
-#vertnav li a:after {
-	display: inline-block;
-	width: 0;
-	height: 0;
-	content: "";
-	border: 5px solid;
-	border-right-color: transparent;
-	border-bottom-color: transparent;
-	border-top-color: transparent;
-	position: absolute;
-	right: 7px;
-	top: 13px;
-}
-
-
+.block-account ul li a:hover,
 #vertnav li a:hover {
 	color: #ff9900;
 }
 
 
-#vertnav li:hover a:after {
-	border-right-color: transparent;
-	border-left-color: transparent;
-	border-bottom-color: transparent;
-	border-top-color: #ff9900;
-	right: 11px;
-	top: 15px;
-}
 
 
 #vertnav .inactive .vertnav-cat {
@@ -103,7 +81,11 @@ li.level1,li.level2,li.level3{display:none;}
 
 	font-weight:bold;
 }
-#vertnav li.active, #vertnav li.open{border: 2px solid #a8a8a8;margin-bottom:2px;background:url(../images/nav_arrow.jpg)  185px center no-repeat;}
+#vertnav li.active, #vertnav li.open{
+	/*border: 2px solid #a8a8a8;*/
+	margin-bottom:2px;
+	/*background:url(../images/nav_arrow.jpg)  185px center no-repeat;*/
+}
 
 #vertnav li.active.first, #vertnav li.open.first{
     border-top-left-radius:10px;
@@ -118,29 +100,160 @@ li.level1,li.level2,li.level3{display:none;}
 #vertnav li.active .vertnav-cat {
 	background-color:transparent;
 	font-weight:bold;
+	margin-bottom: 0;
 }
 #vertnav li.active a, #vertnav li.open a {
-	color:#a8a8a8;
+	color: #FFF;
+	background: #f6ca6c;
+	background: -moz-linear-gradient(top,  #f6ca6c 0%, #f3b531 3%, #f1aa13 5%, #f1aa13 37%, #f19513 68%, #f19013 82%, #f19013 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6ca6c), color-stop(3%,#f3b531), color-stop(5%,#f1aa13), color-stop(37%,#f1aa13), color-stop(68%,#f19513), color-stop(82%,#f19013), color-stop(100%,#f19013));
+	background: -webkit-linear-gradient(top,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
+	background: -o-linear-gradient(top,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
+	background: -ms-linear-gradient(top,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
+	background: linear-gradient(to bottom,  #f6ca6c 0%,#f3b531 3%,#f1aa13 5%,#f1aa13 37%,#f19513 68%,#f19013 82%,#f19013 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6ca6c', endColorstr='#f19013',GradientType=0 );
+	border-top: 1px solid #FFD02A;
+	border-bottom: 1px solid #ff9d06;
+	border-right: 1px solid #ff9d06;
+	border-left: 1px solid #ff9d06;
 }
+
+#vertnav li.active.has-children a{
+	border-bottom-left-radius:0px;
+	border-bottom-right-radius:0px;
+
+	margin-bottom: 0;
+}
+
+
+#vertnav li.active  li a, #vertnav li li:hover a {
+	background: #f19013;
+}
+
+
+.block-account ul li.active a,
+#vertnav li.active  li:hover a, #vertnav li.open li:hover a {
+	background: #343434;
+	background: -moz-linear-gradient(top,  #343434 0%, #323232 14%, #343434 18%, #333333 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#343434), color-stop(14%,#323232), color-stop(18%,#343434), color-stop(100%,#333333));
+	background: -webkit-linear-gradient(top,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
+	background: -o-linear-gradient(top,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
+	background: -ms-linear-gradient(top,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
+	background: linear-gradient(to bottom,  #343434 0%,#323232 14%,#343434 18%,#333333 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#343434', endColorstr='#333333',GradientType=0 );
+	 border-top-color: #656565;
+	 border-bottom-color: #343434;
+	border-right: 1px solid #343434;
+	border-left: 1px solid #343434;
+}
+
 
 #vertnav li.inactive .vertnav-cat {
 	font-weight:normal;
 }
 
-#vertnav .level0 .vertnav-cat {
+#vertnav  li.active.vertnav-cat {
+	margin: 0;
 }
 
+#vertnav li.active > ul li.level1 a, #vertnav li.open > ul li.level1,
+#vertnav li.active > ul li.level2, #vertnav li.open > ul li.level2,
+#vertnav li.active > ul li.level3, #vertnav li.open > ul li.level3{
+	display: block;
+	font-weight: bold;
+	line-height: 25px;
+	height: 25px;
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	overflow: hidden;
+	font-size: 13px;
+	font-weight: 300;
+}
+
+#vertnav li > ul li a{
+	border-radius: 0 !important;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+
+#vertnav li a:after {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	content: "";
+	border: 5px solid;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-top-color: transparent;
+	position: absolute;
+	right: 7px;
+	top: 11px;
+}
+
+
+#vertnav > li.active >  span > a:after,
+#vertnav > li:hover > span > a:after {
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
+	border-top-color: #ff9900;
+	right: 11px;
+	top: 15px;
+}
+
+#vertnav > li.active >  span > a:after,
+#vertnav > li.active:hover >  span > a:after {
+	border-top-color: #FFF;
+}
+
+
+#vertnav li  > ul a:after {
+	left: 7px;
+	top: 7px;
+	right: inherit;
+}
+
+
+
 #vertnav .level1 .vertnav-cat {
-	padding-left:10px;
-	width:182px;
 }
 
 #vertnav .level2 .vertnav-cat {
-	padding-left:20px;
+
 	width:172px;
 }
 
 #vertnav .level3 .vertnav-cat {
-	padding-left:30px;
+
 	width:162px;
 }
+
+
+#vertnav .product-count{
+	position: absolute;
+	top: 10px;
+	right: 24px;
+	z-index: 22;
+	font-size: 10px;
+	color:  #333;
+	font-weight: 300;
+	font-family: 'Fjalla One', sans-serif;
+}
+
+#vertnav li > ul li .product-count{
+	top: 2px;
+	font-size: 10px;
+	color: #FFF;
+}
+
+.block-account ul li{
+	margin: 0 0 2px;
+}
+.block-account ul li a{
+	font-size: 12px;
+	text-transform: none;
+}
+

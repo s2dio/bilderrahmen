@@ -100,6 +100,9 @@
                 <block type="cms/block" name="headers-info" after="store_language">
                     <action method="setBlockId"><block_id>headers-info</block_id></action>
                 </block>
+                <block type="cms/block" name="trusted" after="headers-info">
+                    <action method="setBlockId"><block_id>trusted</block_id></action>
+                </block>
                 <block type="core/text_list" name="top.menu" as="topMenu" translate="label">
                     <label>Navigation Bar</label>
                     <block type="page/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml">

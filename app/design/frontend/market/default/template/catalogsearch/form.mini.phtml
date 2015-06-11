@@ -32,7 +32,7 @@ $catalogSearchHelper =  $this->helper('catalogsearch');
 <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
     <div class="lb_search_bg">
         <label for="search"><?php echo $this->__('Search:') ?></label>
-        <input id="search" type="search" autocomplete="off"  name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text required-entry" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" onfocus="if(this.value=='Enter search keyword') this.value='';" onblur="if(this.value=='') this.value='Enter search keyword';" />
+        <input id="search" type="search" autocomplete="off"  name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value='Enter search keyword' class="input-text required-entry" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" onload="if(this.value=='') this.value='Enter search keyword';" onfocus="if(this.value=='Enter search keyword') this.value='';" onblur="if(this.value=='') this.value='Enter search keyword'"; onkeyup="if(event.which || event.keyCode){ if ((event.which == 13) || (event.keyCode == 13)) {return false;}}" />
 
     </div>
     <div class="lb_bt search">

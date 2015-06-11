@@ -4,14 +4,15 @@
             var self = $(this);
 
             self.on('jcarousel:reload jcarousel:create', function () {
-                var width = self.outerWidth();
+                var width = self.width();
+                console.log(width);
                 if (width >= 600) {
-                    width = width / 4;
+                    width = (width - 40) / 3;
                 } else if (width >= 450) {
-                    width = width / 3;
+                    width = (width - 40) / 2;
                 }
                 else if (width >= 350) {
-                    width = width / 2;
+                    width = (width ) / 1;
                 }
                 self.jcarousel('items').css('width', width + 'px');
             })
@@ -30,14 +31,14 @@
         var sliderlProductImage = $('.jcarousel-more-images');
         sliderlProductImage
             .on('jcarousel:reload jcarousel:create', function () {
-                var width = sliderlProductImage.outerWidth();
+                var width = sliderlProductImage.width();
                 if (width >= 500) {
                     width = width / 5;
-                } else if (width >= 400) {
-                    width = width / 4;
+                } else if (width  >= 400) {
+                    width = (width - 0) / 4;
                 }
                 else if (width >= 300) {
-                    width = width / 3;
+                    width = (width - 0) / 3;
                 }
                 sliderlProductImage.jcarousel('items').css('width', width + 'px');
             })

@@ -56,6 +56,8 @@
                 </div>
                 <div class="col-right sidebar"><?php echo $this->getChildHtml('right') ?></div>
             </div>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_footer_block')->toHtml();?>
+
         </div>
         <?php echo $this->getChildHtml('footer_before') ?>
         <?php echo $this->getChildHtml('footer') ?>

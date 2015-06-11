@@ -60,6 +60,11 @@
                 </div>
                 <div class="col-left sidebar col-left"><?php echo $this->getChildHtml('left') ?></div>
             </div>
+            <?php if(Mage::helper('codevog_options')->isHomePage()):?>
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('bottom_home_block')->toHtml();?>
+            <?php endif;?>
+            <div class="clearfix"></div>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_footer_block')->toHtml();?>
         </div>
         <?php echo $this->getChildHtml('footer_before') ?>
         <?php echo $this->getChildHtml('footer') ?>

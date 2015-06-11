@@ -3,6 +3,7 @@
 <?php if (($_products = $this->getTopSellerCollection()) && $_products->getSize()): ?>
     <h2 class="subtitle"><?php echo $this->__('Topsellers') ?></h2>
     <?php $_columnCount = $this->getColumnCount(); ?>
+    <div class="jcarousel-wrap">
     <div class="jcarousel">
         <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
             <?php $i=0; foreach ($_products->getItems() as $_product): ?>
@@ -27,9 +28,10 @@
         <?php endif*/ ?>
             <?php endforeach; ?>
         </ul>
-        <?php if($_products->getSize() > 4):?>
-            <a href="#" class="jcarousel-control-prev"></a>
-            <a href="#" class="jcarousel-control-next"></a>
-        <?php endif;?>
     </div>
+    <?php if($_products->getSize() > 4):?>
+        <a href="#" class="jcarousel-control-prev"></a>
+        <a href="#" class="jcarousel-control-next"></a>
+    <?php endif;?>
+      </div>
 <?php endif; ?>

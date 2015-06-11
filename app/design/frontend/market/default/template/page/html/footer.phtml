@@ -25,17 +25,9 @@
  */
 ?>
 
-<?php if(Mage::helper('codevog_options')->isHomePage()):?>
-    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('bottom_home_block')->toHtml();?>
-<?php endif;?>
-
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_footer_block')->toHtml();?>
-
 <div class="footer-container">
     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('bilderrahmen_footer_links')->toHtml();?>
-    <div class="footer">
-        <?php echo $this->getChildHtml() ?>
-        <address class="copyright"><?php echo $this->getCopyright() ?></address>
-    </div>
-    <div class="cont_four_market"><a class="four_market" href="http://www.4market.de" target="_blank"><img src="<?php echo $this->getSkinUrl('images/made-by-4market-w.png');?>" alt="4market.de - Internetagentur" title="4market.de - Magento Agentur" /></a></div>
+    <?php echo $this->getChildHtml() ?>
+     <address class="copyright"><?php echo $this->getCopyright() ?></address>
+    <div class="cont_four_market"><a class="four_market" href="http://www.4market.de" target="_blank"><img src="<?php echo $this->getSkinUrl('images/4market-m.png');?>" alt="4market.de - Internetagentur" title="4market.de - Magento Agentur" /></a></div>
 </div>

@@ -37,16 +37,5 @@
     <?php $productName = $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
 		<?php $productUrl = $_helper->productAttribute($_product, $_product->getProductUrl(), 'product_url'); ?>
 		<?php $productImage = $_product->getImageUrl() ?>
-    <li>
-        <a href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($productUrl); ?>&t=<?php echo urlencode($productName); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>/wysiwyg/facebook.jpg" alt="<?php echo $this->__('Share on Facebook') ?>" /></a>
-    </li>
-    <li>
-    		<a href="javascript:popWin('http://twitter.com/home/?status=<?php echo urlencode($productName . ' (' . $productUrl . ')'); ?>', 'twitter', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Tweet') ?>"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>/wysiwyg/twitter.jpg" alt="<?php echo $this->__('Tweet') ?>" /></a>
-    </li>
-    <li>
-        <a href="javascript:popWin('https://plus.google.com/share?url=<?php echo urlencode($productUrl); ?>', 'google', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Google Plus') ?>"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>/wysiwyg/google-plus.jpg" alt="<?php echo $this->__('Share on Google Plus') ?>" /></a>
-    </li>
-    <li>
-    	<a href="javascript:popWin('https://pinterest.com/pin/create/button/?url=<?php echo urlencode($productUrl); ?>&media=<?php echo urlencode($productImage); ?>&description=<?php echo urlencode($productName); ?>', 'pinterest', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Pin it') ?>"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>/wysiwyg/pinterest.jpg" alt="<?php echo $this->__('Pin it') ?>" /></a>	
-    </li>
+
 </ul>
