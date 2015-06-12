@@ -668,13 +668,13 @@
 @media only screen and (min-width: 771px) {
     .page-header-container {
         position: relative;
-        max-width: 980px;
+        max-width: 982px;
         margin: 0 auto;
     }
 
     .footer-container {
         position: relative;
-        max-width: 980px;
+        max-width: 982px;
         margin: 0 auto;
     }
 }
