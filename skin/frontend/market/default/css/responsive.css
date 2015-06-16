@@ -957,6 +957,8 @@
         border-right: 1px solid #D3D3D3;
     }
 
+
+    ul.MenuBarHorizontal > li:first-child,
     ul.MenuBarHorizontal li.li_home_on a, ul.MenuBarHorizontal li.li_home_on a:visited, ul.MenuBarHorizontal li.li_home_on a:hover {
         display: none;
     }
@@ -966,7 +968,7 @@
     }
 
     ul.MenuBarHorizontal li a, ul.MenuBarHorizontal li a:visited {
-        width: 100%;
+        width: 100% !important;
         height: 35px;
         float: none;
     }
@@ -1691,11 +1693,12 @@
     #header-account {
         position: absolute;
         display: none;
-        bottom: -70px;
+        top: 100%;
         right: 0;
         z-index: 300;
         width: 100%;
         line-height: 38px;
+        margin-top: -7px;
     }
 
     #header-account a {
