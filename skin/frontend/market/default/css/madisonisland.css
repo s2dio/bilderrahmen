@@ -615,10 +615,10 @@ body .promos > li {
   width: 23% !important;
   margin-right: 2.66667% !important;
   margin-bottom: 10px;
-  border: 1px solid #cccccc;
+  /*border: 1px solid #cccccc;
   padding: 10px;
   height: 220px;
-  line-height: 220px;
+  line-height: 220px;*/
 }
 
 .catblocks li:hover {
@@ -656,20 +656,45 @@ body .promos > li {
 }
 
 .catblocks li a span {
-  color: #FFFFFF;
+  font-size: 18px;
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   position: absolute;
-  background-color: #7B7C7B;
-  font-family: raleway;
-  font-size: 17px;
-  font-weight: bold;
+  bottom: 10px;
+  left: 2px;
+  color: #333;
+  background: #FFF;
+  width: 98%;
+  margin: 0 1px 0 0;
+}
+.catblocks .cat-title {
+  margin: 0px;
+  font-size: 18px;
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: absolute;
+  bottom: 10px;
+  left: 2px;
+  color: #333;
+  background: #FFF;
+  width: 98%;
+  margin: 0 1px 0 0;
+}
+.catblocks .cat-title a, .catblocks .cat-title a:hover {
+  font-family: 'Fjalla One', sans-serif;
+  margin: 0px;
+  font-size: 16px;
+  color: #333;
   text-transform: uppercase;
-  text-align: center;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  padding: 5px 10px;
-  margin-right: 10px;
-  line-height: 17px;
+  padding: 0 6px;
+  line-height: 22px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .catblocklinks a {

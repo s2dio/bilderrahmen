@@ -20,8 +20,10 @@
             <li>
                 <a href="<?php echo $category->getUrl();?>">
                     <img alt="<?php echo $category->getName();?>" src="<?php echo $this->getCategoryImageUrl($category);?>">
-                    <span><?php echo $category->getName();?></span>
                 </a>
+                <span class="cat-title">
+                    <a><?php echo $category->getName();?></a>
+                </span>
             </li>
 
             <?php if($columnCounter == $columns):?>
