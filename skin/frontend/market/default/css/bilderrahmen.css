@@ -126,7 +126,8 @@ p {
     font-size: 15px;
     padding: 0px 20px;
     position: relative;
-    display: inline-block;
+    display: block;
+    margin: 0 auto 5px;
 }
 
 .button:hover, .cart-table .product-cart-actions .button:hover, #co-shipping-method-form .buttons-set .button:hover, .footer .button:hover, .cart-link:hover {
@@ -778,7 +779,6 @@ body:not(.cms-index) .jcarousel-control-next, body:not(.cms-index) .jcarousel-ne
     height: 28px;
     line-height: 10px;
     overflow: hidden;
-    border-bottom: 1px solid #E5E5E5;
     margin-bottom: 10px;
     padding-bottom: 10px;
 }
@@ -1236,6 +1236,12 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
     .opc #opc-login .col-2 .buttons-set {
         padding-top: 1px;
     }
+    #checkout-review-table-wrapper {
+        overflow-x: scroll;
+    }
+    #checkout-review-table-wrapper thead tr {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -1248,7 +1254,7 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
     }
 
     input[type=email], input[type=search], input[type=number], input[type=password], input[type=tel], input[type=text] {
-        width: 96%;
+        width: 280px;
         max-width: 100%;
     }
 }

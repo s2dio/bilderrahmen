@@ -6220,7 +6220,7 @@ p.product-name a:hover {
 }
 
 .opc select {
-    width: 365px;
+    width: 280px;
 }
 
 /* -------------------------------------------- *
@@ -9641,4 +9641,11 @@ a.four_market {
 
 .currently .swatch-label-new {
     display: inline-block;
+}
+
+#payment_form_moneybookers_acc img {
+    width: 100%;
+}
+#payment_form_bankpayment td {
+    font-size: 11px;
 }
