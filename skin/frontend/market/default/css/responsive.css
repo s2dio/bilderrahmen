@@ -2886,6 +2886,7 @@
     .dashboard .col2-set .col-2 .box-title a {
         position: absolute;
         padding: 10px;
+        right: 0;
     }
 
     .order-info-box {
