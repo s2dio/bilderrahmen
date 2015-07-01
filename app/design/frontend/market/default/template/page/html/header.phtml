@@ -59,21 +59,34 @@ $logo = Mage::getStoreConfig('design/header/logo_src', $soreId);
                 <span class="label"><?php echo $this->__('Menu'); ?></span>
             </a>
 
+            <a href="#header-search" class="skip-link skip-search">
+                <span class="icon"></span>
+                <span class="label"><?php echo $this->__('Suche'); ?></span>
+
+            </a>
+
             <a href="#header-account" class="skip-link skip-account">
                 <span class="icon"></span>
                 <span class="label"><?php echo $this->__('Account'); ?></span>
             </a>
 
+
             <!-- Cart -->
             <div class="header-minicart">
                 <?php echo $this->getChildHtml('minicart_head'); ?>
             </div>
+
+            <div id="header-search" class="skip-content">
+            </div>
+
         </div>
         <!-- Navigation -->
 
         <div id="header-nav" class="skip-content">
             <?php echo $this->getChildHtml('topMenu') ?>
         </div>
+
+
 
 
         <!-- Cart -->

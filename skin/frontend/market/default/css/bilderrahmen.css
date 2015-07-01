@@ -1268,3 +1268,13 @@ h2.product-name a:hover, h3.product-name a:hover, h4.product-name a:hover, h5.pr
     top: 20%;
     right: 35%;
 }
+
+#header-search{
+    display: none;
+    margin: 40px 0;
+}
+
+
+#header-search.skip-content.skip-active{
+    display: block;
+}

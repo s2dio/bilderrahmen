@@ -5,7 +5,7 @@
 
             self.on('jcarousel:reload jcarousel:create', function () {
                 var width = self.width();
-                console.log(width);
+
                 if (width >= 600) {
                     width = (width - 40) / 3;
                 } else if (width >= 450) {

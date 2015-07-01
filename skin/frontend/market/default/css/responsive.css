@@ -755,7 +755,7 @@
 
 @media only screen and (min-width: 500px) {
     .skip-link {
-        width: 37%;
+        /*width: 37%;*/
 
     }
 
@@ -1777,6 +1777,23 @@
 }
 
 @media only screen and (max-width: 770px) {
+
+
+    #MenuBar,
+    #vertnav{
+        display: none;
+    }
+
+    #header #vertnav{
+        display: block;
+    }
+
+
+    .lb_satellite{
+        display: none;
+    }
+
+
     .product-view .add-to-cart-wrapper {
         float: none;
         width: 100%;
@@ -1839,6 +1856,17 @@
 }
 
 @media only screen and (min-width: 771px) {
+    #MenuBar,
+    #vertnav{
+        display: block;
+    }
+    #header-search,
+    #header #vertnav{
+        display: none;
+    }
+
+
+
     .product-collateral .toggle-tabs {
         display: block;
         width: 100%;
